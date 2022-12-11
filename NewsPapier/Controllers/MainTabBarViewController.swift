@@ -11,19 +11,28 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let topNewsBar                  = TopNewsNavigationController()
+        topNewsBar.title                = "Top News"
+        topNewsBar.tabBarItem.image     = UIImage(systemName: "star.circle")
+        
+        let discoverBar                 = RootNavigationController()
+        discoverBar.title               = "Discover"
+        discoverBar.tabBarItem.image    = UIImage(systemName: "star.circle")
 
         let homeVC                      = UINavigationController(rootViewController: HomeTabViewController())
         let testVC                      = UINavigationController(rootViewController: TestViewController())
-        
+
         homeVC.title                    = "Home"
         testVC.title                    = "Test"
-        
+
         homeVC.tabBarItem.image         = UIImage(systemName: "globe.europe.africa.fill")
         testVC.tabBarItem.image         = UIImage(systemName: "star.circle")
-        
+
         tabBar.tintColor                = .label
-        
-        setViewControllers([homeVC, testVC], animated: true)
+
+//        setViewControllers([topNewsBar, homeVC, testVC], animated: true)
+        setViewControllers([topNewsBar, discoverBar, homeVC, testVC], animated: true)
     }
     
 

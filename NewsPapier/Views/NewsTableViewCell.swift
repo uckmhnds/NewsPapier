@@ -7,22 +7,23 @@
 
 import UIKit
 import SDWebImage
+
 class NewsTableViewCell: UITableViewCell {
     
     static let identifier   = "NewsPosterTableViewCell"
     
     // SUB VIEWS
     
-    private let bookmarkButton: UIButton = {
-        
-        let button  = UIButton()
-        let image   = UIImage(systemName: "bookmark", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24))
-        button.setImage(image, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = .systemRed
-        return button
-        
-    }()
+//    private let bookmarkButton: UIButton = {
+//
+//        let button  = UIButton()
+//        let image   = UIImage(systemName: "bookmark", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24))
+//        button.setImage(image, for: .normal)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.tintColor = .systemRed
+//        return button
+//
+//    }()
     
     private let newsPosterImage: UIImageView = {
         let image           = UIImageView()
@@ -51,26 +52,20 @@ class NewsTableViewCell: UITableViewCell {
     private func applyConstraints(){
         
         let titleLabelConstraints       = [
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            titleLabel.bottomAnchor.constraint(equalTo: newsPosterImage.topAnchor, constant: -10)
+            titleLabel.topAnchor.constraint(equalTo: newsPosterImage.bottomAnchor, constant: 10)
         ]
         
         let newsPosterImageConstraint   = [
             newsPosterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             newsPosterImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            newsPosterImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
-        ]
-        
-        let bookmarkButtonConstraint    = [
-            bookmarkButton.trailingAnchor.constraint(equalTo: newsPosterImage.trailingAnchor, constant: -10),
-            bookmarkButton.topAnchor.constraint(equalTo: newsPosterImage.topAnchor, constant: 10)
+            newsPosterImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10)
         ]
         
         NSLayoutConstraint.activate(titleLabelConstraints)
         NSLayoutConstraint.activate(newsPosterImageConstraint)
-        NSLayoutConstraint.activate(bookmarkButtonConstraint)
         
     }
     
@@ -104,7 +99,7 @@ class NewsTableViewCell: UITableViewCell {
         
         contentView.addSubview(newsPosterImage)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(bookmarkButton)
+//        contentView.addSubview(bookmarkButton)
         
         applyConstraints()
     }

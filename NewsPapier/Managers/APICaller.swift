@@ -43,6 +43,106 @@ class APICaller{
     
 //    static let shared = APICaller()
     
+    func getSource(completion: @escaping (Result<[Source], Error>) -> Void){
+        
+        
+        let pageSize    = 10
+        let pageNumber  = 1
+        
+        let baseUrl     = "\(Constants.BASE_URL)/top-headlines/sources?"
+        
+        let country     = "&country=us"
+        
+        let pageUrl     = "\(Constants.PAGE_SIZE)\(pageSize)\(Constants.PAGE)\(pageNumber)"
+        
+        let apiUrl      = "\(Constants.API_KEY)"
+        
+        let urlString   = baseUrl + country + pageUrl + apiUrl
+        
+        guard let url   = URL(string: urlString) else {return}
+        
+        let task            = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            
+            guard let data = data, error == nil else {
+                return
+            }
+            do {
+                
+                let results     = try JSONDecoder().decode(SourceResponse.self, from: data)
+                completion(.success(results.sources))
+                
+            }catch{
+                print(error)
+                completion(.failure(error))
+            }
+            
+        }
+        task.resume()
+    }
+    
+    func getNews(with _category: Category, completion: @escaping (Result<[News], Error>) -> Void){
+        
+//        self.isPaginating   = true
+        
+        let pageSize    = 10
+        let pageNumber  = 1
+        
+        let baseUrl     = "\(Constants.BASE_URL)\(Constants.TOP_HEADLINE)"
+        var category    = ""
+        
+        switch _category{
+            
+        case .categories:
+            category   = ""
+        case .sources:
+            category   = ""
+        case .business:
+            category   = "category=business"
+        case .entertainment:
+            category   = "category=entertainment"
+        case .general:
+            category   = "category=general"
+        case .health:
+            category   = "category=health"
+        case .science:
+            category   = "category=science"
+        case .sports:
+            category   = "category=sports"
+        case .technology:
+            category   = "category=technology"
+            
+        }
+        
+        let country     = "&country=us"
+        
+        let pageUrl     = "\(Constants.PAGE_SIZE)\(pageSize)\(Constants.PAGE)\(pageNumber)"
+        
+        let apiUrl      = "\(Constants.API_KEY)"
+        
+        let urlString   = baseUrl + category + country + pageUrl + apiUrl
+        
+        guard let url   = URL(string: urlString) else {return}
+        
+        let task            = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            
+            guard let data = data, error == nil else {
+                return
+            }
+            do {
+                
+                let results     = try JSONDecoder().decode(NewsResponse.self, from: data)
+                completion(.success(results.articles))
+                
+            }catch{
+                print(error)
+                completion(.failure(error))
+            }
+            
+        }
+        task.resume()
+//        self.isPaginating   = false
+    }
+    
     func getNews(with pageNumber: Int, completion: @escaping (Result<[News], Error>) -> Void){
         
         self.isPaginating   = true

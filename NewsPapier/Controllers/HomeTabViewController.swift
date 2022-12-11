@@ -12,9 +12,9 @@ class HomeTabViewController: UIViewController {
     
 //    private let swiftUIController   = UIHostingController(rootView: HomeTabHeaderNews())
     
-    public var currentPage: Int    = 1
+    public var currentPage: Int = 1
     
-    private let apiCaller   = APICaller()
+    private let apiCaller = APICaller()
     
     private var news: [News] = [News]()
     
@@ -143,8 +143,6 @@ class HomeTabViewController: UIViewController {
         
         super.viewDidLoad()
         
-//        view.addSubview(swiftUIController.view)
-        
         view.addSubview(newsTable)
         
         navigationItem.searchController = searchBar
@@ -153,8 +151,6 @@ class HomeTabViewController: UIViewController {
         
         newsTable.delegate              = self
         newsTable.dataSource            = self
-        
-//        newsTable.tableHeaderView       = swiftUIController.view
         
         newsTable.refreshControl        = setScrollDownRefreshControl()
         
@@ -304,6 +300,7 @@ extension HomeTabViewController: UISearchResultsUpdating {
                 }
                 
             }
+            
         }
         
     }

@@ -7,9 +7,12 @@
 
 import Foundation
 
-
 struct NewsResponse: Codable, Hashable{
     let articles: [News]
+}
+
+struct SourceResponse: Codable, Hashable{
+    let sources: [Source]
 }
 
 struct News: Codable, Hashable{
