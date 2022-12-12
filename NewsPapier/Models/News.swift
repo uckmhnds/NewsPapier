@@ -7,6 +7,9 @@
 
 import Foundation
 
+#warning("Map this news to a newsModelView which reflects represenable object")
+#warning("i.e. 3 hours, 1 day, 2 month etc. in timeView")
+
 struct NewsResponse: Codable, Hashable{
     let articles: [News]
 }

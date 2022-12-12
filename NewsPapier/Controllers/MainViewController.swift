@@ -109,15 +109,10 @@ class MainViewController: UIViewController {
         
     }()
     
-    private lazy var collectionLayoutBackgroundDecoration: NSCollectionLayoutDecorationItem = {
-        let item = NSCollectionLayoutDecorationItem.background(elementKind: RoundedBackgroundView.reuseIdentifier)
-        return item
-    }()
-    
     private func createLayout() -> UICollectionViewCompositionalLayout {
 
         return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-
+            #warning("boilerplate code")
             switch self.categories[sectionIndex]{
                 
             case .categories:
@@ -399,6 +394,11 @@ class MainViewController: UIViewController {
         
         return item
     }()
+    
+    private lazy var collectionLayoutBackgroundDecoration: NSCollectionLayoutDecorationItem = {
+        let item = NSCollectionLayoutDecorationItem.background(elementKind: RoundedBackgroundView.reuseIdentifier)
+        return item
+    }()
 
     private func fetchNews(){
         
@@ -514,6 +514,71 @@ class MainViewController: UIViewController {
         }
 
     }
+    
+    // Scroll Down Refresh
+    
+    @objc private func didScrollDownToRefresh(){
+        
+        self.collectionView.refreshControl?.beginRefreshing()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+            
+            self.fetchNews()
+            
+            self.collectionView.refreshControl?.endRefreshing()
+            
+        }
+        
+    }
+    
+    private func setScrollDownRefreshControl() -> UIRefreshControl{
+        
+        let refreshControl  = UIRefreshControl()
+        
+        refreshControl.addTarget(self, action: #selector(didScrollDownToRefresh), for: .valueChanged)
+        
+        refreshControl.tintColor    = .white
+        
+        return refreshControl
+        
+    }
+    
+    /// SEARCH BAR CONFIG
+    
+    private lazy var searchBar: UISearchController = {
+        
+        let controller                      = UISearchController(searchResultsController: newsViewController)
+        
+        controller.searchBar.placeholder    = "Search"
+        controller.searchBar.searchBarStyle = .default
+        
+        return controller
+        
+    }()
+    
+    // NAVIGATION BAR CONFIG
+    
+    @objc private func filterBarButtonAction(){
+        
+        print("clicked")
+        
+        /// GO TO PREFERENCES
+    }
+    
+    private func configureNavigationBar(){
+        
+        let filterBarImage          = UIImage(systemName: "slider.horizontal.3")
+        
+        let filterBar               = UIBarButtonItem(image: filterBarImage,
+                                                      style: .done,
+                                                      target: self,
+                                                      action: #selector(filterBarButtonAction))
+        
+        navigationItem.rightBarButtonItem                   = filterBar
+        
+        navigationController?.navigationBar.tintColor       = .white
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -522,6 +587,12 @@ class MainViewController: UIViewController {
         fetchNews()
         
         title = "Discover"
+        
+        navigationItem.searchController = searchBar
+        
+        searchBar.searchResultsUpdater  = self
+        
+        configureNavigationBar()
         
         view.addSubview(collectionView)
         
@@ -532,6 +603,8 @@ class MainViewController: UIViewController {
         collectionView.register(PagingSectionFooterView.self,
                                 forSupplementaryViewOfKind: PagingSectionFooterView.reuseIdentifier,
                                 withReuseIdentifier: PagingSectionFooterView.reuseIdentifier)
+        
+        collectionView.refreshControl = setScrollDownRefreshControl()
 
     }
 
@@ -849,6 +922,58 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 }
 
+extension MainViewController: UISearchResultsUpdating {
+    
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        let searchBar   = searchController.searchBar
+        print("sdadkla")
+        guard let query = searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty,
+              query.trimmingCharacters(in: .whitespaces).count >= 3,
+              let resultsController = searchController.searchResultsController as? NewsViewController
+        else { return }
+        
+        // To access SearchResultsViewControllerDelegate via the protocol
+        resultsController.delegate  = self
+        print("didPass guard let")
+        apiCaller.search(with: query) { result in
+            
+            DispatchQueue.main.async {
+                
+                switch result {
+                case .success(let result):
+                    
+                    resultsController.setNews(result)
+                    resultsController.reloadNewsTable()
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                
+            }
+            
+        }
+        
+    }
+}
+
+extension MainViewController: SearchResultsViewControllerDelegate{
+    
+    func searchResultsViewControllerDidTapCell(_ news: News) {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            self?.newsDetailViewController.configure(with: news)
+            self?.navigationController?.pushViewController(self!.newsDetailViewController, animated: true)
+            
+        }
+        
+    }
+    
+}
+
 extension MainViewController: HeaderDelegate{
     
     func headerDidTap(_ category: Category) {
@@ -858,6 +983,9 @@ extension MainViewController: HeaderDelegate{
     
     
 }
+
+
+#warning("kick those classes out of mainVC class")
 
 protocol HeaderDelegate: AnyObject{
     func headerDidTap(_ category: Category)

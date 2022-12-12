@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol SearchResultsViewControllerDelegate: AnyObject{
-    
-    func searchResultsViewControllerDidTapCell(_ news: News)
-    
-}
+//protocol SearchResultsViewControllerDelegate: AnyObject{
+//    
+//    func searchResultsViewControllerDidTapCell(_ news: News)
+//    
+//}
 
 class SearchResultsViewController: UIViewController {
     

@@ -22,7 +22,7 @@ class TopNewsTableViewCell: UITableViewCell {
         image.contentMode   = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
-        image.backgroundColor = .red
+//        image.backgroundColor = .red
         image.layer.cornerRadius = imageCornerRadius
         
         return image
@@ -51,12 +51,17 @@ class TopNewsTableViewCell: UITableViewCell {
         return label
     }()
     
+    @objc private func didTapThreeDots(_ sender: UITapGestureRecognizer){
+        print("didTap")
+    }
+    
     private lazy var threeDots: UIImageView = {
         
         let image = UIImage(systemName: "ellipsis")
         let imageView = UIImageView(image: image)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
+        imageView.tintColor = .white
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapThreeDots(_:)))
         return imageView
         
     }()

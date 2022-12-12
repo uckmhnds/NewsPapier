@@ -35,6 +35,7 @@ struct Categories{
 enum APIError: Error{
     case failedToGetData
 }
+#warning("better managing apiCalls")
 
 //struct APICaller{
 class APICaller{
