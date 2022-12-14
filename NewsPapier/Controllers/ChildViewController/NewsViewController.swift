@@ -13,24 +13,18 @@ import UIKit
 //
 //}
 
-protocol SearchResultsViewControllerDelegate: AnyObject{
-    
-    func searchResultsViewControllerDidTapCell(_ news: News)
-    
-}
-
 class NewsViewController: UIViewController {
     
 //    weak var delegate: TopNewsViewControllerDelegate?
-    private let childViewController = NewsDetailViewController()
+    let childViewController = NewsDetailViewController()
     
     public weak var delegate: SearchResultsViewControllerDelegate?
     
     private var newsCategory: Category?
     
-    private let apiCaller = APICaller()
+    let apiCaller = APICaller()
     
-    private var news: [News] = []
+    var news: [News] = []
     
     private lazy var newsTable: UITableView  = {
         
@@ -159,7 +153,7 @@ class NewsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchNews()
+//        fetchNews()
         
         print("viewWillAppear")
         
@@ -174,31 +168,3 @@ class NewsViewController: UIViewController {
 }
 
 
-extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell  = tableView.dequeueReusableCell(withIdentifier: TopNewsTableViewCell.identifier, for: indexPath) as? TopNewsTableViewCell else {return UITableViewCell()}
-        let news = news[indexPath.row]
-        cell.configure(with: news)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 118
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let news = news[indexPath.row]
-        childViewController.configure(with: news)
-        navigationController?.pushViewController(childViewController, animated: true)
-        
-    }
-    
-}
