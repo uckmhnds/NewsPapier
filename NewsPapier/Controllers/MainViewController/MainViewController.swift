@@ -477,8 +477,6 @@ class MainViewController: UIViewController {
     
     @objc private func filterBarButtonAction(){
         
-        print("clicked")
-        
         /// GO TO PREFERENCES
         ///
         view.addSubview(testView)
@@ -487,7 +485,7 @@ class MainViewController: UIViewController {
     
     private func configureNavigationBar(){
         
-        let filterBarImage          = UIImage(systemName: "slider.horizontal.3")
+        let filterBarImage          = UIImage(systemName: "gearshape")
         
         let filterBar               = UIBarButtonItem(image: filterBarImage,
                                                       style: .done,

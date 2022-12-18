@@ -21,11 +21,6 @@ struct Constants{
     static let QUERY: String           = "q="
 }
 
-struct Countries{
-    static let US: String   = "us"
-    static let DE: String   = "de"
-}
-
 struct Categories{
     
     static let BUSINESS: String = "business"

@@ -28,6 +28,7 @@ class RootNavigationController: UINavigationController {
         
         addChild(sideMenuViewController)
         view.addSubview(sideMenuViewController.view)
+        
         sideMenuViewController.view.translatesAutoresizingMaskIntoConstraints = false
         sideMenuViewController.view.widthAnchor.constraint(equalToConstant: sideMenuWidth).isActive = true
         sideMenuTrailingConstraint = sideMenuViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -sideMenuWidth)

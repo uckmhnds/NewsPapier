@@ -27,6 +27,9 @@
 		985E626F2947BD0F00CB09A0 /* NewsViewController+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E626E2947BD0F00CB09A0 /* NewsViewController+Data.swift */; };
 		985E62712947BD3600CB09A0 /* NewsViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E62702947BD3600CB09A0 /* NewsViewController+Protocol.swift */; };
 		985E627A294A47C900CB09A0 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E6279294A47C900CB09A0 /* SideMenuViewController.swift */; };
+		98695653294BB49000927139 /* SideMenuCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98695652294BB49000927139 /* SideMenuCellView.swift */; };
+		98695655294BB4FC00927139 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98695654294BB4FC00927139 /* SideMenuCell.swift */; };
+		98695659294E050900927139 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98695658294E050900927139 /* Content.swift */; };
 		98A0262828E74F94002FA5AE /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 98A0262728E74F94002FA5AE /* SDWebImage */; };
 		98A0262A28E74F94002FA5AE /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 98A0262928E74F94002FA5AE /* SDWebImageMapKit */; };
 		98F8A24F28E6D9F30010E8AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A24E28E6D9F30010E8AC /* AppDelegate.swift */; };
@@ -78,6 +81,9 @@
 		985E626E2947BD0F00CB09A0 /* NewsViewController+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsViewController+Data.swift"; sourceTree = "<group>"; };
 		985E62702947BD3600CB09A0 /* NewsViewController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsViewController+Protocol.swift"; sourceTree = "<group>"; };
 		985E6279294A47C900CB09A0 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		98695652294BB49000927139 /* SideMenuCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCellView.swift; sourceTree = "<group>"; };
+		98695654294BB4FC00927139 /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
+		98695658294E050900927139 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		98F8A24B28E6D9F30010E8AC /* NewsPapier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsPapier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F8A24E28E6D9F30010E8AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98F8A25028E6D9F30010E8AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +171,8 @@
 				985E625E2946012D00CB09A0 /* DiscoverSourcesCell.swift */,
 				985E6259294531F400CB09A0 /* DiscoverCategoriesCell.swift */,
 				98F8A28D28E6E77E0010E8AC /* NewsTableViewCell.swift */,
+				98695652294BB49000927139 /* SideMenuCellView.swift */,
+				98695654294BB4FC00927139 /* SideMenuCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -229,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				98F8A28328E6DD420010E8AC /* News.swift */,
+				98695658294E050900927139 /* Content.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -414,13 +423,16 @@
 				985E625A294531F400CB09A0 /* DiscoverCategoriesCell.swift in Sources */,
 				985E625529452F9100CB09A0 /* MainViewController.swift in Sources */,
 				98F8A24F28E6D9F30010E8AC /* AppDelegate.swift in Sources */,
+				98695655294BB4FC00927139 /* SideMenuCell.swift in Sources */,
 				985E626C2947BCB500CB09A0 /* Background.swift in Sources */,
+				98695653294BB49000927139 /* SideMenuCellView.swift in Sources */,
 				985E624F294510AB00CB09A0 /* TopNewsTableViewCell.swift in Sources */,
 				985E62622947BB9800CB09A0 /* MainViewController+Data.swift in Sources */,
 				985E624D29450F8A00CB09A0 /* NewsViewController.swift in Sources */,
 				9814FB1B28EAC4EF00BAC07C /* NewsDetailViewController.swift in Sources */,
 				98F8A28B28E6E35B0010E8AC /* HomeTabViewController.swift in Sources */,
 				985E62682947BC6600CB09A0 /* Header.swift in Sources */,
+				98695659294E050900927139 /* Content.swift in Sources */,
 				985E62572945318500CB09A0 /* CompositionalLayout.swift in Sources */,
 				985E626A2947BC9B00CB09A0 /* Footer.swift in Sources */,
 				98F8A28E28E6E77E0010E8AC /* NewsTableViewCell.swift in Sources */,
