@@ -22,18 +22,11 @@ class NewsViewController: UIViewController {
     
     private var newsCategory: Category?
     
-    let apiCaller = APICaller()
+//    let apiCaller = APICaller()
     
     var news: [News] = []
     
-    private lazy var newsTable: UITableView  = {
-        
-        let table                       = UITableView()
-        table.register(TopNewsTableViewCell.self, forCellReuseIdentifier: TopNewsTableViewCell.identifier)
-        table.frame = view.bounds
-        return table
-        
-    }()
+    private let newsTable = NewsTableView()
     
     func navigateToDetailViewController(){
         
@@ -42,18 +35,20 @@ class NewsViewController: UIViewController {
     }
     
     private func fetchNews(){
+        
         guard let category = newsCategory else{return}
         
-        apiCaller.getNews(with: category) { result in
-            switch result {
-            case .success(let news):
+        ExternalAPIClient.shared.fetch(NewsRequest(category: category)) { response in
+            switch response{
+            case .success(let results):
                 // To prevent blocking main thread
                 DispatchQueue.main.async {
-                    self.news = news
+                    guard let articles = results.articles else {return}
+                    self.news = articles
                     self.newsTable.reloadData()
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(let err):
+                print(err.localizedDescription)
             }
         }
     }
@@ -61,36 +56,7 @@ class NewsViewController: UIViewController {
     func setViewController(with category: Category){
         
         newsCategory = category
-        
-        switch category {
-            
-        case .categories:
-            break
-        case .sources:
-            break
-        case .business:
-            title = "Business"
-            break
-        case .entertainment:
-            title = "Entertainment"
-            break
-        case .general:
-            title = "General"
-            break
-        case .health:
-            title = "Health"
-            break
-        case .science:
-            title = "Science"
-            break
-        case .sports:
-            title = "Sports"
-            break
-        case .technology:
-            title = "Technology"
-            break
-            
-        }
+        title = category.rawValue.capitalizeFirstLetter()
         
     }
     
@@ -100,7 +66,7 @@ class NewsViewController: UIViewController {
         
         self.newsTable.refreshControl?.beginRefreshing()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
             
             self.fetchNews()
             
@@ -131,10 +97,6 @@ class NewsViewController: UIViewController {
     func getNews() -> [News]{
         return self.news
     }
-    
-    func reloadNewsTable(){
-        self.newsTable.reloadData()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,10 +112,15 @@ class NewsViewController: UIViewController {
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        newsTable.frame = view.bounds
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        fetchNews()
+        fetchNews()
         
         print("viewWillAppear")
         
@@ -162,6 +129,9 @@ class NewsViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         print("viewDidDisappear")
+        
+        news = []
+        self.newsTable.reloadData()
 //        navigationController?.popViewController(animated: true)
     }
 

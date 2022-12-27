@@ -14,7 +14,7 @@ class HomeTabViewController: UIViewController {
     
     public var currentPage: Int = 1
     
-    private let apiCaller = APICaller()
+//    private let apiCaller = APICaller()
     
     private var news: [News] = [News]()
     
@@ -62,7 +62,7 @@ class HomeTabViewController: UIViewController {
         navigationController?.navigationBar.tintColor       = .white
         
     }
-    
+    /*
     func fetchSomeNews(){
         
         apiCaller.getSomeNews { [weak self] result in
@@ -110,7 +110,7 @@ class HomeTabViewController: UIViewController {
         }
         
     }
-    
+    */
     // Scroll Down Refresh
     
     @objc private func didScrollDownToRefresh(){
@@ -119,7 +119,7 @@ class HomeTabViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3){
             
-            self.fetchSomeNews()
+//            self.fetchSomeNews()
             
             self.newsTable.refreshControl?.endRefreshing()
             
@@ -156,7 +156,7 @@ class HomeTabViewController: UIViewController {
         
         configureNavigationBar()
         
-        fetchSomeNews()
+//        fetchSomeNews()
         
     }
     
@@ -285,23 +285,23 @@ extension HomeTabViewController: UISearchResultsUpdating {
         // To access SearchResultsViewControllerDelegate via the protocol
         resultsController.delegate  = self
         
-        apiCaller.search(with: query) { result in
-            
-            DispatchQueue.main.async {
-                
-                switch result {
-                case .success(let result):
-                    
-                    resultsController.news  = result
-                    resultsController.newsTable.reloadData()
-                    
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-                
-            }
-            
-        }
+//        apiCaller.search(with: query) { result in
+//
+//            DispatchQueue.main.async {
+//
+//                switch result {
+//                case .success(let result):
+//
+//                    resultsController.news  = result
+//                    resultsController.newsTable.reloadData()
+//
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//
+//            }
+//
+//        }
         
     }
     
@@ -342,20 +342,20 @@ extension HomeTabViewController: UIScrollViewDelegate{
         if pagination
         {
                 
-            guard !apiCaller.isPaginating else {return}
-            
-            self.currentPage += 1
-            apiCaller.getNews(with: self.currentPage ) { [weak self] result in
-                switch result{
-                case .success(let result):
-                    self?.news.append(contentsOf: result)
-                    DispatchQueue.main.async {
-                        self?.newsTable.reloadData()
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
+//            guard !apiCaller.isPaginating else {return}
+//            
+//            self.currentPage += 1
+//            apiCaller.getNews(with: self.currentPage ) { [weak self] result in
+//                switch result{
+//                case .success(let result):
+//                    self?.news.append(contentsOf: result)
+//                    DispatchQueue.main.async {
+//                        self?.newsTable.reloadData()
+//                    }
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
             
         }
         

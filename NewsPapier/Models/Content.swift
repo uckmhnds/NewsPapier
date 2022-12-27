@@ -7,8 +7,7 @@
 
 import Foundation
 
-
-struct Country {
+public struct Country {
     
     let name: String
     let code: String
@@ -17,8 +16,7 @@ struct Country {
     
 }
 
-
-struct Countries {
+public struct Countries {
     
     static let list: [Country] = [Country(name: "United States", code: "us", flag: "🇺🇸", language: "en"),
                                    Country(name: "Germany", code: "de", flag: "🇩🇪", language: "de"),
@@ -75,4 +73,30 @@ struct TestCategories {
                                                     symbolHighlighted: "shower.fill",
                                                     code: "Entertainment")]
     
+}
+
+public struct Preferences{
+    static let country: Country = Country(name: "United States", code: "us", flag: "🇺🇸", language: "en")
+    static let pageSize: Int = 10
+    static let pageNumber: Int = 1
+    
+    static let scrollDownRefreshTime: Double = 1.2
+}
+
+public enum Category: String, CaseIterable{
+    
+    case categories
+    case sources
+    case business
+    case entertainment
+    case general
+    case health
+    case science
+    case sports
+    case technology
+    
+}
+
+public enum Language: String, CaseIterable{
+    case en
 }

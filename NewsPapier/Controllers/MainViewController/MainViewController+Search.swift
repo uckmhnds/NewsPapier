@@ -25,26 +25,26 @@ extension MainViewController: UISearchBarDelegate, UISearchResultsUpdating {
         // To access SearchResultsViewControllerDelegate via the protocol
         resultsController.delegate  = self
 
-        apiCaller.search(with: query) { result in
-
-            DispatchQueue.main.async {
-
-                switch result {
-
-                case .success(let result):
-                    #warning("API sucks")
-//                    resultsController.setNews(result)
-//                    resultsController.reloadNewsTable()
-
-                case .failure(let error):
-
-                    print(error.localizedDescription)
-
-                }
-
-            }
-
-        }
+//        apiCaller.search(with: query) { result in
+//
+//            DispatchQueue.main.async {
+//
+//                switch result {
+//
+//                case .success(let result):
+//                    #warning("API sucks")
+////                    resultsController.setNews(result)
+////                    resultsController.reloadNewsTable()
+//
+//                case .failure(let error):
+//
+//                    print(error.localizedDescription)
+//
+//                }
+//
+//            }
+//
+//        }
 
     }
     
