@@ -50,8 +50,6 @@ final class HomeCollectionView: UICollectionView {
     
     private lazy var footerBoundarySupplementaryItem: NSCollectionLayoutBoundarySupplementaryItem = {
         
-        
-        
         let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(20))
 
         let item = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize,
@@ -258,4 +256,43 @@ final class HomeCollectionView: UICollectionView {
         return refreshControl
         
     }()
+    
+    private var responseDict: [Category: [News]] = [:]
+    
+    func setResponseDict(by category: Category, with newsResponse: [News]){
+        responseDict[category] = newsResponse
+        self.reloadData()
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//
+//        switch Category.allCases[section]{
+//
+//            case .categories:
+//                return Category.allCases.count
+//            case .sources:
+//                return 5
+//            case .business:
+//                return Preferences.pageSize
+//            case .entertainment:
+//                return Preferences.pageSize
+//            case .general:
+//                return Preferences.pageSize
+//            case .health:
+//                return Preferences.pageSize
+//            case .science:
+//                return Preferences.pageSize
+//            case .sports:
+//                return Preferences.pageSize
+//            case .technology:
+//                return Preferences.pageSize
+//
+//        }
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        return UICollectionViewCell()
+//    }
+    
 }

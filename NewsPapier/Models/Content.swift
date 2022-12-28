@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct Country {
     
@@ -76,11 +77,28 @@ struct TestCategories {
 }
 
 public struct Preferences{
+    
     static let country: Country = Country(name: "United States", code: "us", flag: "🇺🇸", language: "en")
     static let pageSize: Int = 10
     static let pageNumber: Int = 1
     
     static let scrollDownRefreshTime: Double = 1.2
+    
+    static let sideMenuWidthRation: Double = 0.4
+    
+    static let sideMenuDidShowDuration: TimeInterval = 0.25
+    static let sideMenuDidShowDelay: TimeInterval = 0.0
+    static let sideMenuDidShowDamping: CGFloat = 0.8
+    static let sideMenuDidShowVelocity: CGFloat = 0.0
+    static let sideMenuDidShowOption: UIView.AnimationOptions = .curveEaseIn
+    
+    static let sideMenuDidDisappearDuration: TimeInterval = 0.5
+    static let sideMenuDidDisappearDelay: TimeInterval = 0.0
+    static let sideMenuDidDisappearDamping: CGFloat = 0.8
+    static let sideMenuDidDisappearVelocity: CGFloat = 0.0
+    static let sideMenuDidDisappearOption: UIView.AnimationOptions = .curveEaseIn
+    
+    
 }
 
 public enum Category: String, CaseIterable{
@@ -99,4 +117,9 @@ public enum Category: String, CaseIterable{
 
 public enum Language: String, CaseIterable{
     case en
+}
+
+enum SideMenuState {
+    case opened
+    case closed
 }

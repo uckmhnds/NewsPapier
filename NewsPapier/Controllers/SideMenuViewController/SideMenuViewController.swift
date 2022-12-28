@@ -37,7 +37,7 @@ class SideMenuViewController: UIViewController {
         
         NSLayoutConstraint.activate(tableViewConstraints)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,38 +50,4 @@ class SideMenuViewController: UIViewController {
 //        applyConstraints()
     }
 
-}
-
-
-extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        SideMenuCategories.categoryNames.count
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: "CustomTableViewCell") as? CustomTableViewCell
-        else { return UITableViewCell() }
-        cell.setUI(with: indexPath.row)
-        
-        return cell
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UIView.animate(withDuration: 0.3) {
-            self.tableView.performBatchUpdates(nil)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let cell = self.tableView.cellForRow(at: indexPath) as? CustomTableViewCell {
-            cell.hideDetailView()
-        }
-    }
-    
 }

@@ -14,7 +14,6 @@ public protocol ExternalAPIRequest: Encodable {
     associatedtype Response: Decodable
     var hostName: String { get }
     var resourceName: String { get }
-//    var apiKey: String { get }
     
 }
 

@@ -10,14 +10,22 @@ import Combine
 
 class MainViewController: UIViewController {
     
+    // MARK: - Delegate
+    
     weak var delegate: MainViewControllerDelegate?
+    
+    // MARK: - ViewControllers
     
     let newsViewController = NewsViewController()
     let newsDetailViewController = NewsDetailViewController()
     
+    // MARK: - Views
+    
     private lazy var collectionView = HomeCollectionView(frame: view.bounds)
     private lazy var blurryView = BlurryView(frame: view.bounds, delegate: delegate)
     private lazy var searchController = SearchController(searchResultsController: newsViewController)
+    
+    // MARK: - Network
     
     var responseDict: [Category: [News]] = [:]
     var isLoading: Bool = true
@@ -40,6 +48,7 @@ class MainViewController: UIViewController {
                         print(err.localizedDescription)
                     case .success(let results):
                         self.responseDict[category] = results.articles
+                        print(category)
                     }
                     
                     self.dispatchGroup.leave()
@@ -122,6 +131,8 @@ class MainViewController: UIViewController {
     
     // NAVIGATION BAR CONFIG
     
+    // MARK: - Private Methods
+    
     @objc private func filterBarButtonAction(){
         
         /// GO TO PREFERENCES
@@ -148,6 +159,8 @@ class MainViewController: UIViewController {
         definesPresentationContext = true
         
     }
+    
+    // MARK: - Life-cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

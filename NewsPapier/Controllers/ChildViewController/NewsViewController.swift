@@ -66,7 +66,7 @@ class NewsViewController: UIViewController {
         
         self.newsTable.refreshControl?.beginRefreshing()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+        DispatchQueue.main.asyncAfter(deadline: .now() + Preferences.scrollDownRefreshTime){
             
             self.fetchNews()
             
