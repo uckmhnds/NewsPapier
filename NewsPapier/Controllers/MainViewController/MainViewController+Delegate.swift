@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainViewControllerDelegate: AnyObject{
-    func test()
+    func presentSideMenu()
     func tapGestureDidTap()
 }
 

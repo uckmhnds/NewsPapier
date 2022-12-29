@@ -61,7 +61,6 @@ class Header: UICollectionReusableView {
     }
     
     @objc private func headerDidTap(_ sender: UITapGestureRecognizer){
-        print("headerDidTap")
         delegate?.headerDidTap(category!)
     }
     
@@ -71,6 +70,13 @@ class Header: UICollectionReusableView {
         return gesture
     }()
     
+    private func setColors(){
+        backgroundColor = .clear
+        
+        label.textColor = Theme.primaryText
+        label.font = Theme.h1Title
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -78,6 +84,8 @@ class Header: UICollectionReusableView {
         addSubview(imageView)
         
         addGestureRecognizer(tapGesture)
+        
+        setColors()
     }
 
     override func layoutSubviews() {

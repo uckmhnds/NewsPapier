@@ -29,6 +29,14 @@ class RootNavigationController: UINavigationController {
         
     }
     
+    private func setColors(){
+        view.backgroundColor = Theme.primaryBackground
+        navigationBar.tintColor = Theme.tertiaryBackground
+        navigationBar.barTintColor = Theme.tertiaryBackground
+        navigationBar.backgroundColor = Theme.primaryBackground
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +50,8 @@ class RootNavigationController: UINavigationController {
         // Do any additional setup after loading the view.
         pushViewController(rootViewController, animated: true)
         rootViewController.delegate = self
+        
+        setColors()
         
     }
 

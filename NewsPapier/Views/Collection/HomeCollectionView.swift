@@ -196,6 +196,10 @@ final class HomeCollectionView: UICollectionView {
         
     }()
     
+    private func setColors(){
+        backgroundColor = Theme.primaryBackground
+    }
+    
     public init(frame: CGRect){
         
         super.init(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
@@ -223,6 +227,8 @@ final class HomeCollectionView: UICollectionView {
                       withReuseIdentifier: PagingSectionFooterView.reuseIdentifier)
         
         self.refreshControl = scrollDownRefreshControl
+        
+        setColors()
     }
 
     required init?(coder: NSCoder) {

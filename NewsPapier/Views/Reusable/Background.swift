@@ -14,11 +14,15 @@ class RoundedBackgroundView: UICollectionReusableView {
     private var insetView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .secondarySystemFill
+//        view.backgroundColor = .secondarySystemFill
         view.layer.cornerRadius = 0
         view.clipsToBounds = true
         return view
     }()
+    
+    private func setColors(){
+        insetView.backgroundColor = Theme.secondaryBackground
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +35,8 @@ class RoundedBackgroundView: UICollectionReusableView {
             insetView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             insetView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
         ])
+        
+        setColors()
     }
 
     required init?(coder: NSCoder) {

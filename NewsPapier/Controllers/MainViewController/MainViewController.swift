@@ -48,7 +48,6 @@ class MainViewController: UIViewController {
                         print(err.localizedDescription)
                     case .success(let results):
                         self.responseDict[category] = results.articles
-                        print(category)
                     }
                     
                     self.dispatchGroup.leave()
@@ -138,7 +137,7 @@ class MainViewController: UIViewController {
         /// GO TO PREFERENCES
         ///
         view.addSubview(blurryView)
-        delegate?.test()
+        delegate?.presentSideMenu()
     }
     
     private func configureNavigationBar(){
@@ -181,6 +180,7 @@ class MainViewController: UIViewController {
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
+        
 
     }
     

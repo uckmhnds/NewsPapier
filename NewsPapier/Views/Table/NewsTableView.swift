@@ -15,6 +15,8 @@ final class NewsTableView: UITableView{
         
         self.register(TopNewsTableViewCell.self, forCellReuseIdentifier: TopNewsTableViewCell.identifier)
         
+        backgroundColor = Theme.primaryBackground
+        
     }
 
     required init?(coder: NSCoder) {

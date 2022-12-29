@@ -81,6 +81,12 @@ class NewsTableViewCell: UITableViewCell {
         
     }
     
+    private func setColors(){
+        backgroundColor = Theme.primaryBackground
+        titleLabel.font = Theme.body1Accent
+        titleLabel.textColor = Theme.tertiaryText
+    }
+    
     // MARK UP OVERRIDENS
 
     override func awakeFromNib() {
@@ -102,6 +108,7 @@ class NewsTableViewCell: UITableViewCell {
 //        contentView.addSubview(bookmarkButton)
         
         applyConstraints()
+        setColors()
     }
     
     required init(coder: NSCoder) {

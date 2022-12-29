@@ -71,6 +71,13 @@ class DiscoverCategoriesCell: UICollectionViewCell {
         
     }
     
+    private func setColors(){
+        backgroundColor = .clear
+        
+        newsTitleLabel.textColor = Theme.secondaryText
+        newsTitleLabel.font = Theme.h0Title
+    }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
@@ -84,6 +91,8 @@ class DiscoverCategoriesCell: UICollectionViewCell {
         contentView.addSubview(newsTitleLabel)
         
         applyConstraints()
+        
+        setColors()
         
     }
     

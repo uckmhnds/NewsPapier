@@ -26,7 +26,7 @@ class NewsViewController: UIViewController {
     
     var news: [News] = []
     
-    private let newsTable = NewsTableView()
+    let newsTable = NewsTableView()
     
     func navigateToDetailViewController(){
         
@@ -58,6 +58,10 @@ class NewsViewController: UIViewController {
         newsCategory = category
         title = category.rawValue.capitalizeFirstLetter()
         
+    }
+    
+    func reloadNewsTable(){
+        newsTable.reloadData()
     }
     
     // Scroll Down Refresh

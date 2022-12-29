@@ -185,8 +185,22 @@ class NewsDetailViewController: UIViewController {
         guard let imageUrl      = URL(string: news.urlToImage ?? "") else {return}
         
         newsImage.sd_setImage(with: imageUrl)
-        
-        
+    }
+    
+    private func setColors(){
+        view.backgroundColor = Theme.primaryBackground
+        authorName.font = Theme.h0Title
+        authorName.textColor = Theme.primaryText
+        newsDate.font = Theme.body3
+        newsDate.textColor = Theme.secondaryText
+        newsTitle.font = Theme.h3Title
+        newsTitle.textColor = Theme.primaryText
+        newsDescription.font = Theme.body2
+        newsDescription.textColor = Theme.secondaryText
+        newsContent.font = Theme.body3
+        newsContent.textColor = Theme.tertiaryText
+        sourceName.font = Theme.body3
+        sourceName.textColor = Theme.tertiaryText
     }
 
     override func viewDidLoad() {
@@ -207,6 +221,7 @@ class NewsDetailViewController: UIViewController {
         
         navigationController?.navigationBar.tintColor = .white
         
+        setColors()
     }
     
 

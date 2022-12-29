@@ -28,16 +28,6 @@ class PagingSectionFooterView: UICollectionReusableView {
 
     private var pagingInfoToken: AnyCancellable?
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupView()
-    }
-
     func configure(with numberOfPages: Int) {
         pageControl.numberOfPages = numberOfPages
     }
@@ -60,6 +50,21 @@ class PagingSectionFooterView: UICollectionReusableView {
             pageControl.centerXAnchor.constraint(equalTo: centerXAnchor),
             pageControl.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10)
         ])
+    }
+    
+    private func setColors(){
+        backgroundColor = .clear
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+        setColors()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupView()
     }
 
     override func prepareForReuse() {

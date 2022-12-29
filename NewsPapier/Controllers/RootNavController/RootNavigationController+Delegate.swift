@@ -9,7 +9,7 @@ import UIKit
 
 extension RootNavigationController: MainViewControllerDelegate {
     
-    func test() {
+    func presentSideMenu() {
         
         UIView.animate(withDuration: Preferences.sideMenuDidShowDuration,
                        delay: Preferences.sideMenuDidShowDelay,

@@ -113,6 +113,10 @@ class TopNewsTableViewCell: UITableViewCell {
         
     }
     
+    private func setColors(){
+        backgroundColor = .clear
+    }
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         
@@ -124,6 +128,7 @@ class TopNewsTableViewCell: UITableViewCell {
         contentView.addSubview(threeDots)
         
         applyConstraints()
+        setColors()
         
     }
     
