@@ -33,6 +33,8 @@ class NewsDetailViewController: UIViewController {
         return image
     }()
     
+    #warning("UILabel extensions")
+    
     private let authorName: UILabel = {
         
         let author  = UILabel()
