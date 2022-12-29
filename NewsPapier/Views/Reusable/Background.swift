@@ -15,7 +15,7 @@ class RoundedBackgroundView: UICollectionReusableView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
 //        view.backgroundColor = .secondarySystemFill
-        view.layer.cornerRadius = 0
+        view.layer.cornerRadius = Preferences.backgroundCornerRadius
         view.clipsToBounds = true
         return view
     }()
@@ -30,10 +30,10 @@ class RoundedBackgroundView: UICollectionReusableView {
         addSubview(insetView)
 
         NSLayoutConstraint.activate([
-            insetView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            insetView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            insetView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            insetView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
+            insetView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Preferences.backgroundHorizontalPadding),
+            insetView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Preferences.backgroundHorizontalPadding),
+            insetView.topAnchor.constraint(equalTo: topAnchor, constant: Preferences.backgroundVerticalPadding),
+            insetView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Preferences.backgroundVerticalPadding)
         ])
         
         setColors()

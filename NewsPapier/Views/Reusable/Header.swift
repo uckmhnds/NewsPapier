@@ -16,9 +16,6 @@ class Header: UICollectionReusableView {
     static let identifier       = "Header"
     var category: Category?
     weak var delegate: HeaderDelegate?
-    
-    private let titleLeadingPadding: CGFloat = 13
-    private let imageViewTrailingPadding: CGFloat = 13
 
     private lazy var label: UILabel  = {
 
@@ -47,13 +44,13 @@ class Header: UICollectionReusableView {
     private func applyConstraints(){
         
         let labelConstraints = [
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: titleLeadingPadding),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 5)
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Preferences.headerTitleLeadingPadding),
+            label.centerYAnchor.constraint(equalTo: centerYAnchor, constant: Preferences.headerTitleCenterYPadding)
         ]
         
         let imageViewConstraints = [
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -imageViewTrailingPadding),
-            imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Preferences.headerImageTrailingPadding),
+            imageView.centerYAnchor.constraint(equalTo: label.centerYAnchor)
         ]
         
         NSLayoutConstraint.activate(labelConstraints)

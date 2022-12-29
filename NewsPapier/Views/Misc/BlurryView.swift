@@ -22,7 +22,7 @@ final class BlurryView: UIView{
         self.superDelegate = delegate
         super.init(frame: frame)
         backgroundColor = .black
-        alpha = 0.6
+        alpha = Preferences.viewAlphaThree
         let t = UITapGestureRecognizer(target: self, action: #selector(tapGestureDidTap))
         addGestureRecognizer(t)
         

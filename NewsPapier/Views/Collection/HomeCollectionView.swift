@@ -10,26 +10,9 @@ import Combine
 
 final class HomeCollectionView: UICollectionView {
     
-    private let categoriesContentInset: NSDirectionalEdgeInsets = .init(top: 0, leading: 0, bottom: 10, trailing: 0)
-    private let categoriesItemPadding: CGFloat = 5
-    private let categoriesItemWidthFraction: CGFloat = 1
-    private let categoriesItemHeightFraction: CGFloat = 1
-    private let categoriesGroupWidthFraction: CGFloat = 1
-    private let categoriesGroupHeightFraction: CGFloat = 0.28
-    
-    private let mainCategoryContentInset: NSDirectionalEdgeInsets = .init(top: 0, leading: 0, bottom: 24, trailing: 0)
-    private let mainCategoriesItemPadding: CGFloat = 5
-    private let mainCategoriesItemWidthFraction: CGFloat = 1
-    private let mainCategoriesItemHeightFraction: CGFloat = 1
-    private let mainCategoriesGroupWidthFraction: CGFloat = 0.25
-    private let mainCategoriesGroupHeightFraction: CGFloat = 0.14
-    
-    private let sourcesCategoryContentInset: NSDirectionalEdgeInsets = .init(top: 0, leading: 0, bottom: 20, trailing: 0)
-    private let sourcesCategoriesItemPadding: CGFloat = 5
-    private let sourcesCategoriesItemWidthFraction: CGFloat = 1
-    private let sourcesCategoriesItemHeightFraction: CGFloat = 1
-    private let sourcesCategoriesGroupWidthFraction: CGFloat = 0.4
-    private let sourcesCategoriesGroupHeightFraction: CGFloat = 0.08
+    private let primaryDimension = Preferences.Dimensions.HomeCollectionView.Primary()
+    private let secondaryDimension = Preferences.Dimensions.HomeCollectionView.Secondary()
+    private let tertiaryDimension = Preferences.Dimensions.HomeCollectionView.Tertiary()
     
     public let pagingInfoSubject = PassthroughSubject<PagingInfo, Never>()
     
@@ -39,18 +22,18 @@ final class HomeCollectionView: UICollectionView {
     
     private lazy var headerBoundarySupplementaryItem: NSCollectionLayoutBoundarySupplementaryItem = {
         
-        let item = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-                                                                                 heightDimension: .estimated(44)),
+        let item = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(Preferences.headerItemFractionalWidth),
+                                                                                 heightDimension: .estimated(Preferences.headerItemHeight)),
                                                                elementKind: Header.identifier,
                                                                alignment: .top,
-                                                               absoluteOffset: CGPoint(x: 0, y: 0))
+                                                               absoluteOffset: CGPoint(x: Preferences.headerItemOffsetX, y: Preferences.headerItemOffsetY))
         return item
         
     }()
     
     private lazy var footerBoundarySupplementaryItem: NSCollectionLayoutBoundarySupplementaryItem = {
         
-        let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(20))
+        let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(Preferences.footerItemFractionalWidth), heightDimension: .absolute(Preferences.footerItemHeight))
 
         let item = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize,
                                                                               elementKind: PagingSectionFooterView.reuseIdentifier,
@@ -69,18 +52,18 @@ final class HomeCollectionView: UICollectionView {
     
     private func mainCategorySection() -> NSCollectionLayoutSection{
         
-        let item = CompositionalLayout.createItem(width: .fractionalWidth(self.mainCategoriesItemWidthFraction),
-                                                  height: .fractionalHeight(self.mainCategoriesItemHeightFraction),
-                                                  spacing: self.mainCategoriesItemPadding)
+        let item = CompositionalLayout.createItem(width: .fractionalWidth(Preferences.primaryItemWidthFraction),
+                                                  height: .fractionalHeight(Preferences.primaryItemHeightFraction),
+                                                  spacing: Preferences.primaryItemPadding)
 
         let group = CompositionalLayout.createGroup(alignment: .vertical,
-                                                    width: .fractionalWidth(self.mainCategoriesGroupWidthFraction),
-                                                    height: .fractionalHeight(self.mainCategoriesGroupHeightFraction),
+                                                    width: .fractionalWidth(Preferences.primaryGroupWidthFraction),
+                                                    height: .fractionalHeight(Preferences.primaryGroupHeightFraction),
                                                     items: [item])
 
         let section = NSCollectionLayoutSection(group: group)
 
-        section.contentInsets                   = self.mainCategoryContentInset
+        section.contentInsets                   = Preferences.primaryContentInset
         section.orthogonalScrollingBehavior     = .continuous
         section.boundarySupplementaryItems      = [self.headerBoundarySupplementaryItem]
         section.decorationItems                 = [self.collectionLayoutBackgroundDecoration]
@@ -91,18 +74,18 @@ final class HomeCollectionView: UICollectionView {
     
     private func sourcesSection() -> NSCollectionLayoutSection{
         
-        let item = CompositionalLayout.createItem(width: .fractionalWidth(self.sourcesCategoriesItemWidthFraction),
-                                                  height: .fractionalHeight(self.sourcesCategoriesItemHeightFraction),
-                                                  spacing: self.sourcesCategoriesItemPadding)
+        let item = CompositionalLayout.createItem(width: .fractionalWidth(Preferences.secondaryItemWidthFraction),
+                                                  height: .fractionalHeight(Preferences.secondaryItemHeightFraction),
+                                                  spacing: Preferences.secondaryItemPadding)
 
         let group = CompositionalLayout.createGroup(alignment: .vertical,
-                                                    width: .fractionalWidth(self.sourcesCategoriesGroupWidthFraction),
-                                                    height: .fractionalHeight(self.sourcesCategoriesGroupHeightFraction),
+                                                    width: .fractionalWidth(Preferences.secondaryGroupWidthFraction),
+                                                    height: .fractionalHeight(Preferences.secondaryGroupHeightFraction),
                                                     items: [item])
 
         let section = NSCollectionLayoutSection(group: group)
 
-        section.contentInsets                   = self.sourcesCategoryContentInset
+        section.contentInsets                   = Preferences.secondaryContentInset
         section.orthogonalScrollingBehavior     = .continuous
         section.boundarySupplementaryItems      = [self.headerBoundarySupplementaryItem]
         section.decorationItems                 = [self.collectionLayoutBackgroundDecoration]
@@ -113,18 +96,18 @@ final class HomeCollectionView: UICollectionView {
     
     private func categorySection(_ sectionIndex: Int) -> NSCollectionLayoutSection {
         
-        let item = CompositionalLayout.createItem(width: .fractionalWidth(self.categoriesItemWidthFraction),
-                                                  height: .fractionalHeight(self.categoriesItemHeightFraction),
-                                                  spacing: self.categoriesItemPadding)
+        let item = CompositionalLayout.createItem(width: .fractionalWidth(Preferences.tertiaryItemWidthFraction),
+                                                  height: .fractionalHeight(Preferences.tertiaryItemHeightFraction),
+                                                  spacing: Preferences.tertiaryItemPadding)
 
         let group = CompositionalLayout.createGroup(alignment: .vertical,
-                                                    width: .fractionalWidth(self.categoriesGroupWidthFraction),
-                                                    height: .fractionalHeight(self.categoriesGroupHeightFraction),
+                                                    width: .fractionalWidth(Preferences.tertiaryGroupWidthFraction),
+                                                    height: .fractionalHeight(Preferences.tertiaryGroupHeightFraction),
                                                     items: [item])
 
         let section = NSCollectionLayoutSection(group: group)
 
-        section.contentInsets                   = self.categoriesContentInset
+        section.contentInsets                   = Preferences.tertiaryContentInset
         section.orthogonalScrollingBehavior     = .groupPagingCentered
         section.boundarySupplementaryItems      = [self.headerBoundarySupplementaryItem]
         section.decorationItems                 = [self.collectionLayoutBackgroundDecoration]
@@ -257,7 +240,7 @@ final class HomeCollectionView: UICollectionView {
         
         refreshControl.addTarget(self, action: #selector(didScrollDownToRefresh), for: .valueChanged)
         
-        refreshControl.tintColor    = .white
+        refreshControl.tintColor    = Theme.primaryText
         
         return refreshControl
         

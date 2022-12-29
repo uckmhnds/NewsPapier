@@ -50,7 +50,6 @@
 		98F8A25E28E6D9F30010E8AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98F8A25C28E6D9F30010E8AC /* LaunchScreen.storyboard */; };
 		98F8A28428E6DD420010E8AC /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A28328E6DD420010E8AC /* News.swift */; };
 		98F8A28628E6DDEE0010E8AC /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A28528E6DDEE0010E8AC /* APICaller.swift */; };
-		98F8A28E28E6E77E0010E8AC /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A28D28E6E77E0010E8AC /* NewsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +114,6 @@
 		98F8A26E28E6D9F40010E8AC /* NewsPapierUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsPapierUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F8A28328E6DD420010E8AC /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		98F8A28528E6DDEE0010E8AC /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
-		98F8A28D28E6E77E0010E8AC /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,7 +192,6 @@
 				985E625B2945F65900CB09A0 /* DiscoverMainCategoryCell.swift */,
 				985E625E2946012D00CB09A0 /* DiscoverSourcesCell.swift */,
 				985E6259294531F400CB09A0 /* DiscoverCategoriesCell.swift */,
-				98F8A28D28E6E77E0010E8AC /* NewsTableViewCell.swift */,
 				98695652294BB49000927139 /* SideMenuCellView.swift */,
 				98695654294BB4FC00927139 /* SideMenuCell.swift */,
 			);
@@ -512,7 +509,6 @@
 				98695659294E050900927139 /* Content.swift in Sources */,
 				985E62572945318500CB09A0 /* CompositionalLayout.swift in Sources */,
 				985E626A2947BC9B00CB09A0 /* Footer.swift in Sources */,
-				98F8A28E28E6E77E0010E8AC /* NewsTableViewCell.swift in Sources */,
 				985E625C2945F65900CB09A0 /* DiscoverMainCategoryCell.swift in Sources */,
 				98C63B99295B7BE800D7F32E /* SearchController.swift in Sources */,
 				98C63BA4295CC70D00D7F32E /* UIFont+.swift in Sources */,

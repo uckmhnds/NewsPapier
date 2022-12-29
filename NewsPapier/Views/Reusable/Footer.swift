@@ -21,6 +21,7 @@ class PagingSectionFooterView: UICollectionReusableView {
         let control = UIPageControl()
         control.translatesAutoresizingMaskIntoConstraints = false
         control.isUserInteractionEnabled = true
+        #warning("Color here")
         control.currentPageIndicatorTintColor = .systemOrange
         control.pageIndicatorTintColor = .systemGray2
         return control
@@ -48,7 +49,7 @@ class PagingSectionFooterView: UICollectionReusableView {
 
         NSLayoutConstraint.activate([
             pageControl.centerXAnchor.constraint(equalTo: centerXAnchor),
-            pageControl.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10)
+            pageControl.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -Preferences.footerPageControlPadding)
         ])
     }
     
