@@ -143,48 +143,19 @@ public struct Preferences{
     
     static let backgroundCornerRadius: CGFloat = 0
     static let backgroundHorizontalPadding: CGFloat = 0
-    static let backgroundVerticalPadding: CGFloat = 0
+    static let backgroundVerticalPadding: CGFloat = 5
     
+    static let topNewsImageSize: CGFloat = 72
+    static let topNewsImageCornerRadius: CGFloat = 8
+    static let topNewsCellPadding: CGFloat = 10
     
+    static let discoverMainCornerRadius: CGFloat = 5
+    static let discoverMainPadding: CGFloat = 5
     
-    // FROM NOW ON
+    static let discoverSourcesCornerRadius: CGFloat = 8
     
-    public struct Dimensions{
-        
-        public struct HomeCollectionView{
-            
-            public struct Primary{
-                
-                let inset: NSDirectionalEdgeInsets = .init(top: 0, leading: 0, bottom: 20, trailing: 0)
-                let padding: CGFloat = 5
-                let itemWidthFraction: CGFloat = 1
-                
-            }
-            
-            public struct Secondary{
-                
-            }
-            
-            public struct Tertiary{
-                
-            }
-            
-            public struct Header{
-                
-            }
-            
-            public struct Footer{
-                
-            }
-            
-            public struct Background{
-                
-            }
-            
-        }
-        
-    }
-    
+    static let discoverCategoryCornerRadius: CGFloat = 8
+    static let discoverCategoryPadding: CGFloat = 10
 }
 
 public enum Category: String, CaseIterable{

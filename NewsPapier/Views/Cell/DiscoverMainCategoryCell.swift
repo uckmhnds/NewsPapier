@@ -11,18 +11,13 @@ class DiscoverMainCategoryCell: UICollectionViewCell {
     
     static let identifier   = "DiscoverMainCategoryCell"
     
-    private let newsImageViewCornerRadius: CGFloat = 5
-    private let newsImageViewPadding: CGFloat = 5
-    
-    private let newsTitleLabelPadding: CGFloat = 5
-    
     private lazy var categoryImageView: UIImageView = {
         
         let imageView = UIImageView()
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .systemGray6
-        imageView.layer.cornerRadius = newsImageViewCornerRadius
+        imageView.layer.cornerRadius = Preferences.discoverMainCornerRadius
         return imageView
         
     }()
@@ -45,14 +40,14 @@ class DiscoverMainCategoryCell: UICollectionViewCell {
     private func applyConstraints(){
         
         let categoryImageViewConstraints = [
-            categoryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: newsImageViewPadding),
-            categoryImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: newsImageViewPadding),
-            categoryImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -newsImageViewPadding)
+            categoryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Preferences.discoverMainPadding),
+            categoryImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Preferences.discoverMainPadding),
+            categoryImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Preferences.discoverMainPadding)
         ]
         
         let categoryTitleLabelConstraints = [
-            categoryTitleLabel.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: newsTitleLabelPadding),
-            categoryTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -newsTitleLabelPadding),
+            categoryTitleLabel.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: Preferences.discoverMainPadding),
+            categoryTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Preferences.discoverMainPadding),
             categoryTitleLabel.centerXAnchor.constraint(equalTo: categoryImageView.centerXAnchor)
         ]
             

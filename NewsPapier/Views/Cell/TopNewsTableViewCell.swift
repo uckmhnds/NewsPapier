@@ -11,10 +11,6 @@ class TopNewsTableViewCell: UITableViewCell {
     
     static let identifier = "TopNewsTableViewCell"
     
-    private var imageSize: CGFloat = 72
-    private var imageCornerRadius: CGFloat = 8
-    private var cellPadding: CGFloat = 10
-    
     private lazy var newsPosterImage: UIImageView = {
         
         let image           = UIImageView()
@@ -23,7 +19,7 @@ class TopNewsTableViewCell: UITableViewCell {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
 //        image.backgroundColor = .red
-        image.layer.cornerRadius = imageCornerRadius
+        image.layer.cornerRadius = Preferences.topNewsCellPadding
         
         return image
         
@@ -71,27 +67,27 @@ class TopNewsTableViewCell: UITableViewCell {
     private func applyConstraints(){
         
         let newsPosterImageConstraint   = [
-            newsPosterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: cellPadding),
-            newsPosterImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: cellPadding),
-            newsPosterImage.widthAnchor.constraint(equalToConstant: imageSize),
-            newsPosterImage.heightAnchor.constraint(equalToConstant: imageSize)
+            newsPosterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Preferences.topNewsCellPadding),
+            newsPosterImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Preferences.topNewsCellPadding),
+            newsPosterImage.widthAnchor.constraint(equalToConstant: Preferences.topNewsImageSize),
+            newsPosterImage.heightAnchor.constraint(equalToConstant: Preferences.topNewsImageSize)
         ]
         
         let titleLabelConstraints       = [
-            titleLabel.leadingAnchor.constraint(equalTo: newsPosterImage.trailingAnchor, constant: cellPadding),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -cellPadding),
+            titleLabel.leadingAnchor.constraint(equalTo: newsPosterImage.trailingAnchor, constant: Preferences.topNewsCellPadding),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Preferences.topNewsCellPadding),
             titleLabel.centerYAnchor.constraint(equalTo: newsPosterImage.centerYAnchor)
         ]
         
         let timeLabelConstraints        = [
-            timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: cellPadding),
-            timeLabel.topAnchor.constraint(equalTo: newsPosterImage.bottomAnchor, constant: cellPadding),
-            timeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -cellPadding)
+            timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Preferences.topNewsCellPadding),
+            timeLabel.topAnchor.constraint(equalTo: newsPosterImage.bottomAnchor, constant: Preferences.topNewsCellPadding),
+            timeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Preferences.topNewsCellPadding)
         ]
         
         let threeDotsConstraints        = [
-            threeDots.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -cellPadding),
-            threeDots.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -cellPadding)
+            threeDots.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Preferences.topNewsCellPadding),
+            threeDots.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Preferences.topNewsCellPadding)
         ]
         
         NSLayoutConstraint.activate(newsPosterImageConstraint)

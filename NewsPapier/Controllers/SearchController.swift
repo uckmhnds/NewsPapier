@@ -26,8 +26,17 @@ class SearchController: UISearchController {
     override init(searchResultsController: UIViewController?) {
         super.init(searchResultsController: searchResultsController)
         
-        self.searchBar.placeholder    = "Search"
         self.searchBar.searchBarStyle = .minimal
+        self.searchBar.tintColor    = Theme.primaryText
+        self.searchBar.barTintColor = Theme.primaryBackground
+        self.searchBar.searchTextField.textColor = Theme.primaryText
+        
+        let placeholderAttributes: [NSAttributedString.Key : Any]? = [
+            NSAttributedString.Key.foregroundColor: Theme.primaryText,
+            NSAttributedString.Key.font: Theme.body3
+        ]
+        
+        self.searchBar.searchTextField.attributedText = NSAttributedString(string: "Search", attributes: placeholderAttributes)
         self.searchBar.sizeToFit()
         
         self.hidesNavigationBarDuringPresentation = false
@@ -40,7 +49,7 @@ class SearchController: UISearchController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+//        view.backgroundColor = .red
     }
 
 }

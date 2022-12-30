@@ -11,8 +11,6 @@ class DiscoverSourcesCell: UICollectionViewCell {
     
     static let identifier   = "DiscoverSourcesCell"
     
-    private let newsTitleLabelPadding: CGFloat = 10
-    private let cornerRadius: CGFloat = 8
     #warning("Fix newsTitleLabel to environment var names. Specific names. i.e. sourceLabel")
     private lazy var newsTitleLabel: UILabel = {
         
@@ -50,7 +48,7 @@ class DiscoverSourcesCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.backgroundColor     = .systemGray6
-        contentView.layer.cornerRadius  = cornerRadius
+        contentView.layer.cornerRadius  = Preferences.discoverSourcesCornerRadius
         contentView.addSubview(newsTitleLabel)
         
         applyConstraints()

@@ -11,18 +11,13 @@ class DiscoverCategoriesCell: UICollectionViewCell {
     
     static let identifier   = "DiscoverCategoryCollectionViewCell"
     
-    private let newsImageViewCornerRadius: CGFloat = 8
-    private let newsImageViewPadding: CGFloat = 10
-    
-    private let newsTitleLabelPadding: CGFloat = 10
-    
     private lazy var newsImageView: UIImageView = {
         
         let imageView = UIImageView()
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .systemGray2
-        imageView.layer.cornerRadius = newsImageViewCornerRadius
+        imageView.layer.cornerRadius = Preferences.discoverCategoryCornerRadius
         imageView.contentMode = .scaleToFill
         return imageView
         
@@ -54,16 +49,16 @@ class DiscoverCategoriesCell: UICollectionViewCell {
     private func applyConstraints(){
         
         let newsImageViewConstraints = [
-            newsImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: newsImageViewPadding),
-            newsImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: newsImageViewPadding),
-            newsImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -newsImageViewPadding)
+            newsImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Preferences.discoverCategoryPadding),
+            newsImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Preferences.discoverCategoryPadding),
+            newsImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Preferences.discoverCategoryPadding)
         ]
         
         let newsTitleLabelConstraints = [
-            newsTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: newsTitleLabelPadding),
-            newsTitleLabel.topAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: newsTitleLabelPadding),
-            newsTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -newsTitleLabelPadding),
-            newsTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -newsTitleLabelPadding)
+            newsTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Preferences.discoverCategoryPadding),
+            newsTitleLabel.topAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: Preferences.discoverCategoryPadding),
+            newsTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Preferences.discoverCategoryPadding),
+            newsTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Preferences.discoverCategoryPadding)
         ]
             
         NSLayoutConstraint.activate(newsImageViewConstraints)
@@ -84,8 +79,6 @@ class DiscoverCategoriesCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-//        contentView.backgroundColor     = .systemGray6
         
         contentView.addSubview(newsImageView)
         contentView.addSubview(newsTitleLabel)

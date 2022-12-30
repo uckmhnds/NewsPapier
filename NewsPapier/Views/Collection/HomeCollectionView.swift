@@ -10,10 +10,6 @@ import Combine
 
 final class HomeCollectionView: UICollectionView {
     
-    private let primaryDimension = Preferences.Dimensions.HomeCollectionView.Primary()
-    private let secondaryDimension = Preferences.Dimensions.HomeCollectionView.Secondary()
-    private let tertiaryDimension = Preferences.Dimensions.HomeCollectionView.Tertiary()
-    
     public let pagingInfoSubject = PassthroughSubject<PagingInfo, Never>()
     
     //

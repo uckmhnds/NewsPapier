@@ -31,10 +31,14 @@ class RootNavigationController: UINavigationController {
     
     private func setColors(){
         view.backgroundColor = Theme.primaryBackground
+        
         navigationBar.tintColor = Theme.tertiaryBackground
         navigationBar.barTintColor = Theme.tertiaryBackground
-        navigationBar.backgroundColor = Theme.primaryBackground
-
+        
+        navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: Theme.h0Title
+        ]
     }
     
     override func viewDidLoad() {
