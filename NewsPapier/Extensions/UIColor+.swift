@@ -308,6 +308,7 @@ extension UIColor {
 }
 
 extension UIColor {
+    
     static func fromHex(_ hex: String) -> UIColor {
         var sanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         if sanitized.hasPrefix("#") {

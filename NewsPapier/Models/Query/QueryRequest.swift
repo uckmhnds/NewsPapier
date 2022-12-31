@@ -31,21 +31,30 @@ public struct QueryRequest: ExternalAPIRequest{
                 language: Country? = nil,
                 from: Date? = nil,
                 to: Date? = nil,
-                searchIn: Int? = nil,
+                searchIn: SearchIn? = nil,
                 sources: [Source]? = nil,
                 domains: String? = nil,
                 excludeDomains: String? = nil,
-                sortBy: String? = nil) {
+                sortBy: String? = nil)
+    {
         
         self.query = "q=" + query + "&"
         
         if let language = language {
-            self.language = "language=" + language.language + "&"
+            self.language = "language=\(language.language)&"
         }
         
 //        if let from = from {
 //            self.from = "pageSize=\(pageSize)&"
 //        }
+//
+//        if let to = to {
+//            self.from = "pageSize=\(pageSize)&"
+//        }
+        
+        if let searchIn = searchIn {
+            self.searchIn = "searchIn=\(searchIn.name)&"
+        }
 //
 //        if let pageNumber = pageNumber {
 //            self.pageNumber = "page=\(pageNumber)&"

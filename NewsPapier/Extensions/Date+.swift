@@ -9,7 +9,8 @@ import Foundation
 
 extension Date {
     
-    func timeAgoDisplay() -> String {
+    public func timeAgoDisplay() -> String
+    {
         
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full
@@ -19,7 +20,8 @@ extension Date {
         
     }
     
-    func timeDisplay() -> String {
+    public func timeDisplay() -> String
+    {
         
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
@@ -30,7 +32,8 @@ extension Date {
         
     }
     
-    func localTime() -> Date {
+    public func localTime() -> Date
+    {
         
         let timezone = TimeZone.current
         let seconds = TimeInterval(timezone.secondsFromGMT(for: self))

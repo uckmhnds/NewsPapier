@@ -170,10 +170,27 @@ public enum Category: String, CaseIterable{
     case sports
     case technology
     
+    var name: String { return self.rawValue}
+    
+}
+
+
+public enum SearchIn: String, CaseIterable{
+    case title, description, content
+    
+    var name: String { return self.rawValue}
+}
+
+public enum SortBy: String, CaseIterable{
+    case relevancy, popularity, publishedAt
+    
+    var name: String { return self.rawValue}
 }
 
 public enum Language: String, CaseIterable{
     case en
+    
+    var name: String { return self.rawValue}
 }
 
 enum SideMenuState {

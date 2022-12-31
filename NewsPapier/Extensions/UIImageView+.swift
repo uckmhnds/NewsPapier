@@ -10,14 +10,15 @@ import UIKit
 
 extension UIImageView{
     
-    convenience init(image: UIImage? = nil,
-                     contentMode: UIView.ContentMode? = nil,
-                     autoLayout: Bool? = nil,
-                     clipsToBounds: Bool? = nil,
-                     tintColor: UIColor? = nil,
-                     backgroundColor: UIColor? = nil,
-                     cornerRadius: CGFloat? = nil,
-                     gesture: UIGestureRecognizer? = nil){
+    public convenience init(image: UIImage? = nil,
+                            contentMode: UIView.ContentMode? = nil,
+                            autoLayout: Bool? = nil,
+                            clipsToBounds: Bool? = nil,
+                            tintColor: UIColor? = nil,
+                            backgroundColor: UIColor? = nil,
+                            cornerRadius: CGFloat? = nil,
+                            gesture: UIGestureRecognizer? = nil)
+    {
         
         self.init()
         

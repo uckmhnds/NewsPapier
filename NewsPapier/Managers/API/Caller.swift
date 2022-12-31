@@ -1,27 +1,11 @@
 //
-//  APICaller.swift
+//  Caller.swift
 //  NewsPapier
 //
-//  Created by Abdurrahman Gazi Yavuz on 30.09.2022.
+//  Created by Abdurrahman Gazi Yavuz on 12/31/22.
 //
 
 import Foundation
-
-public typealias ResultCompletion<Value> = (Result<Value, Error>) -> Void
-
-public protocol ExternalAPIRequest: Encodable {
-    
-    associatedtype Response: Decodable
-    var hostName: String { get }
-    var resourceName: String { get }
-    
-}
-
-public enum ExternalAPIError: Error {
-    case encoding
-    case decoding
-    case server(message: String)
-}
 
 public class ExternalAPIClient{
     
@@ -54,6 +38,8 @@ public class ExternalAPIClient{
             }
         }.resume()
     }
+    
+    public func fetchParallel(){}
     
     // MARK: - Private
     

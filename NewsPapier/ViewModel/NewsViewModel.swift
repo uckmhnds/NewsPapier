@@ -53,7 +53,7 @@ public struct NewsViewModel{
         
     }
     
-    mutating func updateTimeView(){
+    mutating public func updateTimeView(){
         
         if let time = dateFormatter.date(from: self.publishTime){
             self.timeDisplay = time.timeDisplay()
@@ -61,32 +61,32 @@ public struct NewsViewModel{
         
     }
     
-    func getTime() -> String
+    public func getTime() -> String
     {
         return self.timeDisplay
     }
     
-    func getAuthor() -> String
+    public func getAuthor() -> String
     {
         return self.author
     }
     
-    func getTitle() -> String
+    public func getTitle() -> String
     {
         return self.title
     }
     
-    func getDescription() -> String
+    public func getDescription() -> String
     {
         return self.description
     }
     
-    func getContent() -> String
+    public func getContent() -> String
     {
         return self.content
     }
     
-    func getSource() -> String
+    public func getSource() -> String
     {
         return self.source
     }
