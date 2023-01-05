@@ -9,8 +9,10 @@ import UIKit
 import Combine
 
 struct PagingInfo: Equatable, Hashable {
+    
     let sectionIndex: Int
     let currentPage: Int
+    
 }
 
 class PagingSectionFooterView: UICollectionReusableView {
@@ -21,7 +23,6 @@ class PagingSectionFooterView: UICollectionReusableView {
         let control = UIPageControl()
         control.translatesAutoresizingMaskIntoConstraints = false
         control.isUserInteractionEnabled = true
-        #warning("Color here")
         control.currentPageIndicatorTintColor = .systemOrange
         control.pageIndicatorTintColor = .systemGray2
         return control

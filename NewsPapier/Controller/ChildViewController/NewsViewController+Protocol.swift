@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol SearchResultsViewControllerDelegate: AnyObject{
+protocol NewsViewControllerDelegate: AnyObject{
     
-    func searchResultsViewControllerDidTapCell(_ news: News)
+    func newsViewControllerDidTapCell(_ news: News)
     
 }

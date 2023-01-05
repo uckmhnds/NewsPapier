@@ -13,7 +13,8 @@ extension MainViewController: UISearchBarDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         
         let searchBar   = searchController.searchBar
-
+            
+        #warning("white space bug")
         guard let query = searchBar.text,
               !query.trimmingCharacters(in: .whitespaces).isEmpty,
               query.trimmingCharacters(in: .whitespaces).count >= 3

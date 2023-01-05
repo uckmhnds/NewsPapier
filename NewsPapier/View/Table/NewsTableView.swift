@@ -13,7 +13,7 @@ final class NewsTableView: UITableView{
         
         super.init(frame: .zero, style: .plain)
         
-        self.register(TopNewsTableViewCell.self, forCellReuseIdentifier: TopNewsTableViewCell.identifier)
+        self.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
         
         backgroundColor = Theme.primaryBackground
         

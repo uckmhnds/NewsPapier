@@ -11,30 +11,15 @@ class DiscoverCategoriesCell: UICollectionViewCell {
     
     static let identifier   = "DiscoverCategoryCollectionViewCell"
     
-    private lazy var newsImageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .systemGray2
-        imageView.layer.cornerRadius = Preferences.discoverCategoryCornerRadius
-        imageView.contentMode = .scaleToFill
-        return imageView
-        
-    }()
+    private lazy var newsImageView: UIImageView = UIImageView(contentMode: .scaleToFill,
+                                                              autoLayout: false,
+                                                              backgroundColor: .systemGray2,
+                                                              cornerRadius: Preferences.discoverCategoryCornerRadius)
     
-    private lazy var newsTitleLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.lineBreakMode                             = .byWordWrapping
-        label.numberOfLines                             = 2
-        label.text = "This is the title of news. This title should be wrapped by layout settings"
-        
-        return label
-        
-    }()
+    private lazy var newsTitleLabel: UILabel = UILabel(autoLayout: false,
+                                                       text: Preferences.midText,
+                                                       lineBreakMode: .byWordWrapping,
+                                                       numberOfLines: 2)
     
     func configure(with model: News){
         

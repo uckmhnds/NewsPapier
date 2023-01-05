@@ -82,6 +82,10 @@ public struct Preferences{
     static let pageSize: Int = 10
     static let pageNumber: Int = 1
     
+    static let shortText: String = "This is the title of news"
+    static let midText: String = "This is the title of news. This title should be wrapped by layout settings"
+    static let longText: String = "This is the title of news. This title should be wrapped by layout settings. This is the title of news. This title should be wrapped by layout settings. This is the title of news. This title should be wrapped by layout settings"
+    
     static let scrollDownRefreshTime: Double = 1.2
     
     static let sideMenuWidthRation: Double = 0.4

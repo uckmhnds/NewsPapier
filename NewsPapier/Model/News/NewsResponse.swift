@@ -8,6 +8,7 @@
 import Foundation
 
 public struct NewsResponse: Codable, Hashable{
+    #warning("compare articles if list contains same article twice")
     let articles: [News]?
     let status: String?
     let code: String?

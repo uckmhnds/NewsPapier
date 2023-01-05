@@ -12,12 +12,12 @@ protocol MainViewControllerDelegate: AnyObject{
     func tapGestureDidTap()
 }
 
-extension MainViewController: SearchResultsViewControllerDelegate{
+extension MainViewController: NewsViewControllerDelegate{
     
-    func searchResultsViewControllerDidTapCell(_ news: News) {
+    func newsViewControllerDidTapCell(_ news: News) {
         
         DispatchQueue.main.async { [weak self] in
-            
+            print("asdadjljS")
             self?.newsDetailViewController.configure(with: news)
             self?.navigationController?.pushViewController(self!.newsDetailViewController, animated: true)
             

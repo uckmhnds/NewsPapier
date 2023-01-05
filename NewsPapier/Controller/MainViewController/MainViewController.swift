@@ -33,7 +33,8 @@ class MainViewController: UIViewController {
     
     func fetchNews(){
         
-        for category in Category.allCases{
+        for category in Category.allCases
+        {
             
             self.dispatchGroup.enter()
             
@@ -181,7 +182,6 @@ class MainViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         
-
     }
     
     override func viewDidLayoutSubviews() {

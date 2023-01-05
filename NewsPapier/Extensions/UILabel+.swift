@@ -12,7 +12,9 @@ extension UILabel{
     public convenience init(autoLayout: Bool? = nil,
                             font: UIFont? = nil,
                             color: UIColor? = nil,
-                            lineBreakMode: NSLineBreakMode? = nil){
+                            text: String? = nil,
+                            lineBreakMode: NSLineBreakMode? = nil,
+                            numberOfLines: Int? = nil){
         self.init()
         
         if let autoLayout = autoLayout{
@@ -36,6 +38,12 @@ extension UILabel{
         if let lineBreakMode = lineBreakMode{
             
             self.lineBreakMode = lineBreakMode
+            
+        }
+        
+        if let numberOfLines = numberOfLines{
+            
+            self.numberOfLines = numberOfLines
             
         }
         

@@ -18,7 +18,7 @@ class NewsViewController: UIViewController {
 //    weak var delegate: TopNewsViewControllerDelegate?
     let childViewController = NewsDetailViewController()
     
-    public weak var delegate: SearchResultsViewControllerDelegate?
+    public weak var delegate: NewsViewControllerDelegate?
     
     private var newsCategory: Category?
     
@@ -36,9 +36,13 @@ class NewsViewController: UIViewController {
     
     private func fetchNews(){
         
-        guard let category = newsCategory else{return}
+        guard let category = newsCategory else{ return }
         
-        ExternalAPIClient.shared.fetch(NewsRequest(category: category)) { response in
+        ExternalAPIClient.shared.fetch(NewsRequest(category: category,
+                                                   country: Preferences.country,
+                                                   pageSize: Preferences.pageSize,
+                                                   pageNumber: Preferences.pageNumber))
+        { response in
             switch response{
             case .success(let results):
                 // To prevent blocking main thread
@@ -112,7 +116,7 @@ class NewsViewController: UIViewController {
         
         newsTable.refreshControl        = setScrollDownRefreshControl()
         
-        print("viewDidLoad")
+//        print("viewDidLoad")
         
     }
     
@@ -126,13 +130,13 @@ class NewsViewController: UIViewController {
         
         fetchNews()
         
-        print("viewWillAppear")
+//        print("viewWillAppear")
         
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print("viewDidDisappear")
+//        print("viewDidDisappear")
         
         news = []
         self.newsTable.reloadData()

@@ -28,7 +28,6 @@ class DiscoverMainCategoryCell: UICollectionViewCell {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text                                      = "Category"
-        #warning("fontSize")
         return label
         
     }()

@@ -10,6 +10,8 @@ import UIKit
 class SearchController: UISearchController {
     
     /// SEARCH BAR CONFIG
+    ///
+    weak var searchResultsControllerDelegate: AnyObject?
     
     private lazy var customSearchBar: UISearchBar = {
         
@@ -30,7 +32,7 @@ class SearchController: UISearchController {
         self.searchBar.tintColor    = Theme.primaryText
         self.searchBar.barTintColor = Theme.primaryBackground
         self.searchBar.searchTextField.textColor = Theme.primaryText
-        
+        #warning("searchTextField is a real text")
         let placeholderAttributes: [NSAttributedString.Key : Any]? = [
             NSAttributedString.Key.foregroundColor: Theme.primaryText,
             NSAttributedString.Key.font: Theme.body3
