@@ -10,15 +10,17 @@ import UIKit
 class SideMenuViewController: UIViewController {
     
     private lazy var sideMenuWidth: CGFloat = view.frame.width * 0.4
-
+    
+    var isCollapsedArray: [Bool] = []
     
     private lazy var tableView: UITableView = {
         #warning("Parametric frame set")
-        let frame = CGRect(x: 0, y: 120, width: sideMenuWidth, height: 500)
-        let tableView = UITableView(frame: frame, style: .plain)
-        
-        tableView.register(SideMenuMainCell.self, forCellReuseIdentifier: SideMenuMainCell.identifier)
-        tableView.register(SideMenuChildCell.self, forCellReuseIdentifier: SideMenuChildCell.identifier)
+//        let frame = CGRect(x: 0, y: 120, width: sideMenuWidth, height: 500)
+//        let frame = .zero
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ExpColCell.self, forCellReuseIdentifier: ExpColCell.identifier)
+//        tableView.register(SideMenuChildCell.self, forCellReuseIdentifier: SideMenuChildCell.identifier)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -28,7 +30,7 @@ class SideMenuViewController: UIViewController {
     
     private func applyConstraints(){
         let tableViewConstraints = [
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
 //            tableView.widthAnchor.constraint(equalToConstant: sideMenuWidth),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -47,7 +49,12 @@ class SideMenuViewController: UIViewController {
         view.addSubview(tableView)
         
         
-//        applyConstraints()
+        // 16 "rows" start with every-other row collapsed
+        for i in 0..<15 {
+            isCollapsedArray.append(i % 2 == 0)
+        }
+        
+        applyConstraints()
     }
 
 }

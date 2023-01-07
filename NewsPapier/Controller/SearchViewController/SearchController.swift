@@ -32,6 +32,7 @@ class SearchController: UISearchController, UISearchControllerDelegate {
         self.searchBar.tintColor    = Theme.primaryText
         self.searchBar.barTintColor = Theme.primaryBackground
         self.searchBar.searchTextField.textColor = Theme.primaryText
+        
         #warning("searchTextField is a real text")
         let placeholderAttributes: [NSAttributedString.Key : Any]? = [
             NSAttributedString.Key.foregroundColor: Theme.primaryText,
@@ -39,6 +40,7 @@ class SearchController: UISearchController, UISearchControllerDelegate {
         ]
 
         self.searchBar.searchTextField.attributedText = NSAttributedString(string: "Search", attributes: placeholderAttributes)
+        
         self.searchBar.sizeToFit()
 
         self.hidesNavigationBarDuringPresentation = false
