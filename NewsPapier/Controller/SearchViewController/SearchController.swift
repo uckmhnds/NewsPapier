@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchController: UISearchController {
+class SearchController: UISearchController, UISearchControllerDelegate {
     
     /// SEARCH BAR CONFIG
     ///
@@ -27,7 +27,7 @@ class SearchController: UISearchController {
     
     override init(searchResultsController: UIViewController?) {
         super.init(searchResultsController: searchResultsController)
-        
+
         self.searchBar.searchBarStyle = .minimal
         self.searchBar.tintColor    = Theme.primaryText
         self.searchBar.barTintColor = Theme.primaryBackground
@@ -37,10 +37,10 @@ class SearchController: UISearchController {
             NSAttributedString.Key.foregroundColor: Theme.primaryText,
             NSAttributedString.Key.font: Theme.body3
         ]
-        
+
         self.searchBar.searchTextField.attributedText = NSAttributedString(string: "Search", attributes: placeholderAttributes)
         self.searchBar.sizeToFit()
-        
+
         self.hidesNavigationBarDuringPresentation = false
     }
     

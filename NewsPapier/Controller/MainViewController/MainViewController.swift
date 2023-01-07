@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     
     // MARK: - ViewControllers
     
+    let searchResultsViewController = SearchResultsViewController()
     let newsViewController = NewsViewController()
     let newsDetailViewController = NewsDetailViewController()
     
@@ -23,7 +24,7 @@ class MainViewController: UIViewController {
     
     private lazy var collectionView = HomeCollectionView(frame: view.bounds)
     private lazy var blurryView = BlurryView(frame: view.bounds, delegate: delegate)
-    private lazy var searchController = SearchController(searchResultsController: newsViewController)
+    private lazy var searchController = SearchController(searchResultsController: searchResultsViewController)
     
     // MARK: - Network
     
@@ -31,7 +32,7 @@ class MainViewController: UIViewController {
     var isLoading: Bool = true
     let dispatchGroup = DispatchGroup()
     
-    func fetchNews(){
+    private func fetchNews(){
         
         for category in Category.allCases
         {
@@ -64,6 +65,34 @@ class MainViewController: UIViewController {
             
         }
 
+    }
+    
+    private func loadLocalNews(){
+        
+        for category in Category.allCases{
+            
+            self.dispatchGroup.enter()
+            
+            DispatchQueue.main.async {
+                
+                if let test = DecodeLocal.shared.fetch(fileName: category.name) as NewsResponse?,
+                   let articles = test.articles
+                {
+                    self.responseDict[category] = articles
+                }
+                
+                self.dispatchGroup.leave()
+            }
+            
+            self.dispatchGroup.notify(queue: .main){
+                
+                self.isLoading = false
+                self.collectionView.reloadData()
+                
+            }
+            
+        }
+        
     }
     
     // Scroll Down Refresh
@@ -165,7 +194,16 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchNews()
+        switch Preferences.appState{
+            
+        case .online:
+            fetchNews()
+            
+        case .offline:
+            loadLocalNews()
+            
+        }
+        
         
     }
 
@@ -181,11 +219,14 @@ class MainViewController: UIViewController {
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
+        searchController.delegate = self
         
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        searchResultsViewController.topPadding = topBarHeight
         
     }
 

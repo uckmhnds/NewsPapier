@@ -76,7 +76,26 @@ struct TestCategories {
     
 }
 
+public enum AppState: String, CaseIterable{
+    
+    case online
+    case offline
+    
+    var name: String { return self.rawValue }
+    
+}
+
 public struct Preferences{
+    
+    static var navBarHeight: CGFloat = {
+        let test = CGFloat()
+        
+        return test
+    }()
+    
+    static let appState: AppState = .offline
+    static let offlineSampleQueryFilename: String = "query"
+    static let offlineSampleSourceFilename: String = "sources"
     
     static let country: Country = Country(name: "United States", code: "us", flag: "🇺🇸", language: "en")
     static let pageSize: Int = 10

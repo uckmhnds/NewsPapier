@@ -7,22 +7,13 @@
 
 import UIKit
 
-//protocol TopNewsViewControllerDelegate: AnyObject {
-//
-//    func navigateToDetailViewController()
-//
-//}
-
 class NewsViewController: UIViewController {
     
-//    weak var delegate: TopNewsViewControllerDelegate?
     let childViewController = NewsDetailViewController()
     
     public weak var delegate: NewsViewControllerDelegate?
     
     private var newsCategory: Category?
-    
-//    let apiCaller = APICaller()
     
     var news: [News] = []
     
@@ -57,6 +48,22 @@ class NewsViewController: UIViewController {
         }
     }
     
+    private func loadLocalNews(){
+        
+        guard let category = newsCategory else{ return }
+        
+        DispatchQueue.main.async {
+            
+            if let test = DecodeLocal.shared.fetch(fileName: category.name) as NewsResponse?,
+               let articles = test.articles
+            {
+                self.news = articles
+                self.newsTable.reloadData()
+            }
+            
+        }
+    }
+    
     func setViewController(with category: Category){
         
         newsCategory = category
@@ -76,7 +83,15 @@ class NewsViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + Preferences.scrollDownRefreshTime){
             
-            self.fetchNews()
+            switch Preferences.appState{
+                
+            case .online:
+                self.fetchNews()
+                
+            case .offline:
+                self.loadLocalNews()
+                
+            }
             
             self.newsTable.refreshControl?.endRefreshing()
             
@@ -107,6 +122,7 @@ class NewsViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         view.addSubview(newsTable)
@@ -115,8 +131,6 @@ class NewsViewController: UIViewController {
         newsTable.dataSource            = self
         
         newsTable.refreshControl        = setScrollDownRefreshControl()
-        
-//        print("viewDidLoad")
         
     }
     
@@ -128,19 +142,24 @@ class NewsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchNews()
-        
-//        print("viewWillAppear")
+        switch Preferences.appState{
+            
+        case .online:
+            fetchNews()
+            
+        case .offline:
+            loadLocalNews()
+            
+        }
         
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        print("viewDidDisappear")
         
-        news = []
+        self.news.removeAll(keepingCapacity: false)
         self.newsTable.reloadData()
-//        navigationController?.popViewController(animated: true)
+        
     }
 
 }

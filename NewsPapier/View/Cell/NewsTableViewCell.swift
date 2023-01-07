@@ -36,21 +36,21 @@ class NewsTableViewCell: UITableViewCell {
                                                    font: Theme.h3Accent,
                                                    color: Theme.tertiaryText)
     
-    private lazy var threeDots: UIImageView = UIImageView(image: UIImage(systemName: "ellipsis"),
-                                                          autoLayout: false,
-                                                          tintColor: Theme.primaryText,
-                                                          backgroundColor: .red,
-                                                          gesture: tapThreeDot)
-    
-    private lazy var tapMainView = UITapGestureRecognizer(target: self,
-                                                          action: #selector(didTapNewsCell(_:)),
-                                                          delegate: self,
-                                                          name: "tapMainView")
-    
-    private lazy var tapThreeDot = UITapGestureRecognizer(target: self,
-                                                          action: #selector(didTapThreeDots(_:)),
-                                                          delegate: self,
-                                                          name: "tapThreeDot")
+//    private lazy var threeDots: UIImageView = UIImageView(image: UIImage(systemName: "ellipsis"),
+//                                                          autoLayout: false,
+//                                                          tintColor: Theme.primaryText,
+//                                                          backgroundColor: .red,
+//                                                          gesture: tapThreeDot)
+//
+//    private lazy var tapMainView = UITapGestureRecognizer(target: self,
+//                                                          action: #selector(didTapNewsCell(_:)),
+//                                                          delegate: self,
+//                                                          name: "tapMainView")
+//
+//    private lazy var tapThreeDot = UITapGestureRecognizer(target: self,
+//                                                          action: #selector(didTapThreeDots(_:)),
+//                                                          delegate: self,
+//                                                          name: "tapThreeDot")
     
     @objc private func didTapThreeDots(_ sender: UITapGestureRecognizer){
         print("didTap")
@@ -80,16 +80,16 @@ class NewsTableViewCell: UITableViewCell {
             timeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Preferences.topNewsCellPadding)
         ]
         
-        let threeDotsConstraints        = [
-            threeDots.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Preferences.topNewsCellPadding),
-            threeDots.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Preferences.topNewsCellPadding),
-            threeDots.heightAnchor.constraint(equalToConstant: 30)
-        ]
+//        let threeDotsConstraints        = [
+//            threeDots.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Preferences.topNewsCellPadding),
+//            threeDots.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Preferences.topNewsCellPadding),
+//            threeDots.heightAnchor.constraint(equalToConstant: 30)
+//        ]
         
         NSLayoutConstraint.activate(newsPosterImageConstraint)
         NSLayoutConstraint.activate(titleLabelConstraints)
         NSLayoutConstraint.activate(timeLabelConstraints)
-        NSLayoutConstraint.activate(threeDotsConstraints)
+//        NSLayoutConstraint.activate(threeDotsConstraints)
         
     }
     
@@ -113,14 +113,12 @@ class NewsTableViewCell: UITableViewCell {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        print("didInit")
-        
         contentView.addSubview(newsPosterImage)
         contentView.addSubview(titleLabel)
         contentView.addSubview(timeLabel)
-        contentView.addSubview(threeDots)
+//        contentView.addSubview(threeDots)
         
-        addGestureRecognizer(tapMainView)
+//        addGestureRecognizer(tapMainView)
         
         applyConstraints()
         setColors()
@@ -146,23 +144,23 @@ class NewsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if !self.threeDots.bounds.contains(touch.location(in: self.threeDots)){
-            
-            print("sdasdas")
-            
-        }
-        return true
-    }
-    
-    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-             shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-       if gestureRecognizer == self.tapThreeDot &&
-              otherGestureRecognizer == self.tapMainView {
-          return true
-       }
-       return false
-    }
+//    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+//        if !self.threeDots.bounds.contains(touch.location(in: self.threeDots)){
+//
+//            print("sdasdas")
+//
+//        }
+//        return true
+//    }
+//
+//    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+//             shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//       if gestureRecognizer == self.tapThreeDot &&
+//              otherGestureRecognizer == self.tapMainView {
+//          return true
+//       }
+//       return false
+//    }
     
 
 }

@@ -32,8 +32,19 @@ extension MainViewController: HeaderDelegate{
     func headerDidTap(_ category: Category) {
         
         newsViewController.setViewController(with: category)
-        #warning("Once searchResultsController is pushed. animated: true slows the animation")
         navigationController?.pushViewController(newsViewController, animated: true)
+    }
+    
+    
+}
+
+extension MainViewController: SearchResultsViewControllerDelegate{
+    
+    func searchResultsViewControllerDidTapCell(_ news: News) {
+        
+        newsDetailViewController.configure(with: news)
+        navigationController?.pushViewController(newsDetailViewController, animated: true)
+        
     }
     
     

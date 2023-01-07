@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    
+    #warning("More generic anchor including height width anchors and constants")
     public func anchor(top: NSLayoutYAxisAnchor,
                        leading: NSLayoutXAxisAnchor,
                        bottom: NSLayoutYAxisAnchor,

@@ -30,6 +30,7 @@ class RootNavigationController: UINavigationController {
     }
     
     private func setColors(){
+        
         view.backgroundColor = Theme.primaryBackground
         
         navigationBar.tintColor = Theme.tertiaryBackground

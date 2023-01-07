@@ -34,6 +34,22 @@ public struct News: Codable, Hashable{
         return ""
     }
     
+    var timeAgoView: String {
+        
+        let dateFormatter: DateFormatter = DateFormatter()
+        let dateFormat: String = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        
+        dateFormatter.dateFormat = dateFormat
+        
+        if let publishTime = publishedAt,
+            let time = dateFormatter.date(from: publishTime)
+        {
+            return time.timeAgoDisplay()
+        }
+        
+        return ""
+    }
+    
 }
 
 
