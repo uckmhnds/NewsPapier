@@ -107,7 +107,7 @@ public struct Preferences{
     
     static let scrollDownRefreshTime: Double = 1.2
     
-    static let sideMenuWidthRation: Double = 0.4
+    static let sideMenuWidthRatio: Double = 0.6
     
     static let sideMenuDidShowDuration: TimeInterval = 0.25
     static let sideMenuDidShowDelay: TimeInterval = 0.0
@@ -196,7 +196,6 @@ public enum Category: String, CaseIterable{
     var name: String { return self.rawValue}
     
 }
-
 
 public enum SearchIn: String, CaseIterable{
     case title, description, content

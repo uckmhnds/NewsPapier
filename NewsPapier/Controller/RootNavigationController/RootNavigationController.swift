@@ -12,7 +12,7 @@ class RootNavigationController: UINavigationController {
     var menuState: SideMenuState = .closed
     
     let sideMenuViewController = SideMenuViewController()
-    lazy var sideMenuWidth: CGFloat = view.frame.width * Preferences.sideMenuWidthRation
+    lazy var sideMenuWidth: CGFloat = view.frame.width * Preferences.sideMenuWidthRatio
     var sideMenuTrailingConstraint: NSLayoutConstraint!
     var navigationViewController: UINavigationController?
 

@@ -9,53 +9,61 @@ import UIKit
 
 extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//
-//        SideMenuCategories.categoryNames.count
-//
-//    }
-    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//        guard let cell = tableView.dequeueReusableCell(
-//                withIdentifier: "CustomTableViewCell") as? CustomTableViewCell
-//        else { return UITableViewCell() }
-//        cell.setUI(with: indexPath.row)
-//        
-//        return cell
-//        
-//    }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        UIView.animate(withDuration: 0.3) {
-//            tableView.performBatchUpdates(nil)
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        if let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell {
-//            cell.hideDetailView()
-//        }
-//    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isCollapsedArray.count
+        return getSectionSize(forSection: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let c = tableView.dequeueReusableCell(withIdentifier: ExpColCell.identifier, for: indexPath) as! ExpColCell
-
-        c.setData("Top \(indexPath.row)", str2: "Bottom \(indexPath.row)\n2\n3\n4\n5", isCollapsed: isCollapsedArray[indexPath.row])
-
-        c.didChangeHeight = { [weak self] isCollapsed in
-            guard let self = self else { return }
-            // update our data source
-            self.isCollapsedArray[indexPath.row] = isCollapsed
-            // tell the tableView to re-run its layout
-            tableView.performBatchUpdates(nil, completion: nil)
+        
+        switch getSectionType(forSection: indexPath.section) {
+            
+        case .sectionA:
+            if indexPath.row == 0{
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellA.identifier, for: indexPath) as? CellA else {return UITableViewCell()}
+                return cell
+            }else{
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellAA.identifier, for: indexPath) as? CellAA else {return UITableViewCell()}
+                return cell
+            }
+            
+        case .sectionB:
+            if indexPath.row == 0{
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellB.identifier, for: indexPath) as? CellB else {return UITableViewCell()}
+                return cell
+            }else{
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellBB.identifier, for: indexPath) as? CellBB else {return UITableViewCell()}
+                return cell
+            }
+            
+        case .sectionC:
+            if indexPath.row == 0{
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellC.identifier, for: indexPath) as? CellC else {return UITableViewCell()}
+                return cell
+            }else{
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CellCC.identifier, for: indexPath) as? CellCC else {return UITableViewCell()}
+                return cell
+            }
+            
         }
-
-        return c
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.row == 0 {
+            
+            sections[indexPath.section].isOpened.toggle()
+            
+            tableView.reloadSections([indexPath.section], with: .none)
+        }else{
+            
+        }
+        
     }
     
 }

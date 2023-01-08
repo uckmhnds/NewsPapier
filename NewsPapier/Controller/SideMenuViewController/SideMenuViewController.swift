@@ -7,21 +7,38 @@
 
 import UIKit
 
+enum SectionTypes { case sectionA, sectionB, sectionC }
+
+struct Section{
+    
+    let type: SectionTypes
+    var size: Int
+    var isOpened: Bool
+    var viewedSize: Int { return isOpened ? size + 1 : 1}
+    
+}
+
 class SideMenuViewController: UIViewController {
     
-    private lazy var sideMenuWidth: CGFloat = view.frame.width * 0.4
-    
-    var isCollapsedArray: [Bool] = []
+    var sections: [Section] = [Section(type: .sectionA, size: 8, isOpened: false),
+                               Section(type: .sectionB, size: 10, isOpened: false),
+                               Section(type: .sectionC, size: 12, isOpened: false)]
     
     private lazy var tableView: UITableView = {
         #warning("Parametric frame set")
-//        let frame = CGRect(x: 0, y: 120, width: sideMenuWidth, height: 500)
-//        let frame = .zero
+        
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ExpColCell.self, forCellReuseIdentifier: ExpColCell.identifier)
-//        tableView.register(SideMenuChildCell.self, forCellReuseIdentifier: SideMenuChildCell.identifier)
         
+        tableView.register(CellA.self, forCellReuseIdentifier: CellA.identifier)
+        tableView.register(CellB.self, forCellReuseIdentifier: CellB.identifier)
+        tableView.register(CellC.self, forCellReuseIdentifier: CellC.identifier)
+        
+        tableView.register(CellAA.self, forCellReuseIdentifier: CellAA.identifier)
+        tableView.register(CellBB.self, forCellReuseIdentifier: CellBB.identifier)
+        tableView.register(CellCC.self, forCellReuseIdentifier: CellCC.identifier)
+        
+        tableView.backgroundColor = Theme.primaryBackground
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -40,21 +57,113 @@ class SideMenuViewController: UIViewController {
         NSLayoutConstraint.activate(tableViewConstraints)
     }
     
+    func getSectionType(forSection: Int) -> SectionTypes {
+        return sections[forSection].type
+    }
+    
+    func getSectionSize(forSection: Int) -> Int {
+        return sections[forSection].viewedSize
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.backgroundColor = .black
+        view.backgroundColor = Theme.primaryBackground
         
         view.addSubview(tableView)
-        
-        
-        // 16 "rows" start with every-other row collapsed
-        for i in 0..<15 {
-            isCollapsedArray.append(i % 2 == 0)
-        }
         
         applyConstraints()
     }
 
+}
+
+class CellA: UITableViewCell {
+    
+    static let identifier: String = "CellA"
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .red
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+}
+
+class CellAA: UITableViewCell {
+    
+    static let identifier: String = "CellAA"
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .systemRed
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+}
+
+class CellB: UITableViewCell {
+    
+    static let identifier: String = "CellB"
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .yellow
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+}
+
+class CellBB: UITableViewCell {
+    
+    static let identifier: String = "CellBB"
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .systemYellow
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+}
+
+class CellC: UITableViewCell {
+    
+    static let identifier: String = "CellC"
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .blue
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+}
+
+class CellCC: UITableViewCell {
+    
+    static let identifier: String = "CellCC"
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .systemBlue
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
 }
