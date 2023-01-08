@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+#warning("parametrize")
 enum SectionTypes { case sectionA, sectionB, sectionC }
 
 struct Section{
@@ -24,7 +24,7 @@ class SideMenuViewController: UIViewController {
 //    var sections: [Section] = [Section(type: .sectionA, size: TestCategories.size, isOpened: false, elements: TestCategories.list),
 //                               Section(type: .sectionB, size: 10, isOpened: false),
 //                               Section(type: .sectionC, size: 12, isOpened: false)]
-    
+    #warning("parametrize")
     var sections: [Section] = [Section(type: .sectionA, size: TestCategories.size, isOpened: false, elements: TestCategories.list)]
     
     private lazy var tableView: UITableView = {
@@ -80,7 +80,7 @@ class SideMenuViewController: UIViewController {
     }
 
 }
-
+#warning("Parametrize")
 class CellA: UITableViewCell {
     
     static let identifier: String = "CellA"

@@ -27,7 +27,7 @@ public struct Countries {
                                    Country(name: "Holland", code: "nl", flag: "🇳🇱", language: "nl")]
     
 }
-
+//
 struct TestCategory{
     
     let name: String
@@ -36,7 +36,7 @@ struct TestCategory{
     let code: String
     
 }
-
+#warning("parametrize")
 struct TestCategories {
     
     static var size: Int { return list.count}
@@ -181,6 +181,7 @@ public struct Preferences{
     
     static let discoverCategoryCornerRadius: CGFloat = 8
     static let discoverCategoryPadding: CGFloat = 10
+    
 }
 
 public enum Category: String, CaseIterable{
