@@ -15,14 +15,17 @@ struct Section{
     var size: Int
     var isOpened: Bool
     var viewedSize: Int { return isOpened ? size + 1 : 1}
+    var elements: [TestCategory]
     
 }
 
 class SideMenuViewController: UIViewController {
     
-    var sections: [Section] = [Section(type: .sectionA, size: 8, isOpened: false),
-                               Section(type: .sectionB, size: 10, isOpened: false),
-                               Section(type: .sectionC, size: 12, isOpened: false)]
+//    var sections: [Section] = [Section(type: .sectionA, size: TestCategories.size, isOpened: false, elements: TestCategories.list),
+//                               Section(type: .sectionB, size: 10, isOpened: false),
+//                               Section(type: .sectionC, size: 12, isOpened: false)]
+    
+    var sections: [Section] = [Section(type: .sectionA, size: TestCategories.size, isOpened: false, elements: TestCategories.list)]
     
     private lazy var tableView: UITableView = {
         #warning("Parametric frame set")
@@ -82,13 +85,27 @@ class CellA: UITableViewCell {
     
     static let identifier: String = "CellA"
     
+    private let title = UILabel(autoLayout: false,
+                                font: Theme.h1Title,
+                                color: Theme.primaryText,
+                                text: "Categories")
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .red
+        
+        backgroundColor = Theme.secondaryBackground
+        
+        addSubview(title)
+        title.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
+        backgroundColor = Theme.secondaryBackground
+        
+        addSubview(title)
+        title.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
     }
     
 }
@@ -97,9 +114,41 @@ class CellAA: UITableViewCell {
     
     static let identifier: String = "CellAA"
     
+    private let title = UILabel(autoLayout: false,
+                                font: Theme.body3,
+                                color: Theme.secondaryText)
+    
+    private let image = UIImageView(contentMode: .center,
+                                    autoLayout: false,
+                                    clipsToBounds: false,
+                                    tintColor: Theme.tertiaryText)
+    
+    private lazy var stackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [image, title])
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .horizontal
+        return view
+    }()
+    
+    func setContent(_ testCategory: TestCategory){
+        self.image.image = UIImage(systemName: testCategory.symbol)
+        self.title.text = testCategory.name
+    }
+    
+    private func applyConstraints(){
+        stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
+        title.widthAnchor.constraint(equalTo: image.widthAnchor, multiplier: 4).isActive = true
+        
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .systemRed
+        
+        backgroundColor = Theme.tertiaryBackground
+        
+        addSubview(stackView)
+        
+        applyConstraints()
     }
     
     required init?(coder: NSCoder) {

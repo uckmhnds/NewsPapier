@@ -35,6 +35,12 @@ extension UILabel{
             
         }
         
+        if let text = text{
+            
+            self.text = text
+            
+        }
+        
         if let lineBreakMode = lineBreakMode{
             
             self.lineBreakMode = lineBreakMode

@@ -23,6 +23,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }else{
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellAA.identifier, for: indexPath) as? CellAA else {return UITableViewCell()}
+                cell.setContent(sections[indexPath.section].elements[indexPath.row - 1])
                 return cell
             }
             

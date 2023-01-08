@@ -39,6 +39,8 @@ struct TestCategory{
 
 struct TestCategories {
     
+    static var size: Int { return list.count}
+    
     static let list: [TestCategory] = [TestCategory(name: "General",
                                                     symbol: "globe.europe.africa",
                                                     symbolHighlighted: "globe.europe.africa.fill",
