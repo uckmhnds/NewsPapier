@@ -20,6 +20,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         case .sectionA:
             if indexPath.row == 0{
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellA.identifier, for: indexPath) as? CellA else {return UITableViewCell()}
+                cell.selectionStyle = .none
                 return cell
             }else{
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CellAA.identifier, for: indexPath) as? CellAA else {return UITableViewCell()}
@@ -46,6 +47,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
         }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -61,10 +63,16 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             sections[indexPath.section].isOpened.toggle()
             
             tableView.reloadSections([indexPath.section], with: .none)
+
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellA.identifier, for: indexPath) as? CellA else {return}
+            
+//            cell.setSelected(true, animated: false)
+            
         }else{
             
         }
         
     }
+    
     
 }

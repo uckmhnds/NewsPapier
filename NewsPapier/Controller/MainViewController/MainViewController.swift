@@ -226,6 +226,7 @@ class MainViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        #warning("Those are tightly coupled")
         searchResultsViewController.topPadding = topBarHeight
         
     }
