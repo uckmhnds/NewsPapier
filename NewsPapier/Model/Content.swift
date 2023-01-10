@@ -89,6 +89,9 @@ public enum AppState: String, CaseIterable{
 
 public struct Preferences{
     
+    static let newsDetailSwipeLeft: String = "newsDetailSwipeLeft"
+    static let newsDetailSwipeRight: String = "newsDetailSwipeRight"
+    
     static var navBarHeight: CGFloat = {
         let test = CGFloat()
         

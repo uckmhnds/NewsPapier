@@ -198,7 +198,6 @@ class MainViewController: UIViewController {
         return self.newsDetailViewController
     }
     
-    
     // MARK: - Private Methods
     
     @objc private func filterBarButtonAction(){
