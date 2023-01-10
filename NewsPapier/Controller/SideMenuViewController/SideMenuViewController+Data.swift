@@ -58,6 +58,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
+        
         if indexPath.row == 0 {
             
             sections[indexPath.section].isOpened.toggle()
@@ -69,6 +70,10 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
 //            cell.setSelected(true, animated: false)
             
         }else{
+            
+            var element = sections[indexPath.section].elements[indexPath.row - 1]
+            
+            self.delegate?.categorySelected(element)
             
         }
         
