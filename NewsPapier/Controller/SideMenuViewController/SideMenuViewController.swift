@@ -19,6 +19,10 @@ struct Section{
     
 }
 
+protocol SideMenuViewControllerDelegate: AnyObject{
+    func categorySelected(_ category: TestCategory)
+}
+
 class SideMenuViewController: UIViewController {
     
 //    var sections: [Section] = [Section(type: .sectionA, size: TestCategories.size, isOpened: false, elements: TestCategories.list),
@@ -26,6 +30,8 @@ class SideMenuViewController: UIViewController {
 //                               Section(type: .sectionC, size: 12, isOpened: false)]
     #warning("parametrize")
     var sections: [Section] = [Section(type: .sectionA, size: TestCategories.size, isOpened: false, elements: TestCategories.list)]
+    
+    weak var delegate: SideMenuViewControllerDelegate?
     
     private lazy var tableView: UITableView = {
         #warning("Parametric frame set")
@@ -128,27 +134,6 @@ class CellA: UITableViewCell {
         
         
         
-//        print(self.subviews.first?.removeFromSuperview())
-//        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
-//            let angle = CGFloat.pi / 2
-//            self.image.transform = CGAffineTransform(rotationAngle: angle)
-//        } completion: { _ in
-//            UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear) {
-//                let angle = CGFloat.pi
-//                self.image.transform = CGAffineTransform(rotationAngle: angle)
-//            } completion: { _ in
-//                UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear) {
-//                    let angle = CGFloat.pi * 3 / 2
-//                    self.image.transform = CGAffineTransform(rotationAngle: angle)
-//                } completion: { _ in
-//                    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut) {
-//                        let angle = CGFloat.pi * 2
-//                        self.image.transform = CGAffineTransform(rotationAngle: angle)
-//                    }
-//                }
-//            }
-//        }
-        
     }
     
 //    override func setSelected(_ selected: Bool, animated: Bool) {
@@ -234,7 +219,6 @@ class CellA: UITableViewCell {
         
         applyConstraints()
     }
-    
     
 }
 
