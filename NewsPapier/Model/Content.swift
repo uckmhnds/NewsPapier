@@ -74,7 +74,7 @@ struct TestCategories {
                                        TestCategory(name: "Entertainment",
                                                     symbol: "shower",
                                                     symbolHighlighted: "shower.fill",
-                                                    code: "Entertainment")]
+                                                    code: "entertainment")]
     
 }
 

@@ -7,6 +7,7 @@
 
 import UIKit
 #warning("parametrize")
+
 enum SectionTypes { case sectionA, sectionB, sectionC }
 
 struct Section{

@@ -8,8 +8,10 @@
 import UIKit
 
 protocol MainViewControllerDelegate: AnyObject{
+    
     func presentSideMenu()
     func tapGestureDidTap()
+    
 }
 
 extension MainViewController: NewsViewControllerDelegate{
