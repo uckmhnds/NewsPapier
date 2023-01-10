@@ -16,9 +16,9 @@ class MainViewController: UIViewController {
     
     // MARK: - ViewControllers
     
-    let searchResultsViewController = SearchResultsViewController()
-    let newsViewController = NewsViewController()
-    let newsDetailViewController = NewsDetailViewController()
+    private let searchResultsViewController = SearchResultsViewController()
+    private let newsViewController = NewsViewController()
+    private let newsDetailViewController = NewsDetailViewController()
     
     // MARK: - Views
     
@@ -28,9 +28,9 @@ class MainViewController: UIViewController {
     
     // MARK: - Network
     
-    var responseDict: [Category: [News]] = [:]
-    var isLoading: Bool = true
-    let dispatchGroup = DispatchGroup()
+    private var responseDict: [Category: [News]] = [:]
+    private var isLoading: Bool = true
+    private let dispatchGroup = DispatchGroup()
     
     private func fetchNews(){
         
@@ -160,12 +160,52 @@ class MainViewController: UIViewController {
     
     // NAVIGATION BAR CONFIG
     
+    // MARK: - Getter Methods
+    
+    func getResponseDict() -> [Category: [News]] {
+        return self.responseDict
+    }
+    
+    func getResponseDict(with category: Category) -> [News]? {
+        return self.responseDict[category]
+    }
+    
+    func getIsLoading() -> Bool {
+        return self.isLoading
+    }
+    
+    func getBlurryView() -> UIView {
+        return self.blurryView
+    }
+    
+    func getCollectionView() -> UICollectionView {
+        return self.collectionView
+    }
+    
+    func getSearchController() -> UISearchController {
+        return self.searchController
+    }
+    
+    func getSearchResultsViewController() -> SearchResultsViewController {
+        return self.searchResultsViewController
+    }
+    
+    func getNewsViewController() -> NewsViewController {
+        return self.newsViewController
+    }
+    
+    func getNewsDetailViewController() -> NewsDetailViewController {
+        return self.newsDetailViewController
+    }
+    
+    
     // MARK: - Private Methods
     
     @objc private func filterBarButtonAction(){
         
         /// GO TO PREFERENCES
         ///
+        #warning("Add blurry view to sidemenuVC because it is tricky to removeFromSuperview this view when selecting tableView item from sideMenu")
         view.addSubview(blurryView)
         delegate?.presentSideMenu()
     }
@@ -203,7 +243,6 @@ class MainViewController: UIViewController {
             loadLocalNews()
             
         }
-        
         
     }
 

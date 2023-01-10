@@ -12,6 +12,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
+        var news: [News] = [News]()
+        
         switch Category.allCases[indexPath.section]{
             
         case .categories:
@@ -20,47 +22,45 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             break
         case .business:
             
-                guard let news = self.responseDict[.business] else {return}
-                newsDetailViewController.configure(with: news[indexPath.row])
-                navigationController?.pushViewController(newsDetailViewController, animated: true)
+                guard let _news = self.getResponseDict(with: .business) else {return}
+                news = _news
             
         case .entertainment:
             
-            guard let news = self.responseDict[.entertainment] else {return}
-            newsDetailViewController.configure(with: news[indexPath.row])
-            navigationController?.pushViewController(newsDetailViewController, animated: true)
+            guard let _news = self.getResponseDict(with: .entertainment) else {return}
+            news = _news
         
         case .general:
             
-            guard let news = self.responseDict[.general] else {return}
-            newsDetailViewController.configure(with: news[indexPath.row])
-            navigationController?.pushViewController(newsDetailViewController, animated: true)
+            guard let _news = self.getResponseDict(with: .general) else {return}
+            news = _news
         
         case .health:
             
-            guard let news = self.responseDict[.health] else {return}
-            newsDetailViewController.configure(with: news[indexPath.row])
-            navigationController?.pushViewController(newsDetailViewController, animated: true)
+            guard let _news = self.getResponseDict(with: .health) else {return}
+            news = _news
         
         case .science:
             
-            guard let news = self.responseDict[.science] else {return}
-            newsDetailViewController.configure(with: news[indexPath.row])
-            navigationController?.pushViewController(newsDetailViewController, animated: true)
+            guard let _news = self.getResponseDict(with: .science) else {return}
+            news = _news
         
         case .sports:
             
-            guard let news = self.responseDict[.sports] else {return}
-            newsDetailViewController.configure(with: news[indexPath.row])
-            navigationController?.pushViewController(newsDetailViewController, animated: true)
+            guard let _news = self.getResponseDict(with: .sports) else {return}
+            news = _news
         
         case .technology:
             
-            guard let news = self.responseDict[.technology] else {return}
-            newsDetailViewController.configure(with: news[indexPath.row])
-            navigationController?.pushViewController(newsDetailViewController, animated: true)
+            guard let _news = self.getResponseDict(with: .technology) else {return}
+            news = _news
         
         }
+        
+        let viewController = self.getNewsDetailViewController()
+        
+        viewController.configure(with: news[indexPath.row])
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -124,7 +124,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
                 DispatchQueue.main.async{
                     
-                    guard let response = self.responseDict[.business] else{return}
+                    guard let response = self.getResponseDict(with: .business) else{return}
                     cell.configure(with: response[indexPath.row])
                     
                 }
@@ -137,7 +137,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                 
                 DispatchQueue.main.async{
                     
-                    guard let response = self.responseDict[.entertainment] else{return}
+                    guard let response = self.getResponseDict(with: .entertainment) else{return}
                     cell.configure(with: response[indexPath.row])
                     
                 }
@@ -149,7 +149,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                 
                 DispatchQueue.main.async{
                     
-                    guard let response = self.responseDict[.general] else{return}
+                    guard let response = self.getResponseDict(with: .general) else{return}
                     cell.configure(with: response[indexPath.row])
                     
                 }
@@ -162,7 +162,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             
                 DispatchQueue.main.async{
                     
-                    guard let response = self.responseDict[.health] else{return}
+                    guard let response = self.getResponseDict(with: .health) else{return}
                     cell.configure(with: response[indexPath.row])
                     
                 }
@@ -174,7 +174,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             
                 DispatchQueue.main.async{
                     
-                    guard let response = self.responseDict[.science] else{return}
+                    guard let response = self.getResponseDict(with: .science) else{return}
                     cell.configure(with: response[indexPath.row])
                     
                 }
@@ -186,7 +186,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             
                 DispatchQueue.main.async{
                     
-                    guard let response = self.responseDict[.sports] else{return}
+                    guard let response = self.getResponseDict(with: .sports) else{return}
                     cell.configure(with: response[indexPath.row])
                     
                 }
@@ -198,7 +198,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             
                 DispatchQueue.main.async{
                     
-                    guard let response = self.responseDict[.technology] else{return}
+                    guard let response = self.getResponseDict(with: .technology) else{return}
                     cell.configure(with: response[indexPath.row])
                     
                 }
