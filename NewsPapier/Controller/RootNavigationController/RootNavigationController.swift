@@ -45,6 +45,8 @@ class RootNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        sideMenuViewController.delegate = rootViewController.self
+        
         addChild(sideMenuViewController)
         view.addSubview(sideMenuViewController.view)
         

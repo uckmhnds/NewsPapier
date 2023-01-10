@@ -17,9 +17,15 @@ extension MainViewController: NewsViewControllerDelegate{
     func newsViewControllerDidTapCell(_ news: News) {
         
         DispatchQueue.main.async { [weak self] in
-            print("asdadjljS")
-            self?.newsDetailViewController.configure(with: news)
-            self?.navigationController?.pushViewController(self!.newsDetailViewController, animated: true)
+            
+            if let viewController = self?.getNewsDetailViewController(),
+                let navController = self?.navigationController
+            {
+                
+                viewController.configure(with: news)
+                navController.pushViewController(viewController, animated: true)
+                
+            }
             
         }
         
@@ -31,8 +37,14 @@ extension MainViewController: HeaderDelegate{
     
     func headerDidTap(_ category: Category) {
         
-        newsViewController.setViewController(with: category)
-        navigationController?.pushViewController(newsViewController, animated: true)
+        let viewController = self.getNewsViewController()
+        
+        if let navController = self.navigationController{
+            
+            viewController.setViewController(with: category)
+            navController.pushViewController(viewController, animated: true)
+            
+        }
     }
     
     
@@ -42,8 +54,39 @@ extension MainViewController: SearchResultsViewControllerDelegate{
     
     func searchResultsViewControllerDidTapCell(_ news: News) {
         
-        newsDetailViewController.configure(with: news)
-        navigationController?.pushViewController(newsDetailViewController, animated: true)
+        let viewController = self.getNewsDetailViewController()
+        
+        if let navController = self.navigationController{
+            
+            viewController.configure(with: news)
+            navController.pushViewController(viewController, animated: true)
+            
+        }
+        
+    }
+    
+    
+}
+
+
+extension MainViewController: SideMenuViewControllerDelegate{
+    
+    func categorySelected(_ category: TestCategory) {
+        #warning("Type casted from Test to Real. Merge all later")
+        let viewController = self.getNewsViewController()
+        let blurryView = self.getBlurryView()
+        
+        if let delegate = self.delegate,
+            let test: Category = Category(rawValue: category.code),
+            let navController = self.navigationController{
+            
+            delegate.tapGestureDidTap()
+            blurryView.removeFromSuperview()
+            
+            viewController.setViewController(with: test)
+            navController.pushViewController(viewController, animated: true)
+            
+        }
         
     }
     
