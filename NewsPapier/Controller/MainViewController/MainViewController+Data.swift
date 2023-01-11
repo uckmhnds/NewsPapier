@@ -12,70 +12,92 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
+        let section: Int = indexPath.section
+        
+        let section1: Int = section <= 2 ? section : 2
+        let section2: Int = section <= 7 ? section - 2 : 6
+        
         var news: [News] = [News]()
         
-        switch Category.allCases[indexPath.section]{
+        switch HomeCollectionViewLayoutCase.allCases[section1]{
             
-        case .categories:
-            break
-        case .sources:
-            break
-        case .business:
+        case .finance:
+            print("didSelectItemAt " + String(indexPath.row) + " for: " + HomeCollectionViewLayoutCase.finance.name)
+        case .weather:
+            print("didSelectItemAt " + String(indexPath.row) + " for: " + HomeCollectionViewLayoutCase.weather.name)
+        case .news:
             
-                guard let _news = self.getResponseDict(with: .business) else {return}
+            switch CategoryCase.allCases[section2]{
+                
+            case .business:
+                
+                    guard let _news = self.getResponseDict(with: .business) else {return}
+                    news = _news
+                
+            case .entertainment:
+                
+                guard let _news = self.getResponseDict(with: .entertainment) else {return}
                 news = _news
             
-        case .entertainment:
+            case .general:
+                
+                guard let _news = self.getResponseDict(with: .general) else {return}
+                news = _news
             
-            guard let _news = self.getResponseDict(with: .entertainment) else {return}
-            news = _news
-        
-        case .general:
+            case .health:
+                
+                guard let _news = self.getResponseDict(with: .health) else {return}
+                news = _news
             
-            guard let _news = self.getResponseDict(with: .general) else {return}
-            news = _news
-        
-        case .health:
+            case .science:
+                
+                guard let _news = self.getResponseDict(with: .science) else {return}
+                news = _news
             
-            guard let _news = self.getResponseDict(with: .health) else {return}
-            news = _news
-        
-        case .science:
+            case .sports:
+                
+                guard let _news = self.getResponseDict(with: .sports) else {return}
+                news = _news
             
-            guard let _news = self.getResponseDict(with: .science) else {return}
-            news = _news
-        
-        case .sports:
+            case .technology:
+                
+                guard let _news = self.getResponseDict(with: .technology) else {return}
+                news = _news
             
-            guard let _news = self.getResponseDict(with: .sports) else {return}
-            news = _news
-        
-        case .technology:
+            }
             
-            guard let _news = self.getResponseDict(with: .technology) else {return}
-            news = _news
-        
+            let viewController = self.getNewsDetailViewController()
+            
+            viewController.configure(with: news[indexPath.row])
+            
+            if let navController = self.navigationController{
+                navController.pushViewController(viewController, animated: true)
+            }
+            
         }
         
-        let viewController = self.getNewsDetailViewController()
-        
-        viewController.configure(with: news[indexPath.row])
-        navigationController?.pushViewController(viewController, animated: true)
+
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return Category.allCases.count
+        return HomeCollectionViewLayoutCase.size
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        switch Category.allCases[section]{
+        let section1: Int = section <= 2 ? section : 2
+        let section2: Int = section <= 7 ? section - 2 : 6
+        
+        switch HomeCollectionViewLayoutCase.allCases[section1]{
             
-            case .categories:
-                return Category.allCases.count
-            case .sources:
-                return 38
+        case .finance:
+            return Preferences.pageSize
+        case .weather:
+            return Preferences.pageSize
+        case .news:
+            switch CategoryCase.allCases[section2]{
+                
             case .business:
                 return Preferences.pageSize
             case .entertainment:
@@ -90,240 +112,123 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                 return Preferences.pageSize
             case .technology:
                 return Preferences.pageSize
-            
+            }
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    #warning("Fix this dispatches. businessNews count is 0 at first. Then it fills the cells")
-    #warning("Find a better API call")
         
-        switch Category.allCases[indexPath.section]{
+        let section: Int = indexPath.section
+        
+        let section1: Int = section <= 2 ? section : 2
+        let section2: Int = section <= 7 ? section - 2 : 6
+        
+        switch HomeCollectionViewLayoutCase.allCases[section1]{
             
-            case .categories:
+        case .finance:
+            guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: HomeFinanceCell.identifier, for: indexPath) as? HomeFinanceCell else {return UICollectionViewCell()}
+            return cell
+        case .weather:
+            guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWeatherCell.identifier, for: indexPath) as? HomeWeatherCell else {return UICollectionViewCell()}
+            return cell
+        case .news:
+            
+            guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCategoryCell.identifier, for: indexPath) as? HomeCategoryCell else {return UICollectionViewCell()}
+            
+            DispatchQueue.main.async{
                 
-                guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverMainCategoryCell.identifier, for: indexPath) as? DiscoverMainCategoryCell else {return UICollectionViewCell()}
-            
-                cell.setCategoryName(with: Category.allCases[indexPath.row].rawValue.capitalizeFirstLetter())
-            
-                return cell
-                
-            case .sources:
-                
-                guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverSourcesCell.identifier, for: indexPath) as? DiscoverSourcesCell else {return UICollectionViewCell()}
-            
-                DispatchQueue.main.async{
-//                    cell.setSourceName(self.sources[indexPath.row])
+                switch CategoryCase.allCases[section2]{
+                    
+                case .business:
+                    if let response = self.getResponseDict(with: .business){
+                        cell.configure(with: response[indexPath.row])
+                    }
+                case .entertainment:
+                    if let response = self.getResponseDict(with: .entertainment){
+                        cell.configure(with: response[indexPath.row])
+                    }
+                case .general:
+                    if let response = self.getResponseDict(with: .general){
+                        cell.configure(with: response[indexPath.row])
+                    }
+                case .health:
+                    if let response = self.getResponseDict(with: .health){
+                        cell.configure(with: response[indexPath.row])
+                    }
+                case .science:
+                    if let response = self.getResponseDict(with: .science){
+                        cell.configure(with: response[indexPath.row])
+                    }
+                case .sports:
+                    if let response = self.getResponseDict(with: .sports){
+                        cell.configure(with: response[indexPath.row])
+                    }
+                case .technology:
+                    if let response = self.getResponseDict(with: .technology){
+                        cell.configure(with: response[indexPath.row])
+                    }
                 }
-                return cell
-            
-            case .business:
-                
-                guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverCategoriesCell.identifier, for: indexPath) as? DiscoverCategoriesCell else {return UICollectionViewCell()}
-
-                DispatchQueue.main.async{
-                    
-                    guard let response = self.getResponseDict(with: .business) else{return}
-                    cell.configure(with: response[indexPath.row])
-                    
-                }
-            
-                return cell
-                
-            case .entertainment:
-                
-                guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverCategoriesCell.identifier, for: indexPath) as? DiscoverCategoriesCell else {return UICollectionViewCell()}
-                
-                DispatchQueue.main.async{
-                    
-                    guard let response = self.getResponseDict(with: .entertainment) else{return}
-                    cell.configure(with: response[indexPath.row])
-                    
-                }
-                return cell
-                
-            case .general:
-                
-                guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverCategoriesCell.identifier, for: indexPath) as? DiscoverCategoriesCell else {return UICollectionViewCell()}
-                
-                DispatchQueue.main.async{
-                    
-                    guard let response = self.getResponseDict(with: .general) else{return}
-                    cell.configure(with: response[indexPath.row])
-                    
-                }
-            
-                return cell
-                
-            case .health:
-                
-                guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverCategoriesCell.identifier, for: indexPath) as? DiscoverCategoriesCell else {return UICollectionViewCell()}
-            
-                DispatchQueue.main.async{
-                    
-                    guard let response = self.getResponseDict(with: .health) else{return}
-                    cell.configure(with: response[indexPath.row])
-                    
-                }
-                return cell
-                
-            case .science:
-                
-                guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverCategoriesCell.identifier, for: indexPath) as? DiscoverCategoriesCell else {return UICollectionViewCell()}
-            
-                DispatchQueue.main.async{
-                    
-                    guard let response = self.getResponseDict(with: .science) else{return}
-                    cell.configure(with: response[indexPath.row])
-                    
-                }
-                return cell
-                
-            case .sports:
-                
-                guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverCategoriesCell.identifier, for: indexPath) as? DiscoverCategoriesCell else {return UICollectionViewCell()}
-            
-                DispatchQueue.main.async{
-                    
-                    guard let response = self.getResponseDict(with: .sports) else{return}
-                    cell.configure(with: response[indexPath.row])
-                    
-                }
-                return cell
-                
-            case .technology:
-                
-                guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverCategoriesCell.identifier, for: indexPath) as? DiscoverCategoriesCell else {return UICollectionViewCell()}
-            
-                DispatchQueue.main.async{
-                    
-                    guard let response = self.getResponseDict(with: .technology) else{return}
-                    cell.configure(with: response[indexPath.row])
-                    
-                }
-                return cell
-            
+            }
+            return cell
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-
+        
+        let section: Int = indexPath.section
+        
+        let section1: Int = section <= 2 ? section : 2
+        let section2: Int = section <= 7 ? section - 2 : 6
+        
         switch kind{
             
         case Header.identifier:
             
-            switch Category.allCases[indexPath.section]{
+            switch HomeCollectionViewLayoutCase.allCases[section1]{
                 
-            case .categories:
+            case .finance:
                 
-                guard let header        = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                          withReuseIdentifier: Header.identifier,
-                                                                                          for: indexPath) as? Header else {return UICollectionReusableView()}
-//                header.backgroundColor  = .systemGray
-                header.setHeaderLabel(with: Category.allCases[indexPath.section].rawValue.capitalizeFirstLetter())
-                header.category = .categories
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
+                header.delegate = self
+                return header
+            case .weather:
+                
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
+                header.delegate = self
+                return header
+            case .news:
+                
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
+                
                 header.delegate = self
                 
+                switch CategoryCase.allCases[section2]{
+                    
+                case .business:
+                    header.setHeaderLabel(with: CategoryCase.business.object.name)
+                    header.categoryCase = .business
+                case .entertainment:
+                    header.setHeaderLabel(with: CategoryCase.entertainment.object.name)
+                    header.categoryCase = .entertainment
+                case .general:
+                    header.setHeaderLabel(with: CategoryCase.general.object.name)
+                    header.categoryCase = .general
+                case .health:
+                    header.setHeaderLabel(with: CategoryCase.health.object.name)
+                    header.categoryCase = .health
+                case .science:
+                    header.setHeaderLabel(with: CategoryCase.science.object.name)
+                    header.categoryCase = .science
+                case .sports:
+                    header.setHeaderLabel(with: CategoryCase.sports.object.name)
+                    header.categoryCase = .sports
+                case .technology:
+                    header.setHeaderLabel(with: CategoryCase.technology.object.name)
+                    header.categoryCase = .technology
+                }
                 return header
-                
-            case .sources:
-                
-                guard let header        = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                          withReuseIdentifier: Header.identifier,
-                                                                                          for: indexPath) as? Header else {return UICollectionReusableView()}
-//                header.backgroundColor  = .systemGray
-                header.setHeaderLabel(with: Category.allCases[indexPath.section].rawValue.capitalizeFirstLetter())
-                header.category = .sources
-                header.delegate = self
-                
-                return header
-                
-            case .business:
-                
-                guard let header        = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                          withReuseIdentifier: Header.identifier,
-                                                                                          for: indexPath) as? Header else {return UICollectionReusableView()}
-//                header.backgroundColor  = .systemGray
-                header.setHeaderLabel(with: Category.allCases[indexPath.section].rawValue.capitalizeFirstLetter())
-                header.category = .business
-                header.delegate = self
-                
-                return header
-                
-            case .entertainment:
-                
-                guard let header        = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                          withReuseIdentifier: Header.identifier,
-                                                                                          for: indexPath) as? Header else {return UICollectionReusableView()}
-//                header.backgroundColor  = .systemGray
-                header.setHeaderLabel(with: Category.allCases[indexPath.section].rawValue.capitalizeFirstLetter())
-                header.category = .entertainment
-                header.delegate = self
-                
-                return header
-                
-            case .general:
-                
-                guard let header        = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                          withReuseIdentifier: Header.identifier,
-                                                                                          for: indexPath) as? Header else {return UICollectionReusableView()}
-//                header.backgroundColor  = .systemGray
-                header.setHeaderLabel(with: Category.allCases[indexPath.section].rawValue.capitalizeFirstLetter())
-                header.category = .general
-                header.delegate = self
-                
-                return header
-                
-            case .health:
-                
-                guard let header        = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                          withReuseIdentifier: Header.identifier,
-                                                                                          for: indexPath) as? Header else {return UICollectionReusableView()}
-//                header.backgroundColor  = .systemGray
-                header.setHeaderLabel(with: Category.allCases[indexPath.section].rawValue.capitalizeFirstLetter())
-                header.category = .health
-                header.delegate = self
-                
-                return header
-                
-            case .science:
-                
-                guard let header        = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                          withReuseIdentifier: Header.identifier,
-                                                                                          for: indexPath) as? Header else {return UICollectionReusableView()}
-//                header.backgroundColor  = .systemGray
-                header.setHeaderLabel(with: Category.allCases[indexPath.section].rawValue.capitalizeFirstLetter())
-                header.category = .science
-                header.delegate = self
-                
-                return header
-                
-            case .sports:
-                
-                guard let header        = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                          withReuseIdentifier: Header.identifier,
-                                                                                          for: indexPath) as? Header else {return UICollectionReusableView()}
-//                header.backgroundColor  = .systemGray
-                header.setHeaderLabel(with: Category.allCases[indexPath.section].rawValue.capitalizeFirstLetter())
-                header.category = .sports
-                header.delegate = self
-                
-                return header
-                
-            case .technology:
-                
-                guard let header        = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                          withReuseIdentifier: Header.identifier,
-                                                                                          for: indexPath) as? Header else {return UICollectionReusableView()}
-//                header.backgroundColor  = .systemGray
-                header.setHeaderLabel(with: Category.allCases[indexPath.section].rawValue.capitalizeFirstLetter())
-                header.category = .technology
-                header.delegate = self
-                
-                return header
-                
             }
         case PagingSectionFooterView.reuseIdentifier:
             
@@ -344,4 +249,5 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             return UICollectionReusableView()
         }
     }
+    
 }

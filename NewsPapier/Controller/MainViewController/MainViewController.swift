@@ -28,13 +28,13 @@ class MainViewController: UIViewController {
     
     // MARK: - Network
     
-    private var responseDict: [Category: [News]] = [:]
+    private var responseDict: [CategoryCase: [News]] = [:]
     private var isLoading: Bool = true
     private let dispatchGroup = DispatchGroup()
     
     private func fetchNews(){
         
-        for category in Category.allCases
+        for category in CategoryCase.allCases
         {
             
             self.dispatchGroup.enter()
@@ -69,13 +69,13 @@ class MainViewController: UIViewController {
     
     private func loadLocalNews(){
         
-        for category in Category.allCases{
+        for category in CategoryCase.allCases{
             
             self.dispatchGroup.enter()
             
             DispatchQueue.main.async {
                 
-                if let test = DecodeLocal.shared.fetch(fileName: category.name) as NewsResponse?,
+                if let test = DecodeLocal.shared.fetch(fileName: category.code) as NewsResponse?,
                    let articles = test.articles
                 {
                     self.responseDict[category] = articles
@@ -162,12 +162,12 @@ class MainViewController: UIViewController {
     
     // MARK: - Getter Methods
     
-    func getResponseDict() -> [Category: [News]] {
+    func getResponseDict() -> [CategoryCase: [News]] {
         return self.responseDict
     }
     
-    func getResponseDict(with category: Category) -> [News]? {
-        return self.responseDict[category]
+    func getResponseDict(with categoryCase: CategoryCase) -> [News]? {
+        return self.responseDict[categoryCase]
     }
     
     func getIsLoading() -> Bool {
