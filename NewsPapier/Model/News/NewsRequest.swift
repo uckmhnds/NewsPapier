@@ -22,8 +22,8 @@ public struct NewsRequest: ExternalAPIRequest{
     public var pageSize: String = ""
     public var pageNumber: String = ""
     
-    public init(category: Category? = nil,
-                country: Country? = nil,
+    public init(category: CategoryCase? = nil,
+                country: CountryCase? = nil,
                 pageSize: Int? = nil,
                 pageNumber: Int? = nil) {
 

@@ -22,18 +22,18 @@ public struct SourcesRequest: ExternalAPIRequest {
     public var pageNumber: String = ""
     public var apiKey: String = "apiKey=5b5a47c88e734c448bdbae91ae7389be"
     
-    public init(category: Category? = nil,
-                country: Country? = nil,
+    public init(categoryCase: CategoryCase? = nil,
+                countryCase: CountryCase? = nil,
                 language: Language? = nil,
                 pageSize: Int? = nil,
                 pageNumber: Int? = nil) {
 
-        if let category = category {
-            self.category = "category=" + category.rawValue + "&"
+        if let categoryCase = categoryCase {
+            self.category = "category=" + categoryCase.rawValue + "&"
         }
 
-        if let country = country {
-            self.country = "country=" + country.code + "&"
+        if let countryCase = countryCase {
+            self.country = "country=" + countryCase.code + "&"
         }
         
         if let language = language {
