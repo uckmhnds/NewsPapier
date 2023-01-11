@@ -7,9 +7,9 @@
 
 import UIKit
 
-class DiscoverMainCategoryCell: UICollectionViewCell {
+class HomeFinanceCell: UICollectionViewCell {
     
-    static let identifier   = "DiscoverMainCategoryCell"
+    static let identifier   = "HomeFinanceCell"
     
     private lazy var categoryImageView: UIImageView = {
         

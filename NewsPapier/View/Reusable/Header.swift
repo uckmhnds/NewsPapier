@@ -8,13 +8,13 @@
 import UIKit
 
 protocol HeaderDelegate: AnyObject{
-    func headerDidTap(_ category: Category)
+    func headerDidTap(_ categoryCase: CategoryCase)
 }
 
 class Header: UICollectionReusableView {
 
     static let identifier       = "Header"
-    var category: Category?
+    var categoryCase: CategoryCase?
     weak var delegate: HeaderDelegate?
 
     private lazy var label: UILabel  = {
@@ -58,7 +58,13 @@ class Header: UICollectionReusableView {
     }
     
     @objc private func headerDidTap(_ sender: UITapGestureRecognizer){
-        delegate?.headerDidTap(category!)
+        
+        if let delegate = self.delegate,
+            let categoryCase = self.categoryCase
+        {
+            print("headerDidTap at Header")
+            delegate.headerDidTap(categoryCase)
+        }
     }
     
     private lazy var tapGesture: UITapGestureRecognizer = {

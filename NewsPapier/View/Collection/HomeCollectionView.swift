@@ -46,7 +46,7 @@ final class HomeCollectionView: UICollectionView {
         
     }()
     
-    private func mainCategorySection() -> NSCollectionLayoutSection{
+    private func financeSection() -> NSCollectionLayoutSection{
         
         let item = CompositionalLayout.createItem(width: .fractionalWidth(Preferences.primaryItemWidthFraction),
                                                   height: .fractionalHeight(Preferences.primaryItemHeightFraction),
@@ -68,7 +68,7 @@ final class HomeCollectionView: UICollectionView {
         
     }
     
-    private func sourcesSection() -> NSCollectionLayoutSection{
+    private func weatherSection() -> NSCollectionLayoutSection{
         
         let item = CompositionalLayout.createItem(width: .fractionalWidth(Preferences.secondaryItemWidthFraction),
                                                   height: .fractionalHeight(Preferences.secondaryItemHeightFraction),
@@ -127,49 +127,72 @@ final class HomeCollectionView: UICollectionView {
         return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             #warning("boilerplate code")
             
-            switch Category.allCases[sectionIndex]{
+            var section1: Int = sectionIndex < 3 ? sectionIndex : 2
+            var section2: Int = sectionIndex < 7 ? sectionIndex - 2 : 6
+            
+            switch HomeCollectionViewLayoutCase.allCases[section1]{
                 
-            case .categories:
-                
-                return self.mainCategorySection()
-                
-            case .sources:
-                
-                return self.sourcesSection()
-                
-            case .business:
-
-                return self.categorySection(sectionIndex)
-                
-            case .entertainment:
-
-                return self.categorySection(sectionIndex)
-                
-            case .general:
-                
-                return self.categorySection(sectionIndex)
-
-                
-            case .health:
-                
-                return self.categorySection(sectionIndex)
-
-                
-            case .science:
-                
-                return self.categorySection(sectionIndex)
-
-                
-            case .sports:
-                
-                return self.categorySection(sectionIndex)
-
-                
-            case .technology:
-                
-                return self.categorySection(sectionIndex)
-                
+            case .finance:
+                return self.financeSection()
+            case .weather:
+                return self.weatherSection()
+            case .news:
+                switch CategoryCase.allCases[section2]{
+                case .business:
+                    return self.categorySection(sectionIndex)
+                case .entertainment:
+                    return self.categorySection(sectionIndex)
+                case .general:
+                    return self.categorySection(sectionIndex)
+                case .health:
+                    return self.categorySection(sectionIndex)
+                case .science:
+                    return self.categorySection(sectionIndex)
+                case .sports:
+                    return self.categorySection(sectionIndex)
+                case .technology:
+                    return self.categorySection(sectionIndex)
+                }
             }
+//            case .categories:
+//
+//                return self.mainCategorySection()
+//
+//            case .sources:
+//
+//                return self.sourcesSection()
+//
+//            case .business:
+//
+//                return self.categorySection(sectionIndex)
+//
+//            case .entertainment:
+//
+//                return self.categorySection(sectionIndex)
+//
+//            case .general:
+//
+//                return self.categorySection(sectionIndex)
+//
+//
+//            case .health:
+//
+//                return self.categorySection(sectionIndex)
+//
+//
+//            case .science:
+//
+//                return self.categorySection(sectionIndex)
+//
+//
+//            case .sports:
+//
+//                return self.categorySection(sectionIndex)
+//
+//
+//            case .technology:
+//
+//                return self.categorySection(sectionIndex)
 
         }
         
@@ -191,12 +214,12 @@ final class HomeCollectionView: UICollectionView {
         
         self.collectionViewLayout = compositionalLayout
         
-        self.register(DiscoverCategoriesCell.self,
-                      forCellWithReuseIdentifier: DiscoverCategoriesCell.identifier)
-        self.register(DiscoverMainCategoryCell.self,
-                      forCellWithReuseIdentifier: DiscoverMainCategoryCell.identifier)
-        self.register(DiscoverSourcesCell.self,
-                      forCellWithReuseIdentifier: DiscoverSourcesCell.identifier)
+        self.register(HomeCategoryCell.self,
+                      forCellWithReuseIdentifier: HomeCategoryCell.identifier)
+        self.register(HomeFinanceCell.self,
+                      forCellWithReuseIdentifier: HomeFinanceCell.identifier)
+        self.register(HomeWeatherCell.self,
+                      forCellWithReuseIdentifier: HomeWeatherCell.identifier)
         
         self.register(Header.self,
                       forSupplementaryViewOfKind: Header.identifier,
@@ -242,10 +265,10 @@ final class HomeCollectionView: UICollectionView {
         
     }()
     
-    private var responseDict: [Category: [News]] = [:]
+    private var responseDict: [CategoryCase: [News]] = [:]
     
-    func setResponseDict(by category: Category, with newsResponse: [News]){
-        responseDict[category] = newsResponse
+    func setResponseDict(by categoryCase: CategoryCase, with newsResponse: [News]){
+        responseDict[categoryCase] = newsResponse
         self.reloadData()
     }
     

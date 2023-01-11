@@ -7,9 +7,9 @@
 
 import UIKit
 
-class DiscoverCategoriesCell: UICollectionViewCell {
+class HomeCategoryCell: UICollectionViewCell {
     
-    static let identifier   = "DiscoverCategoryCollectionViewCell"
+    static let identifier   = "HomeCategoryCell"
     
     private lazy var newsImageView: UIImageView = UIImageView(contentMode: .scaleToFill,
                                                               autoLayout: false,

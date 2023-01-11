@@ -7,9 +7,9 @@
 
 import UIKit
 
-class DiscoverSourcesCell: UICollectionViewCell {
+class HomeWeatherCell: UICollectionViewCell {
     
-    static let identifier   = "DiscoverSourcesCell"
+    static let identifier   = "HomeWeatherCell"
     
     #warning("Fix newsTitleLabel to environment var names. Specific names. i.e. sourceLabel")
     private lazy var newsTitleLabel: UILabel = {
