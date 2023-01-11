@@ -13,7 +13,7 @@ class NewsViewController: UIViewController {
     
     public weak var delegate: NewsViewControllerDelegate?
     
-    private var newsCategory: Category?
+    private var newsCategory: CategoryCase?
     
     var news: [News] = []
     
@@ -54,7 +54,7 @@ class NewsViewController: UIViewController {
         
         DispatchQueue.main.async {
             
-            if let test = DecodeLocal.shared.fetch(fileName: category.name) as NewsResponse?,
+            if let test = DecodeLocal.shared.fetch(fileName: category.code) as NewsResponse?,
                let articles = test.articles
             {
                 self.news = articles
@@ -64,10 +64,10 @@ class NewsViewController: UIViewController {
         }
     }
     
-    func setViewController(with category: Category){
+    func setViewController(with categoryCase: CategoryCase){
         
-        newsCategory = category
-        title = category.rawValue.capitalizeFirstLetter()
+        newsCategory = categoryCase
+        title = categoryCase.object.name
         
     }
     
