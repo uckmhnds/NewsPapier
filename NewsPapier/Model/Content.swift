@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/*
 public struct Country {
     
     let name: String
@@ -77,7 +78,7 @@ struct TestCategories {
                                                     code: "entertainment")]
     
 }
-
+*/
 public enum AppState: String, CaseIterable{
     
     case online
@@ -102,7 +103,7 @@ public struct Preferences{
     static let offlineSampleQueryFilename: String = "query"
     static let offlineSampleSourceFilename: String = "sources"
     
-    static let country: Country = Country(name: "United States", code: "us", flag: "🇺🇸", language: "en")
+    static let country: CountryCase = .us
     static let pageSize: Int = 10
     static let pageNumber: Int = 1
     
@@ -186,7 +187,7 @@ public struct Preferences{
     static let discoverCategoryPadding: CGFloat = 10
     
 }
-
+/*
 public enum Category: String, CaseIterable{
     
     case categories
@@ -202,7 +203,7 @@ public enum Category: String, CaseIterable{
     var name: String { return self.rawValue}
     
 }
-
+*/
 public enum SearchIn: String, CaseIterable{
     case title, description, content
     
@@ -225,3 +226,122 @@ enum SideMenuState {
     case opened
     case closed
 }
+
+
+
+
+public struct Category{
+    
+    let name: String
+    let symbol: String
+    let symbolHighlighted: String
+    
+}
+
+public enum CategoryCase: String, CaseIterable{
+    
+    case business
+    case entertainment
+    case general
+    case health
+    case science
+    case sports
+    case technology
+    
+    var code: String { return self.rawValue}
+    static var size: Int { return CategoryCase.allCases.count }
+    
+}
+
+extension CategoryCase{
+    
+    var object: Category{
+        
+        switch self{
+            
+        case .business:
+            return Category(name: "Business", symbol: "latch.2.case", symbolHighlighted: "latch.2.case.fill")
+        case .entertainment:
+            return Category(name: "Entertainment", symbol: "shower",symbolHighlighted: "shower.fill")
+        case .general:
+            return Category(name: "General", symbol: "globe.europe.africa",symbolHighlighted: "globe.europe.africa.fill")
+        case .health:
+            return Category(name: "Health", symbol: "cross.case",symbolHighlighted: "cross.case.fill")
+        case .science:
+            return Category(name: "Science", symbol: "graduationcap",symbolHighlighted: "graduationcap.fill")
+        case .sports:
+            return Category(name: "Sports", symbol: "cricket.ball",symbolHighlighted: "cricket.ball.fill")
+        case .technology:
+            return Category(name: "Technology", symbol: "av.remote",symbolHighlighted: "av.remote.fill")
+        }
+        
+    }
+    
+}
+
+public struct Country {
+    
+    let name: String
+    let flag: String
+    let language: String
+    
+}
+
+public enum CountryCase: String, CaseIterable{
+    
+    case us
+    case de
+    case fr
+    case gb
+    case it
+    case nl
+    
+    var code: String { return self.rawValue}
+    
+    static var size: Int { return CountryCase.allCases.count }
+    
+}
+
+extension CountryCase{
+    
+    var object: Country{
+        
+        switch self{
+            
+        case .us:
+            return Country(name: "United States", flag: "🇺🇸", language: "en")
+        case .de:
+            return Country(name: "United States", flag: "🇺🇸", language: "en")
+        case .fr:
+            return Country(name: "United States", flag: "🇺🇸", language: "en")
+        case .gb:
+            return Country(name: "United States", flag: "🇺🇸", language: "en")
+        case .it:
+            return Country(name: "United States", flag: "🇺🇸", language: "en")
+        case .nl:
+            return Country(name: "United States", flag: "🇺🇸", language: "en")
+        }
+        
+    }
+    
+}
+
+public enum HomeCollectionViewLayoutCase: String, CaseIterable{
+    
+    case finance
+    case weather
+    case news
+    
+    var code: String { return self.rawValue }
+    var name: String { return self.rawValue.capitalizeFirstLetter()  }
+    
+    static var size: Int {
+        
+        let financeSize: Int = 1
+        let weatherSize: Int = 1
+        
+        return financeSize + weatherSize + CategoryCase.size
+    }
+    
+}
+
