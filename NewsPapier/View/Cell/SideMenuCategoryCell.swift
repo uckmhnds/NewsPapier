@@ -25,12 +25,16 @@ class SideMenuCategoryCellA: UITableViewCell {
                                     tintColor: Theme.tertiaryText)
     
     private lazy var stackView: UIStackView = {
+        
         let view = UIStackView(arrangedSubviews: [title, image])
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alignment = .center
         view.distribution = .equalSpacing
         view.axis = .horizontal
+        
         return view
+        
     }()
     
     private func applyConstraints(){
@@ -39,9 +43,7 @@ class SideMenuCategoryCellA: UITableViewCell {
                          leading: leadingAnchor,
                          bottom: bottomAnchor,
                          trailing: trailingAnchor,
-                         padding: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
-        
-        title.widthAnchor.constraint(equalTo: image.widthAnchor, multiplier: 4).isActive = true
+                         padding: UIEdgeInsets(top: Inset.i1, left: Inset.i1, bottom: Inset.i1, right: Inset.i1))
         
     }
     
@@ -51,67 +53,13 @@ class SideMenuCategoryCellA: UITableViewCell {
         
     }
     
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
-//            let angle = CGFloat.pi / 2
-//            self.image.transform = CGAffineTransform(rotationAngle: angle)
-//        } completion: { _ in
-//            UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear) {
-//                let angle = CGFloat.pi
-//                self.image.transform = CGAffineTransform(rotationAngle: angle)
-//            } completion: { _ in
-//                UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear) {
-//                    let angle = CGFloat.pi * 3 / 2
-//                    self.image.transform = CGAffineTransform(rotationAngle: angle)
-//                } completion: { _ in
-//                    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut) {
-//                        let angle = CGFloat.pi * 2
-//                        self.image.transform = CGAffineTransform(rotationAngle: angle)
-//                    }
-//                }
-//            }
-//        }
-//
-//    }
-    
     override func updateConfiguration(using state: UICellConfigurationState) {
         super.updateConfiguration(using: state)
         
         
         if state.isHighlighted{
             
-//            UIView.animateKeyframes(withDuration: 2, delay: 0) {
-//                for i in 0..<4 {
-//                    UIView.addKeyframe(withRelativeStartTime: 0.25 * Double(i),
-//                        relativeDuration: 0.25) {
-//                            let angle = CGFloat.pi / 8 * CGFloat(i + 1)
-//                        self.image.transform = CGAffineTransform(rotationAngle: angle)
-//                        print(angle)
-//                    }
-//                }
-//            }
-//            self.image.transform = CGAffineTransform(rotationAngle: (180.0 * .pi) / 180.0)
-//            self.image.rotate()
-            
         }
-        
-//        var contentConfig = defaultContentConfiguration().updated(for: state)
-//        contentConfig.text = "Hello World"
-//        contentConfig.image = UIImage(systemName: "bell")
-//
-//        var backgroundConfig = backgroundConfiguration?.updated(for: state)
-//        backgroundConfig?.backgroundColor = .purple
-//
-//        if state.isHighlighted || state.isSelected {
-//            backgroundConfig?.backgroundColor = .orange
-//            contentConfig.textProperties.color = .red
-//            contentConfig.imageProperties.tintColor = .yellow
-//        }
-//
-//        contentConfiguration = contentConfig
-//        backgroundConfiguration = backgroundConfig
         
     }
     
@@ -164,7 +112,13 @@ class SideMenuCategoryCellAA: UITableViewCell {
     }
     
     private func applyConstraints(){
-        stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
+        
+        stackView.anchor(top: topAnchor,
+                         leading: leadingAnchor,
+                         bottom: bottomAnchor,
+                         trailing: trailingAnchor,
+                         padding: UIEdgeInsets(top: Inset.i1, left: Inset.i1, bottom: Inset.i1, right: Inset.i1))
+        
         title.widthAnchor.constraint(equalTo: image.widthAnchor, multiplier: 4).isActive = true
         
     }
@@ -181,6 +135,12 @@ class SideMenuCategoryCellAA: UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
+        backgroundColor = Theme.tertiaryBackground
+        
+        addSubview(stackView)
+        
+        applyConstraints()
     }
     
 }
