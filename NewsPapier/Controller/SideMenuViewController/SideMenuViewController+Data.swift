@@ -11,31 +11,33 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        switch SideMenuSectionCase.allCases[section]{
-            
-        case .category:
-            return SideMenuSectionCase.category.object.isOpened ? SideMenuSectionCase.category.size : 1
-        case .region:
-            return SideMenuSectionCase.category.object.isOpened ? SideMenuSectionCase.region.size : 1
-        }
+        let presentSection = self.sections[section]
+        
+        return presentSection.viewedSize
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-            
-        switch SideMenuSectionCase.allCases[indexPath.section]{
-            
+        let presentSection = self.sections[indexPath.section]
+        
+        switch presentSection.type{
+        
         case .category:
+            
             if indexPath.row == 0{
+                
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuCategoryCellA.identifier, for: indexPath) as? SideMenuCategoryCellA else {return UITableViewCell()}
+                
                 cell.selectionStyle = .none
+                
                 return cell
             }else{
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuCategoryCellAA.identifier, for: indexPath) as? SideMenuCategoryCellAA else {return UITableViewCell()}
                 
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuCategoryCellAA.identifier, for: indexPath) as? SideMenuCategoryCellAA else {return UITableViewCell()}
+
                 switch CategoryCase.allCases[indexPath.row - 1]{
-                    
+
                 case .business:
                     cell.setContent(.business)
                 case .entertainment:
@@ -52,83 +54,84 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.setContent(.technology)
                 }
                 
+                return cell
+            }
+            
+        case .region:
+            
+            if indexPath.row == 0{
+                
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuRegionCellA.identifier, for: indexPath) as? SideMenuRegionCellA else {return UITableViewCell()}
+                
+                cell.selectionStyle = .none
+                
+                return cell
+            }else{
+                
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuRegionCellAA.identifier, for: indexPath) as? SideMenuRegionCellAA else {return UITableViewCell()}
+                
+                switch CountryCase.allCases[indexPath.row - 1]{
+                    
+                case .us:
+                    cell.setContent(.us)
+                case .de:
+                    cell.setContent(.de)
+                case .fr:
+                    cell.setContent(.fr)
+                case .gb:
+                    cell.setContent(.gb)
+                case .it:
+                    cell.setContent(.it)
+                case .nl:
+                    cell.setContent(.nl)
+                }
                 
                 return cell
             }
-        case .region:
-            if indexPath.row == 0{
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuRegionCellA.identifier, for: indexPath) as? SideMenuRegionCellA else {return UITableViewCell()}
-                return cell
-            }else{
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuRegionCellAA.identifier, for: indexPath) as? SideMenuRegionCellAA else {return UITableViewCell()}
-                return cell
-            }
+            
+            
         }
-        
         
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return SideMenuSectionCase.allCases.count
+        return self.sections.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        switch SideMenuSectionCase.allCases[indexPath.section]{
+        let presentSection = self.sections[indexPath.section]
+        
+        if indexPath.row == 0 {
             
-        case .category:
+            presentSection.toggle()
             
-            if indexPath.row == 0 {
+            tableView.reloadSections(IndexSet(integer: indexPath.section), with: .none)
+            
+        }else{
+            
+            switch presentSection.type{
                 
-//                sections[indexPath.section].object.isOpened.toggle()
-//
-//                tableView.reloadSections([indexPath.section], with: .none)
-
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuCategoryCellA.identifier, for: indexPath) as? SideMenuCategoryCellA else {return}
+            case .category:
                 
-    //            cell.setSelected(true, animated: false)
-                cell.animateWhenSelected()
+                if let delegate = self.delegate,
+                    let section = self.sections[indexPath.section] as? CategorySection{
+                    delegate.categorySelected(section.items[indexPath.row - 1])
+                }
                 
-            }else{
+            case .region:
                 
-                switch CategoryCase.allCases[indexPath.row - 1]{
-                    
-                case .business:
-                    if let delegate = self.delegate{
-                        delegate.categorySelected(.business)
-                    }
-                case .entertainment:
-                    if let delegate = self.delegate{
-                        delegate.categorySelected(.entertainment)
-                    }
-                case .general:
-                    if let delegate = self.delegate{
-                        delegate.categorySelected(.general)
-                    }
-                case .health:
-                    if let delegate = self.delegate{
-                        delegate.categorySelected(.health)
-                    }
-                case .science:
-                    if let delegate = self.delegate{
-                        delegate.categorySelected(.science)
-                    }
-                case .sports:
-                    if let delegate = self.delegate{
-                        delegate.categorySelected(.sports)
-                    }
-                case .technology:
-                    if let delegate = self.delegate{
-                        delegate.categorySelected(.technology)
-                    }
+                if let delegate = self.delegate,
+                    let section = self.sections[indexPath.section] as? CountrySection{
+                    delegate.countrySelected(section.items[indexPath.row - 1])
                 }
                 
             }
-        case .region:
-            break
+            
         }
+        
         
     }
     

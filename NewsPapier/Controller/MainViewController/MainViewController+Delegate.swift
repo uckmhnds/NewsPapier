@@ -73,8 +73,13 @@ extension MainViewController: SearchResultsViewControllerDelegate{
 
 extension MainViewController: SideMenuViewControllerDelegate{
     
+    func countrySelected(_ countryCase: CountryCase) {
+        print(countryCase.code)
+    }
+    
+    
     func categorySelected(_ categoryCase: CategoryCase) {
-        
+        print("didSelect")
         let viewController = NewsViewController()
         let blurryView = self.getBlurryView()
         
