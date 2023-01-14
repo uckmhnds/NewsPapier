@@ -8,77 +8,6 @@
 import Foundation
 import UIKit
 
-/*
-public struct Country {
-    
-    let name: String
-    let code: String
-    let flag: String
-    let language: String
-    
-}
-
-public struct Countries {
-    
-    static let list: [Country] = [Country(name: "United States", code: "us", flag: "🇺🇸", language: "en"),
-                                   Country(name: "Germany", code: "de", flag: "🇩🇪", language: "de"),
-                                   Country(name: "France", code: "fr", flag: "🇫🇷", language: "fr"),
-                                   Country(name: "Great Britain", code: "gb", flag: "🇬🇧", language: "en"),
-                                   Country(name: "Italy", code: "it", flag: "🇮🇹", language: "it"),
-                                   Country(name: "Holland", code: "nl", flag: "🇳🇱", language: "nl")]
-    
-}
-//
-struct TestCategory{
-    
-    let name: String
-    let symbol: String
-    let symbolHighlighted: String
-    let code: String
-    
-}
-#warning("parametrize")
-struct TestCategories {
-    
-    static var size: Int { return list.count}
-    
-    static let list: [TestCategory] = [TestCategory(name: "General",
-                                                    symbol: "globe.europe.africa",
-                                                    symbolHighlighted: "globe.europe.africa.fill",
-                                                    code: "general"),
-                                       
-                                       TestCategory(name: "Business",
-                                                    symbol: "latch.2.case",
-                                                    symbolHighlighted: "latch.2.case.fill",
-                                                    code: "business"),
-                                       
-                                       TestCategory(name: "Science",
-                                                    symbol: "graduationcap",
-                                                    symbolHighlighted: "graduationcap.fill",
-                                                    code: "science"),
-                                       
-                                       TestCategory(name: "Technology",
-                                                    symbol: "av.remote",
-                                                    symbolHighlighted: "av.remote.fill",
-                                                    code: "technology"),
-                                       
-                                       TestCategory(name: "Sports",
-                                                    symbol: "cricket.ball",
-                                                    symbolHighlighted: "cricket.ball.fill",
-                                                    code: "sports"),
-                                       
-                                       TestCategory(name: "Health",
-                                                    symbol: "cross.case",
-                                                    symbolHighlighted: "cross.case.fill",
-                                                    code: "health"),
-                                       
-                                       TestCategory(name: "Entertainment",
-                                                    symbol: "shower",
-                                                    symbolHighlighted: "shower.fill",
-                                                    code: "entertainment")]
-    
-}
-*/
 public enum AppState: String, CaseIterable{
     
     case online
@@ -187,23 +116,7 @@ public struct Preferences{
     static let discoverCategoryPadding: CGFloat = 10
     
 }
-/*
-public enum Category: String, CaseIterable{
-    
-    case categories
-    case sources
-    case business
-    case entertainment
-    case general
-    case health
-    case science
-    case sports
-    case technology
-    
-    var name: String { return self.rawValue}
-    
-}
-*/
+
 public enum SearchIn: String, CaseIterable{
     case title, description, content
     
@@ -227,6 +140,10 @@ enum SideMenuState {
     case closed
 }
 
+protocol BaseCase{
+    
+}
+
 public struct Category{
     
     let name: String
@@ -245,12 +162,14 @@ public enum CategoryCase: String, CaseIterable{
     case sports
     case technology
     
-    var code: String { return self.rawValue}
-    static var size: Int { return CategoryCase.allCases.count }
-    
 }
 
-extension CategoryCase{
+extension CategoryCase: BaseCase{
+    
+    //    subscript
+    
+    var code: String { return self.rawValue}
+    static var size: Int { return CategoryCase.allCases.count }
     
     var object: Category{
         
@@ -293,13 +212,15 @@ public enum CountryCase: String, CaseIterable{
     case it
     case nl
     
+}
+
+extension CountryCase: BaseCase{
+    
+    //    subscript
+    
     var code: String { return self.rawValue}
     
     static var size: Int { return CountryCase.allCases.count }
-    
-}
-
-extension CountryCase{
     
     var object: Country{
         
@@ -323,113 +244,18 @@ extension CountryCase{
     
 }
 
-public enum HomeCollectionViewLayoutCase: String, CaseIterable{
-    
-    case finance
-    case weather
-    case news
-    
-    var code: String { return self.rawValue }
-    var name: String { return self.rawValue.capitalizeFirstLetter()  }
-    
-    static var size: Int {
-        
-        let financeSize: Int = 1
-        let weatherSize: Int = 1
-        
-        return financeSize + weatherSize + CategoryCase.size
-    }
+public enum FinanceCase: String, CaseIterable{
+    case sp500
+}
+
+extension FinanceCase: BaseCase{
     
 }
 
-protocol BaseSection{
-    
-    associatedtype SectionType
-    
-    var type: SideMenuSectionType {get}
-    var name: String { get }
-    var isOpened: Bool { get set }
-    var items: [SectionType] { get set }
-    var size: Int {get set}
-    var viewedSize: Int {get}
-    
-    func toggle() -> Void
-    
+public enum WeatherCase: String, CaseIterable{
+    case tokyo
 }
 
-class CategorySection: BaseSection{
-    
-    typealias SectionType = CategoryCase
-    
-    let type: SideMenuSectionType
-    var name: String
-    var isOpened: Bool
-    var items: [CategoryCase]
-    var size: Int
-    var viewedSize: Int {
-        return isOpened ? self.size + 1 : 1
-    }
-    
-    public init() {
-        
-        self.name = "Category"
-        self.isOpened = false
-        self.type = .category
-        
-        var _items: [CategoryCase] = [CategoryCase]()
-        
-        for categoryCase in CategoryCase.allCases{
-            _items.append(categoryCase)
-        }
-        
-        self.items = _items
-        self.size = self.items.count
-    }
-    
-    public func toggle(){
-        self.isOpened.toggle()
-    }
-    
-}
-
-class CountrySection: BaseSection{
-    
-    typealias SectionType = CountryCase
-    
-    let type: SideMenuSectionType
-    var name: String
-    var isOpened: Bool
-    var items: [CountryCase]
-    var size: Int
-    var viewedSize: Int {
-        return isOpened ? self.size + 1 : 1
-    }
-    
-    public init() {
-        
-        self.name = "Region"
-        self.isOpened = false
-        self.type = .region
-        
-        var _items: [CountryCase] = [CountryCase]()
-        
-        for countryCase in CountryCase.allCases{
-            _items.append(countryCase)
-        }
-        
-        self.items = _items
-        self.size = self.items.count
-    }
-    
-    public func toggle(){
-        self.isOpened.toggle()
-    }
-    
-}
-
-public enum SideMenuSectionType: String, CaseIterable{
-    
-    case category
-    case region
+extension WeatherCase: BaseCase{
     
 }

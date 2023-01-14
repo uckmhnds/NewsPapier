@@ -17,7 +17,7 @@ struct PagingInfo: Equatable, Hashable {
 
 class PagingSectionFooterView: UICollectionReusableView {
     
-    static let reuseIdentifier = "PagingSectionFooterView"
+    static let identifier = "PagingSectionFooterView"
     
     private lazy var pageControl: UIPageControl = {
         let control = UIPageControl()

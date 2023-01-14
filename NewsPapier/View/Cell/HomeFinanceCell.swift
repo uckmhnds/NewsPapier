@@ -1,5 +1,5 @@
 //
-//  DiscoverCategorySectionsCell.swift
+//  DiscoverSourcesCell.swift
 //  NewsPapier
 //
 //  Created by Abdurrahman Gazi Yavuz on 12/11/22.
@@ -11,54 +11,33 @@ class HomeFinanceCell: UICollectionViewCell {
     
     static let identifier   = "HomeFinanceCell"
     
-    private lazy var categoryImageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .systemGray6
-        imageView.layer.cornerRadius = Preferences.discoverMainCornerRadius
-        return imageView
-        
-    }()
-    
-    private lazy var categoryTitleLabel: UILabel = {
+    #warning("Fix newsTitleLabel to environment var names. Specific names. i.e. sourceLabel")
+    private lazy var newsTitleLabel: UILabel = {
         
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text                                      = "Category"
+        label.lineBreakMode                             = .byWordWrapping
+        label.numberOfLines                             = 2
+        label.text                                      = "SourceNameHere"
+        
         return label
         
     }()
     
-    func setCategoryName(with title: String){
-        categoryTitleLabel.text = title
-    }
-    
     private func applyConstraints(){
         
-        let categoryImageViewConstraints = [
-            categoryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Preferences.discoverMainPadding),
-            categoryImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Preferences.discoverMainPadding),
-            categoryImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Preferences.discoverMainPadding)
-        ]
-        
-        let categoryTitleLabelConstraints = [
-            categoryTitleLabel.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: Preferences.discoverMainPadding),
-            categoryTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Preferences.discoverMainPadding),
-            categoryTitleLabel.centerXAnchor.constraint(equalTo: categoryImageView.centerXAnchor)
+        let newsTitleLabelConstraints = [
+            newsTitleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            newsTitleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ]
             
-        NSLayoutConstraint.activate(categoryImageViewConstraints)
-        NSLayoutConstraint.activate(categoryTitleLabelConstraints)
+        NSLayoutConstraint.activate(newsTitleLabelConstraints)
         
     }
     
-    private func setColors(){
-        backgroundColor = Theme.secondaryBackground
-        categoryTitleLabel.font = Theme.h0Title
-        categoryTitleLabel.textColor = Theme.secondaryText
+    func setSourceName(_ source: Source){
+        newsTitleLabel.text = source.name
     }
     
     required init?(coder: NSCoder) {
@@ -68,17 +47,12 @@ class HomeFinanceCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        contentView.backgroundColor     = .systemGray6
-        
-        contentView.addSubview(categoryImageView)
-        contentView.addSubview(categoryTitleLabel)
+        contentView.backgroundColor     = .systemGray6
+        contentView.layer.cornerRadius  = Preferences.discoverSourcesCornerRadius
+        contentView.addSubview(newsTitleLabel)
         
         applyConstraints()
-        setColors()
+        
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
+
 }
