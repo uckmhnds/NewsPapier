@@ -14,7 +14,7 @@ protocol SideMenuViewControllerDelegate: AnyObject{
 
 class SideMenuViewController: UIViewController {
     
-    var sections: [any BaseSection] = [CategorySection(), CountrySection()]
+    var sections: [any SideMenuBaseSection] = [SideMenuCategorySection(), SideMenuCountrySection()]
     
     weak var delegate: SideMenuViewControllerDelegate?
     

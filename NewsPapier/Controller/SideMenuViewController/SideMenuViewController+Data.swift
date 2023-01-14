@@ -89,7 +89,6 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
             
-            
         }
         
     }
@@ -117,14 +116,14 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             case .category:
                 
                 if let delegate = self.delegate,
-                    let section = self.sections[indexPath.section] as? CategorySection{
+                    let section = self.sections[indexPath.section] as? SideMenuCategorySection{
                     delegate.categorySelected(section.items[indexPath.row - 1])
                 }
                 
             case .region:
                 
                 if let delegate = self.delegate,
-                    let section = self.sections[indexPath.section] as? CountrySection{
+                    let section = self.sections[indexPath.section] as? SideMenuCountrySection{
                     delegate.countrySelected(section.items[indexPath.row - 1])
                 }
                 
@@ -132,8 +131,6 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             
         }
         
-        
     }
-    
     
 }

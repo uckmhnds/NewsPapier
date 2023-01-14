@@ -72,8 +72,9 @@ class SideMenuRegionCellAA: UITableViewCell {
                                 color: Theme.secondaryText)
     
     private let flag = UILabel(autoLayout: false,
-                                font: Theme.body3,
-                                color: Theme.secondaryText)
+                               font: Theme.body3,
+                               color: Theme.secondaryText,
+                               textAlignment: .center)
     
     private lazy var stackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [flag, title])
@@ -98,8 +99,6 @@ class SideMenuRegionCellAA: UITableViewCell {
                          padding: UIEdgeInsets(top: Inset.i1, left: Inset.i1, bottom: Inset.i1, right: Inset.i1))
         
         title.widthAnchor.constraint(equalTo: flag.widthAnchor, multiplier: 4).isActive = true
-        
-        flag.textAlignment = .center
         
     }
     

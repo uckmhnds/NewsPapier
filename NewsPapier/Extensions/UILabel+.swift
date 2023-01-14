@@ -13,6 +13,7 @@ extension UILabel{
                             font: UIFont? = nil,
                             color: UIColor? = nil,
                             text: String? = nil,
+                            textAlignment: NSTextAlignment? = nil,
                             lineBreakMode: NSLineBreakMode? = nil,
                             numberOfLines: Int? = nil){
         self.init()
