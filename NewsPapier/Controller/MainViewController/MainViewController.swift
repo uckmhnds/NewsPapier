@@ -26,6 +26,8 @@ class MainViewController: UIViewController {
     private lazy var blurryView = BlurryView(frame: view.bounds, delegate: delegate)
     private lazy var searchController = SearchController(searchResultsController: searchResultsViewController)
     
+    var collectionViewSections: [any HomeCollectionBaseSection] = [any HomeCollectionBaseSection]()
+    
     // MARK: - Network
     
     private var responseDict: [CategoryCase: [News]] = [:]
@@ -95,70 +97,47 @@ class MainViewController: UIViewController {
         
     }
     
-    // Scroll Down Refresh
-    
-//    @objc private func didScrollDownToRefresh(){
-//
-//        self.collectionView.refreshControl?.beginRefreshing()
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
-//
-//            self.fetchNews()
-//
-//            self.collectionView.refreshControl?.endRefreshing()
-//
-//        }
-//
-//    }
-//
-//    private lazy var scrollDownRefreshControl: UIRefreshControl = {
-//
-//        let refreshControl  = UIRefreshControl()
-//
-//        refreshControl.addTarget(self, action: #selector(didScrollDownToRefresh), for: .valueChanged)
-//
-//        refreshControl.tintColor    = .white
-//
-//        return refreshControl
-//
-//    }()
-    
-    /// SEARCH CONTROLLER CONFIG
-    ///
-    
-//    private lazy var searchController: UISearchController = {
-//
-//        let controller                      = UISearchController(searchResultsController: newsViewController)
-//
-//        controller.searchBar.placeholder    = "Search"
-//        controller.searchBar.searchBarStyle = .minimal
-//        controller.searchBar.sizeToFit()
-////        controller.searchBar.showsCancelButton = false
-//
-//        controller.searchResultsUpdater = self
-//        controller.searchBar.delegate = self
-//
-//        controller.hidesNavigationBarDuringPresentation = false
-//
-//        return controller
-//
-//    }()
-    
-    /// SEARCH BAR CONFIG
-    
-//    private lazy var searchBar: UISearchBar = {
-//
-//        let bar = UISearchBar()
-//
-//        bar.placeholder = "Search"
-//        bar.searchBarStyle = .minimal
-//        bar.sizeToFit()
-//
-//        return bar
-//
-//    }()
-    
-    // NAVIGATION BAR CONFIG
+    private func setCollectionViewSections(){
+        
+        for _case in HomeCollectionSectionType.allCases{
+            
+            switch _case{
+                
+            case .finance:
+                
+                collectionViewSections.append(HomeCollectionFinanceSection())
+                
+            case .weather:
+                
+                collectionViewSections.append(HomeCollectionWeatherSection())
+                
+            case .news:
+                
+                for _collectionCase in CategoryCase.allCases{
+                    
+                    switch _collectionCase{
+                        
+                    case .business:
+                        collectionViewSections.append(HomeCollectionCategorySection(.business))
+                    case .entertainment:
+                        collectionViewSections.append(HomeCollectionCategorySection(.entertainment))
+                    case .general:
+                        collectionViewSections.append(HomeCollectionCategorySection(.general))
+                    case .health:
+                        collectionViewSections.append(HomeCollectionCategorySection(.health))
+                    case .science:
+                        collectionViewSections.append(HomeCollectionCategorySection(.science))
+                    case .sports:
+                        collectionViewSections.append(HomeCollectionCategorySection(.sports))
+                    case .technology:
+                        collectionViewSections.append(HomeCollectionCategorySection(.technology))
+                    }
+                    
+                }
+            }
+        }
+        
+    }
     
     // MARK: - Getter Methods
     
@@ -244,17 +223,19 @@ class MainViewController: UIViewController {
         }
         
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNavigationBar()
-        
+        setCollectionViewSections()
+
         view.addSubview(collectionView)
-        
+
         collectionView.delegate     = self
         collectionView.dataSource   = self
-        
+        collectionView.sectionDataSource = self
+
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.delegate = self
@@ -270,3 +251,4 @@ class MainViewController: UIViewController {
     }
 
 }
+
