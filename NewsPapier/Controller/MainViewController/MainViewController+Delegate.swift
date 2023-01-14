@@ -7,33 +7,6 @@
 
 import UIKit
 
-protocol MainViewControllerDelegate: AnyObject{
-    
-    func presentSideMenu()
-    func tapGestureDidTap()
-    
-}
-
-//extension MainViewController: NewsViewControllerDelegate{
-//
-//    func newsViewControllerDidTapCell(_ news: News) {
-//
-//        DispatchQueue.main.async { [weak self] in
-//
-//            if let viewController = self?.getNewsDetailViewController(),
-//                let navController = self?.navigationController
-//            {
-//
-//                viewController.configure(with: news)
-//                navController.pushViewController(viewController, animated: true)
-//
-//            }
-//
-//        }
-//
-//    }
-//
-//}
 
 extension MainViewController: HeaderDelegate{
     
@@ -96,5 +69,14 @@ extension MainViewController: SideMenuViewControllerDelegate{
         
     }
     
+}
+
+extension MainViewController: HomeCollectionViewDataSource{
+    
+    var dataSource: [HomeCollectionBaseSection] {
+        
+        return self.collectionViewSections
+        
+    }
     
 }

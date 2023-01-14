@@ -8,9 +8,24 @@
 import UIKit
 import Combine
 
+protocol HomeCollectionViewDataSource: AnyObject{
+    var dataSource: [any HomeCollectionBaseSection] { get }
+}
+
 final class HomeCollectionView: UICollectionView {
     
     public let pagingInfoSubject = PassthroughSubject<PagingInfo, Never>()
+    
+    weak var sectionDataSource: HomeCollectionViewDataSource?
+    
+    private var sections: [any HomeCollectionBaseSection]? {
+        
+        if let delegate = self.sectionDataSource{
+            return delegate.dataSource
+        }
+        
+        return nil
+    }
     
     //
     // Collection View
@@ -32,7 +47,7 @@ final class HomeCollectionView: UICollectionView {
         let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(Preferences.footerItemFractionalWidth), heightDimension: .absolute(Preferences.footerItemHeight))
 
         let item = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize,
-                                                                              elementKind: PagingSectionFooterView.reuseIdentifier,
+                                                                              elementKind: PagingSectionFooterView.identifier,
                                                                               alignment: .bottom)
         
         return item
@@ -48,28 +63,6 @@ final class HomeCollectionView: UICollectionView {
     
     private func financeSection() -> NSCollectionLayoutSection{
         
-        let item = CompositionalLayout.createItem(width: .fractionalWidth(Preferences.primaryItemWidthFraction),
-                                                  height: .fractionalHeight(Preferences.primaryItemHeightFraction),
-                                                  spacing: Preferences.primaryItemPadding)
-
-        let group = CompositionalLayout.createGroup(alignment: .vertical,
-                                                    width: .fractionalWidth(Preferences.primaryGroupWidthFraction),
-                                                    height: .fractionalHeight(Preferences.primaryGroupHeightFraction),
-                                                    items: [item])
-
-        let section = NSCollectionLayoutSection(group: group)
-
-        section.contentInsets                   = Preferences.primaryContentInset
-        section.orthogonalScrollingBehavior     = .continuous
-        section.boundarySupplementaryItems      = [self.headerBoundarySupplementaryItem]
-        section.decorationItems                 = [self.collectionLayoutBackgroundDecoration]
-
-        return section
-        
-    }
-    
-    private func weatherSection() -> NSCollectionLayoutSection{
-        
         let item = CompositionalLayout.createItem(width: .fractionalWidth(Preferences.secondaryItemWidthFraction),
                                                   height: .fractionalHeight(Preferences.secondaryItemHeightFraction),
                                                   spacing: Preferences.secondaryItemPadding)
@@ -82,6 +75,28 @@ final class HomeCollectionView: UICollectionView {
         let section = NSCollectionLayoutSection(group: group)
 
         section.contentInsets                   = Preferences.secondaryContentInset
+        section.orthogonalScrollingBehavior     = .continuous
+        section.boundarySupplementaryItems      = [self.headerBoundarySupplementaryItem]
+        section.decorationItems                 = [self.collectionLayoutBackgroundDecoration]
+
+        return section
+        
+    }
+    
+    private func weatherSection() -> NSCollectionLayoutSection{
+        
+        let item = CompositionalLayout.createItem(width: .fractionalWidth(Preferences.primaryItemWidthFraction),
+                                                  height: .fractionalHeight(Preferences.primaryItemHeightFraction),
+                                                  spacing: Preferences.primaryItemPadding)
+
+        let group = CompositionalLayout.createGroup(alignment: .vertical,
+                                                    width: .fractionalWidth(Preferences.primaryGroupWidthFraction),
+                                                    height: .fractionalHeight(Preferences.primaryGroupHeightFraction),
+                                                    items: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+
+        section.contentInsets                   = Preferences.primaryContentInset
         section.orthogonalScrollingBehavior     = .continuous
         section.boundarySupplementaryItems      = [self.headerBoundarySupplementaryItem]
         section.decorationItems                 = [self.collectionLayoutBackgroundDecoration]
@@ -125,75 +140,27 @@ final class HomeCollectionView: UICollectionView {
     private lazy var compositionalLayout: UICollectionViewCompositionalLayout = {
         
         return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            #warning("boilerplate code")
             
-            var section1: Int = sectionIndex < 3 ? sectionIndex : 2
-            var section2: Int = sectionIndex < 7 ? sectionIndex - 2 : 6
-            
-            switch HomeCollectionViewLayoutCase.allCases[section1]{
-                
-            case .finance:
+            if let sections = self.sections,
+               let section = sections[sectionIndex] as? HomeCollectionFinanceSection
+            {
                 return self.financeSection()
-            case .weather:
-                return self.weatherSection()
-            case .news:
-                switch CategoryCase.allCases[section2]{
-                case .business:
-                    return self.categorySection(sectionIndex)
-                case .entertainment:
-                    return self.categorySection(sectionIndex)
-                case .general:
-                    return self.categorySection(sectionIndex)
-                case .health:
-                    return self.categorySection(sectionIndex)
-                case .science:
-                    return self.categorySection(sectionIndex)
-                case .sports:
-                    return self.categorySection(sectionIndex)
-                case .technology:
-                    return self.categorySection(sectionIndex)
-                }
             }
-//            case .categories:
-//
-//                return self.mainCategorySection()
-//
-//            case .sources:
-//
-//                return self.sourcesSection()
-//
-//            case .business:
-//
-//                return self.categorySection(sectionIndex)
-//
-//            case .entertainment:
-//
-//                return self.categorySection(sectionIndex)
-//
-//            case .general:
-//
-//                return self.categorySection(sectionIndex)
-//
-//
-//            case .health:
-//
-//                return self.categorySection(sectionIndex)
-//
-//
-//            case .science:
-//
-//                return self.categorySection(sectionIndex)
-//
-//
-//            case .sports:
-//
-//                return self.categorySection(sectionIndex)
-//
-//
-//            case .technology:
-//
-//                return self.categorySection(sectionIndex)
-
+            else if let sections = self.sections,
+                let section = sections[sectionIndex] as? HomeCollectionWeatherSection
+            {
+                return self.weatherSection()
+            }
+            else if let sections = self.sections,
+                let section = sections[sectionIndex] as? HomeCollectionCategorySection
+            {
+                return self.categorySection(sectionIndex)
+            }
+            else
+            {
+                return nil
+            }
+            
         }
         
     }()
@@ -225,12 +192,49 @@ final class HomeCollectionView: UICollectionView {
                       forSupplementaryViewOfKind: Header.identifier,
                       withReuseIdentifier: Header.identifier)
         self.register(PagingSectionFooterView.self,
-                      forSupplementaryViewOfKind: PagingSectionFooterView.reuseIdentifier,
-                      withReuseIdentifier: PagingSectionFooterView.reuseIdentifier)
+                      forSupplementaryViewOfKind: PagingSectionFooterView.identifier,
+                      withReuseIdentifier: PagingSectionFooterView.identifier)
         
         self.refreshControl = scrollDownRefreshControl
         
         setColors()
+        
+//        for _case in HomeCollectionSectionType.allCases{
+//
+//            switch _case{
+//
+//            case .finance:
+//
+//                sections.append(HomeCollectionFinanceSection())
+//            case .weather:
+//
+//                sections.append(HomeCollectionWeatherSection())
+//            case .news:
+//
+//                for _collectionCase in CategoryCase.allCases{
+//
+//                    switch _collectionCase{
+//
+//                    case .business:
+//                        sections.append(HomeCollectionCategorySection(.business))
+//                    case .entertainment:
+//                        sections.append(HomeCollectionCategorySection(.entertainment))
+//                    case .general:
+//                        sections.append(HomeCollectionCategorySection(.general))
+//                    case .health:
+//                        sections.append(HomeCollectionCategorySection(.health))
+//                    case .science:
+//                        sections.append(HomeCollectionCategorySection(.science))
+//                    case .sports:
+//                        sections.append(HomeCollectionCategorySection(.sports))
+//                    case .technology:
+//                        sections.append(HomeCollectionCategorySection(.technology))
+//                    }
+//
+//                }
+//            }
+//        }
+        
     }
 
     required init?(coder: NSCoder) {
@@ -271,36 +275,5 @@ final class HomeCollectionView: UICollectionView {
         responseDict[categoryCase] = newsResponse
         self.reloadData()
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//
-//        switch Category.allCases[section]{
-//
-//            case .categories:
-//                return Category.allCases.count
-//            case .sources:
-//                return 5
-//            case .business:
-//                return Preferences.pageSize
-//            case .entertainment:
-//                return Preferences.pageSize
-//            case .general:
-//                return Preferences.pageSize
-//            case .health:
-//                return Preferences.pageSize
-//            case .science:
-//                return Preferences.pageSize
-//            case .sports:
-//                return Preferences.pageSize
-//            case .technology:
-//                return Preferences.pageSize
-//
-//        }
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        return UICollectionViewCell()
-//    }
     
 }
