@@ -28,7 +28,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             var news: [News] = [News]()
             
             switch section._case{
-                
+            
             case .business:
                 guard let _news = self.getResponseDict(with: .business) else {return}
                 news = _news

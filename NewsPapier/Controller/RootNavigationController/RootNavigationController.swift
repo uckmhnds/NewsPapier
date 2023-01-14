@@ -15,7 +15,7 @@ class RootNavigationController: UINavigationController {
     lazy var sideMenuWidth: CGFloat = view.frame.width * Preferences.sideMenuWidthRatio
     var sideMenuTrailingConstraint: NSLayoutConstraint!
     var navigationViewController: UINavigationController?
-
+    
     let rootViewController = MainViewController()
     
     private func applyConstraints(){
@@ -35,11 +35,12 @@ class RootNavigationController: UINavigationController {
         
         navigationBar.tintColor = Theme.tertiaryBackground
         navigationBar.barTintColor = Theme.tertiaryBackground
-        
+        print("root1")
         navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: Theme.h0Title
         ]
+        
     }
     
     override func viewDidLoad() {

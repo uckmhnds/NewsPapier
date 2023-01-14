@@ -185,7 +185,10 @@ class MainViewController: UIViewController {
         ///
         #warning("Add blurry view to sidemenuVC because it is tricky to removeFromSuperview this view when selecting tableView item from sideMenu")
         view.addSubview(blurryView)
-        delegate?.presentSideMenu()
+        
+        if let delegate = self.delegate{
+            delegate.presentSideMenu()
+        }
     }
     
     private func configureNavigationBar(){
@@ -199,11 +202,40 @@ class MainViewController: UIViewController {
         
         navigationItem.leftBarButtonItem                   = filterBar
         
-        navigationController?.navigationBar.tintColor       = .white
-        
+        if let navController = navigationController{
+            navController.navigationBar.tintColor = .white
+        }
         navigationItem.titleView = searchController.searchBar
         
         definesPresentationContext = true
+        
+    }
+    
+    private func configureSearchBar(){
+        
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.setPlaceholder(textColor: Theme.secondaryText)
+        searchController.searchBar.setSearchImage(color: Theme.secondaryText)
+        
+        searchController.searchBar.set(textColor: Theme.primaryText)
+        searchController.searchBar.setTextField(color: Theme.primaryBackground)
+        searchController.searchBar.setClearButton(color: Theme.tertiaryText)
+        
+    }
+    
+    private func setCollectionViewDelegates(){
+        
+        collectionView.delegate     = self
+        collectionView.dataSource   = self
+        collectionView.sectionDataSource = self
+        
+    }
+    
+    private func setSearchDelegates(){
+        
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.delegate = self
         
     }
     
@@ -228,17 +260,14 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationBar()
+        configureSearchBar()
+        
         setCollectionViewSections()
 
         view.addSubview(collectionView)
-
-        collectionView.delegate     = self
-        collectionView.dataSource   = self
-        collectionView.sectionDataSource = self
-
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        searchController.delegate = self
+        
+        setCollectionViewDelegates()
+        setSearchDelegates()
         
     }
     
