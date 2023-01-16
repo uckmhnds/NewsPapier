@@ -8,8 +8,10 @@
 import UIKit
 
 protocol SideMenuViewControllerDelegate: AnyObject{
+    
     func categorySelected(_ categoryCase: CategoryCase)
     func countrySelected(_ countryCase: CountryCase)
+    
 }
 
 class SideMenuViewController: UIViewController {

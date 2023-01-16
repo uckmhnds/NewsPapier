@@ -10,6 +10,28 @@ import Foundation
 #warning("App preferences for Light / Dark mode")
 #warning("App preferences for Language / Region etc.")
 
+protocol AppPreferences{
+    var region: [String: CountryCase] { get set }
+}
+
+public struct UserPreferences{
+    
+    static let defaults = UserDefaults.standard
+    
+//    var region: [String: CountryCase] {
+//        get {
+//            guard let _region = UserDefaults.standard.object(forKey: "Region") as? CountryCase else {
+//                return ["Region": .us]
+//            }
+//            return ["Region": _region]
+//        }
+//        set {
+//
+//        }
+//    }
+    
+}
+
 struct Padding{
     
     static let zero: CGFloat = 0

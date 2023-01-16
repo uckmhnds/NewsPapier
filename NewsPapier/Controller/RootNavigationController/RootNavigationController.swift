@@ -35,7 +35,7 @@ class RootNavigationController: UINavigationController {
         
         navigationBar.tintColor = Theme.tertiaryBackground
         navigationBar.barTintColor = Theme.tertiaryBackground
-        print("root1")
+        
         navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: Theme.h0Title
