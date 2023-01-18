@@ -30,7 +30,8 @@ class MainViewController: UIViewController {
     
     // MARK: - Network
     
-    private var responseDict: [CategoryCase: [News]] = [:]
+    private var newsResponseDict: [CategoryCase: [News]] = [:]
+    private var financeResponseDict: [FinanceCase: Finance] = [:]
     private var isLoading: Bool = true
     private let dispatchGroup = DispatchGroup()
     
@@ -51,7 +52,7 @@ class MainViewController: UIViewController {
                     case .failure(let err):
                         print(err.localizedDescription)
                     case .success(let results):
-                        self.responseDict[category] = results.articles
+                        self.newsResponseDict[category] = results.articles
                     }
                     
                     self.dispatchGroup.leave()
@@ -77,21 +78,37 @@ class MainViewController: UIViewController {
             
             DispatchQueue.main.async {
                 
-                if let test = DecodeLocal.shared.fetch(fileName: category.code) as NewsResponse?,
-                   let articles = test.articles
+                if let response = DecodeLocal.shared.fetch(fileName: category.code) as NewsResponse?,
+                   let articles = response.articles
                 {
-                    self.responseDict[category] = articles
+                    self.newsResponseDict[category] = articles
                 }
                 
                 self.dispatchGroup.leave()
             }
             
-            self.dispatchGroup.notify(queue: .main){
+        }
+        
+        for finance in FinanceCase.allCases{
+            
+            self.dispatchGroup.enter()
+            
+            DispatchQueue.main.async {
                 
-                self.isLoading = false
-                self.collectionView.reloadData()
+                if let response = DecodeLocal.shared.fetch(fileName: finance.code) as FinanceResponse?
+                {
+                    self.financeResponseDict[finance] = response.data
+                }
                 
+                self.dispatchGroup.leave()
             }
+            
+        }
+        
+        self.dispatchGroup.notify(queue: .main){
+            
+            self.isLoading = false
+            self.collectionView.reloadData()
             
         }
         
@@ -142,11 +159,19 @@ class MainViewController: UIViewController {
     // MARK: - Getter Methods
     
     func getResponseDict() -> [CategoryCase: [News]] {
-        return self.responseDict
+        return self.newsResponseDict
     }
     
-    func getResponseDict(with categoryCase: CategoryCase) -> [News]? {
-        return self.responseDict[categoryCase]
+    func getNewsResponseDict(with categoryCase: CategoryCase) -> [News]? {
+        return self.newsResponseDict[categoryCase]
+    }
+    
+    func getFinanceDict() -> [FinanceCase: Finance] {
+        return self.financeResponseDict
+    }
+    
+    func getFinanceDict(with financeCase: FinanceCase) -> Finance? {
+        return self.financeResponseDict[financeCase]
     }
     
     func getIsLoading() -> Bool {

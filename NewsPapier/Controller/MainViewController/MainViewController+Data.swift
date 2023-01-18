@@ -30,25 +30,25 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             switch section._case{
             
             case .business:
-                guard let _news = self.getResponseDict(with: .business) else {return}
+                guard let _news = self.getNewsResponseDict(with: .business) else {return}
                 news = _news
             case .entertainment:
-                guard let _news = self.getResponseDict(with: .entertainment) else {return}
+                guard let _news = self.getNewsResponseDict(with: .entertainment) else {return}
                 news = _news
             case .general:
-                guard let _news = self.getResponseDict(with: .general) else {return}
+                guard let _news = self.getNewsResponseDict(with: .general) else {return}
                 news = _news
             case .health:
-                guard let _news = self.getResponseDict(with: .health) else {return}
+                guard let _news = self.getNewsResponseDict(with: .health) else {return}
                 news = _news
             case .science:
-                guard let _news = self.getResponseDict(with: .science) else {return}
+                guard let _news = self.getNewsResponseDict(with: .science) else {return}
                 news = _news
             case .sports:
-                guard let _news = self.getResponseDict(with: .sports) else {return}
+                guard let _news = self.getNewsResponseDict(with: .sports) else {return}
                 news = _news
             case .technology:
-                guard let _news = self.getResponseDict(with: .technology) else {return}
+                guard let _news = self.getNewsResponseDict(with: .technology) else {return}
                 news = _news
             }
             let viewController = self.getNewsDetailViewController()
@@ -75,7 +75,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         if let _ = self.collectionViewSections[section] as? HomeCollectionFinanceSection
         {
-            return Preferences.pageSize
+//            return Preferences.pageSize
+            return FinanceCase.allCases.count
         }
         else if let _ = self.collectionViewSections[section] as? HomeCollectionWeatherSection
         {
@@ -116,6 +117,12 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         {
             
             guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: HomeFinanceCell.identifier, for: indexPath) as? HomeFinanceCell else {return UICollectionViewCell()}
+            
+            let _case = FinanceCase.allCases[indexPath.row]
+            
+            if let finance = self.getFinanceDict(with: _case){
+                cell.setFinance(finance)
+            }
             return cell
             
         }
@@ -134,31 +141,31 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             switch section._case
             {
             case .business:
-                if let response = self.getResponseDict(with: .business){
+                if let response = self.getNewsResponseDict(with: .business){
                     cell.configure(with: response[indexPath.row])
                 }
             case .entertainment:
-                if let response = self.getResponseDict(with: .entertainment){
+                if let response = self.getNewsResponseDict(with: .entertainment){
                     cell.configure(with: response[indexPath.row])
                 }
             case .general:
-                if let response = self.getResponseDict(with: .general){
+                if let response = self.getNewsResponseDict(with: .general){
                     cell.configure(with: response[indexPath.row])
                 }
             case .health:
-                if let response = self.getResponseDict(with: .health){
+                if let response = self.getNewsResponseDict(with: .health){
                     cell.configure(with: response[indexPath.row])
                 }
             case .science:
-                if let response = self.getResponseDict(with: .science){
+                if let response = self.getNewsResponseDict(with: .science){
                     cell.configure(with: response[indexPath.row])
                 }
             case .sports:
-                if let response = self.getResponseDict(with: .sports){
+                if let response = self.getNewsResponseDict(with: .sports){
                     cell.configure(with: response[indexPath.row])
                 }
             case .technology:
-                if let response = self.getResponseDict(with: .technology){
+                if let response = self.getNewsResponseDict(with: .technology){
                     cell.configure(with: response[indexPath.row])
                 }
             }
