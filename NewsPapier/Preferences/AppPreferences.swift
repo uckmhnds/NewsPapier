@@ -45,6 +45,19 @@ struct Padding{
     
 }
 
+struct Spacing{
+    
+    static let zero: CGFloat = 0
+    
+    static let s0: CGFloat = 5
+    static let s1: CGFloat = 7
+    static let s2: CGFloat = 10
+    static let s3: CGFloat = 13
+    static let s4: CGFloat = 18
+    static let s5: CGFloat = 24
+    
+}
+
 struct Radius{
     
     static let zero: CGFloat = 0

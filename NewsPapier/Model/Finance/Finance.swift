@@ -37,6 +37,23 @@ public struct Finance: Codable, Hashable{
     let targetHighPrice : Double
     let targetLowPrice : Double
     let targetMeanPrice : Double
+    
+    var change: String {
+        
+        let numericChange: Double = 100.0 * (self.currentPrice - self.previousClose) / (self.currentPrice)
+        
+        return "\(Double(round(10 * numericChange) / 10))%"
+    }
+    
+    var increased: Bool {
+        return self.currentPrice > self.previousClose ? true : false
+    }
+    
+    var price: String {
+        let price = Double(round(10 * currentPrice) / 10)
+        
+        return "$\(String(price))"
+    }
 }
 
 

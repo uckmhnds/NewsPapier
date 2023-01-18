@@ -19,11 +19,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window  = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
-        guard let _ = UserPreferences.defaults.object(forKey: "Test") as? Bool else {
-            window?.rootViewController = OnboardingViewController()
-            window?.makeKeyAndVisible()
-            return
-        }
+//        guard let _ = UserPreferences.defaults.object(forKey: "Test") as? Bool else {
+//            window?.rootViewController = OnboardingViewController()
+//            window?.makeKeyAndVisible()
+//            return
+//        }
         
         window?.rootViewController = RootNavigationController()
         window?.makeKeyAndVisible()
