@@ -49,15 +49,27 @@ struct CompositionalLayout {
     ) -> NSCollectionLayoutGroup {
         switch alignment {
         case .vertical:
-            return NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: width,
-                                                                                       heightDimension: height),
-                                                    repeatingSubitem: item,
-                                                    count: count)
+            if #available(iOS 16.0, *) {
+                return NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: width,
+                                                                                           heightDimension: height),
+                                                        repeatingSubitem: item,
+                                                        count: count)
+            } else {
+                // Fallback on earlier versions
+                return NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: width,
+                                                                                             heightDimension: height), subitems: [item])
+            }
         case .horizontal:
-            return NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: width,
-                                                                                         heightDimension: height),
-                                                      repeatingSubitem: item,
-                                                      count: count)
+            if #available(iOS 16.0, *) {
+                return NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: width,
+                                                                                             heightDimension: height),
+                                                          repeatingSubitem: item,
+                                                          count: count)
+            } else {
+                // Fallback on earlier versions
+                return NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: width,
+                                                                                             heightDimension: height), subitems: [item])
+            }
         }
     }
 }

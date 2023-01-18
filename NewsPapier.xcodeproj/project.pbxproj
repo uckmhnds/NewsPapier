@@ -88,6 +88,9 @@
 		98D6B7122973074D00F63EE6 /* MainViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B7112973074D00F63EE6 /* MainViewController+Protocol.swift */; };
 		98D6B71429734B5A00F63EE6 /* UISearchBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B71329734B5A00F63EE6 /* UISearchBar+.swift */; };
 		98D6B7162975C7E000F63EE6 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B7152975C7E000F63EE6 /* OnboardingViewController.swift */; };
+		98D6B73C29786FE300F63EE6 /* Finance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B73B29786FE300F63EE6 /* Finance.swift */; };
+		98D6B73E297876D300F63EE6 /* FinanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B73D297876D300F63EE6 /* FinanceResponse.swift */; };
+		98D6B740297876DC00F63EE6 /* FinanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B73F297876DC00F63EE6 /* FinanceRequest.swift */; };
 		98F8A24F28E6D9F30010E8AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A24E28E6D9F30010E8AC /* AppDelegate.swift */; };
 		98F8A25128E6D9F30010E8AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A25028E6D9F30010E8AC /* SceneDelegate.swift */; };
 		98F8A25928E6D9F30010E8AC /* NewsPapier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A25728E6D9F30010E8AC /* NewsPapier.xcdatamodeld */; };
@@ -192,6 +195,9 @@
 		98D6B7112973074D00F63EE6 /* MainViewController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Protocol.swift"; sourceTree = "<group>"; };
 		98D6B71329734B5A00F63EE6 /* UISearchBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+.swift"; sourceTree = "<group>"; };
 		98D6B7152975C7E000F63EE6 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		98D6B73B29786FE300F63EE6 /* Finance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finance.swift; sourceTree = "<group>"; };
+		98D6B73D297876D300F63EE6 /* FinanceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceResponse.swift; sourceTree = "<group>"; };
+		98D6B73F297876DC00F63EE6 /* FinanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceRequest.swift; sourceTree = "<group>"; };
 		98F8A24B28E6D9F30010E8AC /* NewsPapier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsPapier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F8A24E28E6D9F30010E8AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98F8A25028E6D9F30010E8AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -444,6 +450,16 @@
 			path = Charts;
 			sourceTree = "<group>";
 		};
+		98D6B73A29786FD000F63EE6 /* Finance */ = {
+			isa = PBXGroup;
+			children = (
+				98D6B73B29786FE300F63EE6 /* Finance.swift */,
+				98D6B73D297876D300F63EE6 /* FinanceResponse.swift */,
+				98D6B73F297876DC00F63EE6 /* FinanceRequest.swift */,
+			);
+			path = Finance;
+			sourceTree = "<group>";
+		};
 		98F8A24228E6D9F30010E8AC = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +511,7 @@
 		98F8A28228E6DD2C0010E8AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				98D6B73A29786FD000F63EE6 /* Finance */,
 				98C63C0729604ECF00D7F32E /* Query */,
 				98C63C0629604ECA00D7F32E /* Source */,
 				98C63C0529604EC500D7F32E /* News */,
@@ -697,6 +714,7 @@
 				98C63C0429604EC100D7F32E /* SourceRequest.swift in Sources */,
 				985E626F2947BD0F00CB09A0 /* NewsViewController+Data.swift in Sources */,
 				981D3D5028FC482000FB0C90 /* DataPersistence.swift in Sources */,
+				98D6B73E297876D300F63EE6 /* FinanceResponse.swift in Sources */,
 				985E627A294A47C900CB09A0 /* SideMenuViewController.swift in Sources */,
 				98C63BA6295CC73F00D7F32E /* UIColor+.swift in Sources */,
 				98C63BFE29604EA100D7F32E /* NewsRequest.swift in Sources */,
@@ -710,6 +728,7 @@
 				98C63BA2295CC68F00D7F32E /* Theme.swift in Sources */,
 				98F8A25928E6D9F30010E8AC /* NewsPapier.xcdatamodeld in Sources */,
 				98C63C382969A1D000D7F32E /* SearchResultsViewController+Protocol.swift in Sources */,
+				98D6B73C29786FE300F63EE6 /* Finance.swift in Sources */,
 				98C63BAC295E214A00D7F32E /* UIImageView+.swift in Sources */,
 				985E625A294531F400CB09A0 /* HomeCategoryCell.swift in Sources */,
 				98D6B70A29709F2700F63EE6 /* CubicCurveAlgorithm.swift in Sources */,
@@ -720,6 +739,7 @@
 				98F8A24F28E6D9F30010E8AC /* AppDelegate.swift in Sources */,
 				985E626C2947BCB500CB09A0 /* Background.swift in Sources */,
 				98D6B70E2972B2D500F63EE6 /* SideMenu.swift in Sources */,
+				98D6B740297876DC00F63EE6 /* FinanceRequest.swift in Sources */,
 				98C63C362969A0D200D7F32E /* SearchResultsViewController.swift in Sources */,
 				98C63B932958E00C00D7F32E /* NewsTableView.swift in Sources */,
 				98C63C3C2969A9C800D7F32E /* NewsDetailView.swift in Sources */,
@@ -849,7 +869,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -903,7 +923,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -920,12 +940,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4S83MB5QRG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsPapier/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -946,12 +968,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4S83MB5QRG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NewsPapier/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

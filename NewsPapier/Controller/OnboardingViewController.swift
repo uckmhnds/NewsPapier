@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class OnboardingTestCell: UICollectionViewCell {
     
     static let identifier   = "OnboardingTestCell"
@@ -41,10 +40,6 @@ class OnboardingTestCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.backgroundColor     = .systemGray3
-        
-//        contentView.addSubview(button)
-        
-//        applyConstraints()
         
     }
 
@@ -206,14 +201,13 @@ class OnboardingViewController: UIViewController {
 extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return numberOfPages
+        
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        print("here")
-        print(indexPath.item % 2 == 0)
         
         guard let cell = indexPath.item % 2 == 0 ? collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingRegionCell.identifier, for: indexPath) as? OnboardingRegionCell : collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingTestCell.identifier, for: indexPath) as? OnboardingTestCell else { return UICollectionViewCell() }
         
@@ -229,11 +223,15 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
 extension OnboardingViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: view.frame.width, height: view.frame.height)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
         return marginBetweenCell
+        
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
