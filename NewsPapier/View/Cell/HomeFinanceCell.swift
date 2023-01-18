@@ -11,33 +11,54 @@ class HomeFinanceCell: UICollectionViewCell {
     
     static let identifier   = "HomeFinanceCell"
     
-    #warning("Fix newsTitleLabel to environment var names. Specific names. i.e. sourceLabel")
-    private lazy var newsTitleLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.lineBreakMode                             = .byWordWrapping
-        label.numberOfLines                             = 2
-        label.text                                      = "SourceNameHere"
-        
-        return label
-        
-    }()
+    private let symbolName = UILabel(autoLayout: false,
+                                     font: Theme.h3Title,
+                                     color: Theme.secondaryText,
+                                     text: "",
+                                     textAlignment: .center)
+    
+    private let changeLabel = UILabel(autoLayout: false,
+                                      font: Theme.body3,
+                                      text: "",
+                                      textAlignment: .center)
+    
+    private let priceLabel = UILabel(autoLayout: false,
+                                     font: Theme.body3,
+                                     text: "",
+                                     textAlignment: .center)
+    
+    private lazy var subStackView = VStackView([self.changeLabel, self.priceLabel],
+                                            autoLayout: false,
+                                            alignment: .center,
+                                            distribution: .equalCentering,
+                                            spacing: Spacing.s1)
+    
+    private lazy var stackView = HStackView([self.symbolName, subStackView],
+                                            autoLayout: false,
+                                            alignment: .center,
+                                            distribution: .equalCentering,
+                                            spacing: Spacing.s1)
     
     private func applyConstraints(){
         
-        let newsTitleLabelConstraints = [
-            newsTitleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            newsTitleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-        ]
-            
-        NSLayoutConstraint.activate(newsTitleLabelConstraints)
+        stackView.anchor(top: topAnchor,
+                         leading: leadingAnchor,
+                         bottom: bottomAnchor,
+                         trailing: trailingAnchor,
+                         padding: UIEdgeInsets(top: Padding.p1,
+                                               left: Padding.p1,
+                                               bottom: Padding.p1,
+                                               right: Padding.p1))
         
     }
     
-    func setSourceName(_ source: Source){
-        newsTitleLabel.text = source.name
+    func setFinance(_ finance: Finance){
+        
+        symbolName.text = finance.symbol
+        priceLabel.text = finance.price
+        changeLabel.text = finance.change
+        changeLabel.textColor = finance.increased ? .systemGreen : .systemRed
+        
     }
     
     required init?(coder: NSCoder) {
@@ -47,9 +68,9 @@ class HomeFinanceCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.backgroundColor     = .systemGray6
+        contentView.backgroundColor     = Theme.tertiaryBackground
         contentView.layer.cornerRadius  = Preferences.discoverSourcesCornerRadius
-        contentView.addSubview(newsTitleLabel)
+        contentView.addSubview(stackView)
         
         applyConstraints()
         

@@ -215,7 +215,7 @@ public enum CountryCase: String, CaseIterable{
 }
 
 extension CountryCase: BaseCase{
-    
+    #warning("add subscript method")
     //    subscript
     
     var code: String { return self.rawValue}
@@ -245,10 +245,19 @@ extension CountryCase: BaseCase{
 }
 
 public enum FinanceCase: String, CaseIterable{
-    case sp500
+    
+    case aapl
+    case amzn
+    case nvda
+    case tsla
+    
 }
 
 extension FinanceCase: BaseCase{
+    
+    var code: String { return self.rawValue}
+    
+    static var size: Int { return CountryCase.allCases.count }
     
 }
 

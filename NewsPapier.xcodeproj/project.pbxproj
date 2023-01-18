@@ -91,6 +91,10 @@
 		98D6B73C29786FE300F63EE6 /* Finance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B73B29786FE300F63EE6 /* Finance.swift */; };
 		98D6B73E297876D300F63EE6 /* FinanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B73D297876D300F63EE6 /* FinanceResponse.swift */; };
 		98D6B740297876DC00F63EE6 /* FinanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B73F297876DC00F63EE6 /* FinanceRequest.swift */; };
+		98D6B74529787B5000F63EE6 /* aapl.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B74129787B5000F63EE6 /* aapl.json */; };
+		98D6B74629787B5000F63EE6 /* nvda.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B74229787B5000F63EE6 /* nvda.json */; };
+		98D6B74729787B5000F63EE6 /* amzn.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B74329787B5000F63EE6 /* amzn.json */; };
+		98D6B74829787B5000F63EE6 /* tsla.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B74429787B5000F63EE6 /* tsla.json */; };
 		98F8A24F28E6D9F30010E8AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A24E28E6D9F30010E8AC /* AppDelegate.swift */; };
 		98F8A25128E6D9F30010E8AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A25028E6D9F30010E8AC /* SceneDelegate.swift */; };
 		98F8A25928E6D9F30010E8AC /* NewsPapier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A25728E6D9F30010E8AC /* NewsPapier.xcdatamodeld */; };
@@ -198,6 +202,10 @@
 		98D6B73B29786FE300F63EE6 /* Finance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finance.swift; sourceTree = "<group>"; };
 		98D6B73D297876D300F63EE6 /* FinanceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceResponse.swift; sourceTree = "<group>"; };
 		98D6B73F297876DC00F63EE6 /* FinanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceRequest.swift; sourceTree = "<group>"; };
+		98D6B74129787B5000F63EE6 /* aapl.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = aapl.json; sourceTree = "<group>"; };
+		98D6B74229787B5000F63EE6 /* nvda.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nvda.json; sourceTree = "<group>"; };
+		98D6B74329787B5000F63EE6 /* amzn.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = amzn.json; sourceTree = "<group>"; };
+		98D6B74429787B5000F63EE6 /* tsla.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tsla.json; sourceTree = "<group>"; };
 		98F8A24B28E6D9F30010E8AC /* NewsPapier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsPapier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F8A24E28E6D9F30010E8AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98F8A25028E6D9F30010E8AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -423,6 +431,10 @@
 				98C63C2329676EF300D7F32E /* technology.json */,
 				98C63C3029699BD300D7F32E /* query.json */,
 				98C63C3129699BD300D7F32E /* sources.json */,
+				98D6B74129787B5000F63EE6 /* aapl.json */,
+				98D6B74329787B5000F63EE6 /* amzn.json */,
+				98D6B74229787B5000F63EE6 /* nvda.json */,
+				98D6B74429787B5000F63EE6 /* tsla.json */,
 			);
 			path = LocalJSON;
 			sourceTree = "<group>";
@@ -666,8 +678,11 @@
 			files = (
 				98F8A25E28E6D9F30010E8AC /* LaunchScreen.storyboard in Resources */,
 				98C63C2E29676EF400D7F32E /* business.json in Resources */,
+				98D6B74829787B5000F63EE6 /* tsla.json in Resources */,
+				98D6B74629787B5000F63EE6 /* nvda.json in Resources */,
 				98C63C2F29676EF400D7F32E /* sports.json in Resources */,
 				98C63C2929676EF400D7F32E /* health.json in Resources */,
+				98D6B74729787B5000F63EE6 /* amzn.json in Resources */,
 				98C63C3329699BD300D7F32E /* sources.json in Resources */,
 				98C63C2C29676EF400D7F32E /* science.json in Resources */,
 				98C63C2B29676EF400D7F32E /* entertainment.json in Resources */,
@@ -675,6 +690,7 @@
 				98F8A25B28E6D9F30010E8AC /* Assets.xcassets in Resources */,
 				98C63C3229699BD300D7F32E /* query.json in Resources */,
 				98C63C2A29676EF400D7F32E /* technology.json in Resources */,
+				98D6B74529787B5000F63EE6 /* aapl.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
