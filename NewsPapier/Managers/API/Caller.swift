@@ -17,27 +17,45 @@ public class ExternalAPIClient{
     
     public func fetch<T: ExternalAPIRequest>(_ request: T, completion: @escaping ResultCompletion<T.Response>) {
         
-        guard let endpoint = self.endpoint(for: request) else { return }
+        var urlRequest: URLRequest?
         
-        URLSession.shared.dataTask(with: URLRequest(url: endpoint)) { data, response, error in
-            if let data = data {
-                do {
-                    let result = try JSONDecoder().decode(T.Response.self, from: data)
-                    DispatchQueue.main.async {
-                        completion(.success(result))
+//        guard let endpoint = self.endpoint(for: request) else { return }
+        
+        if let request = request as? FinanceRequest
+        {
+            urlRequest = request.request()
+        }
+        else if let endpoint = self.endpoint(for: request)
+        {
+            urlRequest = URLRequest(url: endpoint)
+        }
+        else
+        {
+            return
+        }
+        
+        if let urlRequest = urlRequest{
+            URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+                if let data = data {
+                    do {
+                        let result = try JSONDecoder().decode(T.Response.self, from: data)
+                        DispatchQueue.main.async {
+                            completion(.success(result))
+                        }
+                    } catch {
+                        DispatchQueue.main.async {
+                            completion(.failure(ExternalAPIError.decoding))
+                        }
                     }
-                } catch {
+                } else if let error = error {
                     DispatchQueue.main.async {
-                        completion(.failure(ExternalAPIError.decoding))
+                        completion(.failure(error))
                     }
                 }
-            } else if let error = error {
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            }
-        }.resume()
+            }.resume()
+        }
     }
+    
     
     public func fetchParallel(){}
     
