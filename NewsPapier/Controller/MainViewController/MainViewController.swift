@@ -32,6 +32,7 @@ class MainViewController: UIViewController {
     
     private var newsResponseDict: [CategoryCase: [News]] = [:]
     private var financeResponseDict: [FinanceCase: Finance] = [:]
+    private var weatherResponseDict: [WeatherCase: WeatherResponse] = [:]
     private var isLoading: Bool = true
     private let dispatchGroup = DispatchGroup()
     
@@ -98,6 +99,22 @@ class MainViewController: UIViewController {
                 if let response = DecodeLocal.shared.fetch(fileName: finance.code) as FinanceResponse?
                 {
                     self.financeResponseDict[finance] = response.data
+                }
+                
+                self.dispatchGroup.leave()
+            }
+            
+        }
+        
+        for weather in WeatherCase.allCases{
+            
+            self.dispatchGroup.enter()
+            
+            DispatchQueue.main.async {
+                
+                if let response = DecodeLocal.shared.fetch(fileName: weather.code) as WeatherResponse?
+                {
+                    self.weatherResponseDict[weather] = response
                 }
                 
                 self.dispatchGroup.leave()
@@ -172,6 +189,14 @@ class MainViewController: UIViewController {
     
     func getFinanceDict(with financeCase: FinanceCase) -> Finance? {
         return self.financeResponseDict[financeCase]
+    }
+    
+    func getWeatherDict() -> [WeatherCase: WeatherResponse] {
+        return self.weatherResponseDict
+    }
+    
+    func getWeatherDict(with weatherCase: WeatherCase) -> WeatherResponse? {
+        return self.weatherResponseDict[weatherCase]
     }
     
     func getIsLoading() -> Bool {

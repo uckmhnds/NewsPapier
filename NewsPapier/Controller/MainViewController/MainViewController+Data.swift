@@ -75,12 +75,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         if let _ = self.collectionViewSections[section] as? HomeCollectionFinanceSection
         {
-//            return Preferences.pageSize
-            return FinanceCase.allCases.count
+            return FinanceCase.size
         }
         else if let _ = self.collectionViewSections[section] as? HomeCollectionWeatherSection
         {
-            return Preferences.pageSize
+            return WeatherCase.size
         }
         else if let _section = self.collectionViewSections[section] as? HomeCollectionCategorySection
         {
@@ -130,6 +129,12 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         {
             
             guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: HomeWeatherCell.identifier, for: indexPath) as? HomeWeatherCell else {return UICollectionViewCell()}
+            
+            let _case = WeatherCase.allCases[indexPath.row]
+            
+            if let weather = self.getWeatherDict(with: _case){
+                cell.setWeather(weather)
+            }
             return cell
             
         }
