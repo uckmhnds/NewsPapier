@@ -101,6 +101,15 @@
 		98D6B756297891BE00F63EE6 /* houston.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B751297891BE00F63EE6 /* houston.json */; };
 		98D6B757297891BE00F63EE6 /* dallas.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B752297891BE00F63EE6 /* dallas.json */; };
 		98D6B758297891BE00F63EE6 /* phoenix.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B753297891BE00F63EE6 /* phoenix.json */; };
+		98D6B7602979370200F63EE6 /* FinanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B75F2979370200F63EE6 /* FinanceViewController.swift */; };
+		98D6B7622979378700F63EE6 /* FinanceViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B7612979378700F63EE6 /* FinanceViewController+Protocol.swift */; };
+		98D6B76429793B6F00F63EE6 /* FinanceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B76329793B6F00F63EE6 /* FinanceDetailViewController.swift */; };
+		98D6B76629793B7900F63EE6 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B76529793B7900F63EE6 /* WeatherViewController.swift */; };
+		98D6B76829793B8B00F63EE6 /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B76729793B8B00F63EE6 /* WeatherDetailViewController.swift */; };
+		98D6B76A29793BC600F63EE6 /* FinanceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B76929793BC600F63EE6 /* FinanceTableView.swift */; };
+		98D6B76C29793BCF00F63EE6 /* WeatherTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B76B29793BCF00F63EE6 /* WeatherTableView.swift */; };
+		98D6B76E29793BFB00F63EE6 /* FinanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B76D29793BFB00F63EE6 /* FinanceTableViewCell.swift */; };
+		98D6B77029793C4700F63EE6 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B76F29793C4700F63EE6 /* WeatherTableViewCell.swift */; };
 		98F8A24F28E6D9F30010E8AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A24E28E6D9F30010E8AC /* AppDelegate.swift */; };
 		98F8A25128E6D9F30010E8AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A25028E6D9F30010E8AC /* SceneDelegate.swift */; };
 		98F8A25928E6D9F30010E8AC /* NewsPapier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A25728E6D9F30010E8AC /* NewsPapier.xcdatamodeld */; };
@@ -218,6 +227,15 @@
 		98D6B751297891BE00F63EE6 /* houston.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = houston.json; sourceTree = "<group>"; };
 		98D6B752297891BE00F63EE6 /* dallas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dallas.json; sourceTree = "<group>"; };
 		98D6B753297891BE00F63EE6 /* phoenix.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = phoenix.json; sourceTree = "<group>"; };
+		98D6B75F2979370200F63EE6 /* FinanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceViewController.swift; sourceTree = "<group>"; };
+		98D6B7612979378700F63EE6 /* FinanceViewController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FinanceViewController+Protocol.swift"; sourceTree = "<group>"; };
+		98D6B76329793B6F00F63EE6 /* FinanceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceDetailViewController.swift; sourceTree = "<group>"; };
+		98D6B76529793B7900F63EE6 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		98D6B76729793B8B00F63EE6 /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
+		98D6B76929793BC600F63EE6 /* FinanceTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTableView.swift; sourceTree = "<group>"; };
+		98D6B76B29793BCF00F63EE6 /* WeatherTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableView.swift; sourceTree = "<group>"; };
+		98D6B76D29793BFB00F63EE6 /* FinanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTableViewCell.swift; sourceTree = "<group>"; };
+		98D6B76F29793C4700F63EE6 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		98F8A24B28E6D9F30010E8AC /* NewsPapier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsPapier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F8A24E28E6D9F30010E8AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98F8A25028E6D9F30010E8AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -317,6 +335,8 @@
 				985E625E2946012D00CB09A0 /* HomeFinanceCell.swift */,
 				985E625B2945F65900CB09A0 /* HomeWeatherCell.swift */,
 				985E6259294531F400CB09A0 /* HomeCategoryCell.swift */,
+				98D6B76D29793BFB00F63EE6 /* FinanceTableViewCell.swift */,
+				98D6B76F29793C4700F63EE6 /* WeatherTableViewCell.swift */,
 				985E624E294510AB00CB09A0 /* NewsTableViewCell.swift */,
 				98D6B6F8296F3FE000F63EE6 /* SideMenuCategoryCell.swift */,
 				98D6B6FA296F3FED00F63EE6 /* SideMenuRegionCell.swift */,
@@ -346,6 +366,8 @@
 			isa = PBXGroup;
 			children = (
 				98C63B922958E00C00D7F32E /* NewsTableView.swift */,
+				98D6B76929793BC600F63EE6 /* FinanceTableView.swift */,
+				98D6B76B29793BCF00F63EE6 /* WeatherTableView.swift */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -521,6 +543,39 @@
 			path = Weather;
 			sourceTree = "<group>";
 		};
+		98D6B75B297936A000F63EE6 /* FinanceViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98D6B75F2979370200F63EE6 /* FinanceViewController.swift */,
+				98D6B7612979378700F63EE6 /* FinanceViewController+Protocol.swift */,
+			);
+			path = FinanceViewController;
+			sourceTree = "<group>";
+		};
+		98D6B75C297936B000F63EE6 /* FinanceDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98D6B76329793B6F00F63EE6 /* FinanceDetailViewController.swift */,
+			);
+			path = FinanceDetailViewController;
+			sourceTree = "<group>";
+		};
+		98D6B75D297936C900F63EE6 /* WeatherViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98D6B76529793B7900F63EE6 /* WeatherViewController.swift */,
+			);
+			path = WeatherViewController;
+			sourceTree = "<group>";
+		};
+		98D6B75E297936DA00F63EE6 /* WeatherDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				98D6B76729793B8B00F63EE6 /* WeatherDetailViewController.swift */,
+			);
+			path = WeatherDetailViewController;
+			sourceTree = "<group>";
+		};
 		98F8A24228E6D9F30010E8AC = {
 			isa = PBXGroup;
 			children = (
@@ -592,6 +647,10 @@
 				98C63B9A295CB58000D7F32E /* RootNavigationController */,
 				98C63B9B295CB58F00D7F32E /* SideMenuViewController */,
 				985E62602947BB8000CB09A0 /* MainViewController */,
+				98D6B75B297936A000F63EE6 /* FinanceViewController */,
+				98D6B75C297936B000F63EE6 /* FinanceDetailViewController */,
+				98D6B75D297936C900F63EE6 /* WeatherViewController */,
+				98D6B75E297936DA00F63EE6 /* WeatherDetailViewController */,
 				985E626D2947BCFC00CB09A0 /* NewsViewController */,
 				985E62722947BD7400CB09A0 /* NewsDetailViewController */,
 				98D6B7152975C7E000F63EE6 /* OnboardingViewController.swift */,
@@ -771,6 +830,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98C63C14296055B400D7F32E /* Async.swift in Sources */,
+				98D6B76629793B7900F63EE6 /* WeatherViewController.swift in Sources */,
 				98C63B96295B761F00D7F32E /* BlurryView.swift in Sources */,
 				985E625F2946012D00CB09A0 /* HomeFinanceCell.swift in Sources */,
 				985E62712947BD3600CB09A0 /* NewsViewController+Protocol.swift in Sources */,
@@ -787,11 +847,15 @@
 				981D3D5028FC482000FB0C90 /* DataPersistence.swift in Sources */,
 				98D6B73E297876D300F63EE6 /* FinanceResponse.swift in Sources */,
 				985E627A294A47C900CB09A0 /* SideMenuViewController.swift in Sources */,
+				98D6B7622979378700F63EE6 /* FinanceViewController+Protocol.swift in Sources */,
 				98C63BA6295CC73F00D7F32E /* UIColor+.swift in Sources */,
 				98C63BFE29604EA100D7F32E /* NewsRequest.swift in Sources */,
+				98D6B7602979370200F63EE6 /* FinanceViewController.swift in Sources */,
 				98C63C122960544300D7F32E /* Caller.swift in Sources */,
+				98D6B76429793B6F00F63EE6 /* FinanceDetailViewController.swift in Sources */,
 				98C63C0B2960505500D7F32E /* Alias.swift in Sources */,
 				98D6B70C29709F9400F63EE6 /* HistoryPeriod.swift in Sources */,
+				98D6B76A29793BC600F63EE6 /* FinanceTableView.swift in Sources */,
 				98C63C102960543C00D7F32E /* Error.swift in Sources */,
 				98C63B8E2958CE4700D7F32E /* HomeCollectionView.swift in Sources */,
 				985E62662947BBC000CB09A0 /* MainViewController+Delegate.swift in Sources */,
@@ -807,6 +871,7 @@
 				98D6B70929709F2700F63EE6 /* ChartView.swift in Sources */,
 				98C63C1A2964B22D00D7F32E /* NewsViewController+Delegate.swift in Sources */,
 				98C63C1F2964C79400D7F32E /* DecodeLocal.swift in Sources */,
+				98D6B77029793C4700F63EE6 /* WeatherTableViewCell.swift in Sources */,
 				98F8A24F28E6D9F30010E8AC /* AppDelegate.swift in Sources */,
 				985E626C2947BCB500CB09A0 /* Background.swift in Sources */,
 				98D6B70E2972B2D500F63EE6 /* SideMenu.swift in Sources */,
@@ -816,6 +881,7 @@
 				98C63C3C2969A9C800D7F32E /* NewsDetailView.swift in Sources */,
 				98C63B9F295CB5EC00D7F32E /* SideMenuViewController+Data.swift in Sources */,
 				98C63C1C2964C05300D7F32E /* UIGesture+.swift in Sources */,
+				98D6B76E29793BFB00F63EE6 /* FinanceTableViewCell.swift in Sources */,
 				98C63BA8295E073D00D7F32E /* NewsViewController+Scroll.swift in Sources */,
 				98D6B70729709F2700F63EE6 /* BezierView.swift in Sources */,
 				985E624F294510AB00CB09A0 /* NewsTableViewCell.swift in Sources */,
@@ -833,6 +899,7 @@
 				98695659294E050900927139 /* Content.swift in Sources */,
 				98D6B70829709F2700F63EE6 /* LineLoadingView.swift in Sources */,
 				98C63C0229604EB800D7F32E /* SourceResponse.swift in Sources */,
+				98D6B76C29793BCF00F63EE6 /* WeatherTableView.swift in Sources */,
 				985E62572945318500CB09A0 /* CompositionalLayout.swift in Sources */,
 				985E626A2947BC9B00CB09A0 /* Footer.swift in Sources */,
 				985E625C2945F65900CB09A0 /* HomeWeatherCell.swift in Sources */,
@@ -840,6 +907,7 @@
 				98C63B99295B7BE800D7F32E /* SearchController.swift in Sources */,
 				98C63C0029604EAD00D7F32E /* Source.swift in Sources */,
 				98D6B74E29788DA700F63EE6 /* Weather.swift in Sources */,
+				98D6B76829793B8B00F63EE6 /* WeatherDetailViewController.swift in Sources */,
 				98C63BA4295CC70D00D7F32E /* UIFont+.swift in Sources */,
 				98F8A28428E6DD420010E8AC /* News.swift in Sources */,
 				98C63C0929604EE400D7F32E /* QueryRequest.swift in Sources */,

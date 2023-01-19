@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class NewsViewController: UIViewController {
     
     let childViewController = NewsDetailViewController()
