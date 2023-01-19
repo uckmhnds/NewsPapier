@@ -11,54 +11,64 @@ class HomeWeatherCell: UICollectionViewCell {
     
     static let identifier   = "HomeWeatherCell"
     
-    private lazy var categoryImageView: UIImageView = {
-        
-        let imageView = UIImageView()
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .systemGray6
-        imageView.layer.cornerRadius = Preferences.discoverMainCornerRadius
-        return imageView
-        
-    }()
+    private let cityName = UILabel(autoLayout: false,
+                                   font: Theme.h3Title,
+                                   color: Theme.primaryText,
+                                   text: "",
+                                   textAlignment: .center)
     
-    private lazy var categoryTitleLabel: UILabel = {
-        
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text                                      = "Category"
-        return label
-        
-    }()
+    private let weatherIcon = UIImageView(contentMode: .scaleAspectFill,
+                                          autoLayout: false,
+                                          clipsToBounds: true)
     
-    func setCategoryName(with title: String){
-        categoryTitleLabel.text = title
+    private let weatherLabel = UILabel(autoLayout: false,
+                                       font: Theme.h0Title,
+                                       color: Theme.primaryText,
+                                       text: "",
+                                       textAlignment: .center)
+    
+    private let temp = UILabel(autoLayout: false,
+                               font: Theme.body4,
+                               color: Theme.primaryText,
+                               text: "",
+                               textAlignment: .center)
+    
+    func setWeather(_ weather: WeatherResponse){
+        
+        cityName.text = weather.name
+        
+        var urlString = ""
+        
+        if let _weather = weather.weather.first{
+            
+            weatherLabel.text = _weather.main
+            urlString = Preferences.weatherIconUrl + _weather.icon + Preferences.weatherIconUrlResource
+            
+        }
+        
+        guard let imageUrl      = URL(string: urlString) else {return}
+        
+        weatherIcon.sd_setImage(with: imageUrl)
+        
+        temp.text = "\(weather.minTemp)\u{00B0} - \(weather.maxTemp)\u{00B0}"
     }
+    
+    private lazy var stack = VStackView([cityName, weatherIcon, temp],
+                                        autoLayout: false,
+                                        alignment: .center,
+                                        distribution: .fillProportionally,
+                                        spacing: Spacing.s1)
     
     private func applyConstraints(){
         
-        let categoryImageViewConstraints = [
-            categoryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Preferences.discoverMainPadding),
-            categoryImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Preferences.discoverMainPadding),
-            categoryImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Preferences.discoverMainPadding)
-        ]
+        stack.anchor(top: topAnchor, leading: leadingAnchor,
+                     bottom: bottomAnchor,
+                     trailing: trailingAnchor,
+                     padding: UIEdgeInsets(top: Padding.p1,
+                                           left: Padding.p0,
+                                           bottom: Padding.p1,
+                                           right: Padding.p0))
         
-        let categoryTitleLabelConstraints = [
-            categoryTitleLabel.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: Preferences.discoverMainPadding),
-            categoryTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Preferences.discoverMainPadding),
-            categoryTitleLabel.centerXAnchor.constraint(equalTo: categoryImageView.centerXAnchor)
-        ]
-            
-        NSLayoutConstraint.activate(categoryImageViewConstraints)
-        NSLayoutConstraint.activate(categoryTitleLabelConstraints)
-        
-    }
-    
-    private func setColors(){
-        backgroundColor = Theme.secondaryBackground
-        categoryTitleLabel.font = Theme.h0Title
-        categoryTitleLabel.textColor = Theme.secondaryText
     }
     
     required init?(coder: NSCoder) {
@@ -68,17 +78,19 @@ class HomeWeatherCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.addSubview(categoryImageView)
-        contentView.addSubview(categoryTitleLabel)
-        
+//        contentView.addSubview(categoryImageView)
+        contentView.addSubview(stack)
+//
         applyConstraints()
-        setColors()
-        
-        let test = BezierView(frame: categoryImageView.bounds)
-        test.dataSource = self
-
-        categoryImageView.addSubview(test)
-        test.drawBezierCurve()
+        backgroundColor = Theme.tertiaryBackground
+        layer.cornerRadius = Radius.r2
+//        setColors()
+//
+//        let test = BezierView(frame: categoryImageView.bounds)
+//        test.dataSource = self
+//
+//        categoryImageView.addSubview(test)
+//        test.drawBezierCurve()
     }
     
     override func layoutSubviews() {
