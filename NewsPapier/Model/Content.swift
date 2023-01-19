@@ -28,6 +28,9 @@ public struct Preferences{
         return test
     }()
     
+    static let weatherIconUrl: String = "https://openweathermap.org/img/wn/"
+    static let weatherIconUrlResource: String = "@2x.png"
+    
     static let appState: AppState = .offline
     static let offlineSampleQueryFilename: String = "query"
     static let offlineSampleSourceFilename: String = "sources"
@@ -257,14 +260,30 @@ extension FinanceCase: BaseCase{
     
     var code: String { return self.rawValue}
     
-    static var size: Int { return CountryCase.allCases.count }
+    static var size: Int { return FinanceCase.allCases.count }
     
 }
 
 public enum WeatherCase: String, CaseIterable{
-    case tokyo
+    
+//    case los_angeles
+//    case san_diego
+//    case irvine
+//    case san_jose
+//    case las_vegas
+//    case san_francisco
+    case portland
+    case seattle
+    case phoenix
+    case dallas
+    case houston
+    
 }
 
 extension WeatherCase: BaseCase{
+    
+    var code: String { return self.rawValue.replacingOccurrences(of: "_", with: " ")}
+    
+    static var size: Int { return WeatherCase.allCases.count }
     
 }

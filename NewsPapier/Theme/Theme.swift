@@ -65,8 +65,9 @@ class Theme: BRDTheme {
         case body1 = 16.0
         case body2 = 14.0
         case caption = 12.0
+        case small = 9.0
     }
-    
+    #warning("This does not pass guard let below")
     enum FontName: String {
         case book = "CircularPro-Book"
         case medium = "CircularPro-Medium"
@@ -135,6 +136,10 @@ class Theme: BRDTheme {
     static var body3: UIFont {
         return font(.medium, .body2, .body)
     }
+    #warning("OThers are already not working due to font name")
+    static var body4: UIFont {
+        return UIFont.systemFont(ofSize: 14)
+    }
     
     static var caption: UIFont {
         return font(.caption, .caption1)
@@ -197,6 +202,7 @@ class Theme: BRDTheme {
     private static func font(_ name: FontName, _ size: FontSize, _ fallbackStyle: UIFont.TextStyle) -> UIFont {
         guard let font = UIFont(name: name.rawValue, size: size.rawValue)
             else { return UIFont.preferredFont(forTextStyle: fallbackStyle) }
+        
         return font
     }
     
