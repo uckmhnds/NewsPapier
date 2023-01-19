@@ -95,6 +95,12 @@
 		98D6B74629787B5000F63EE6 /* nvda.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B74229787B5000F63EE6 /* nvda.json */; };
 		98D6B74729787B5000F63EE6 /* amzn.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B74329787B5000F63EE6 /* amzn.json */; };
 		98D6B74829787B5000F63EE6 /* tsla.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B74429787B5000F63EE6 /* tsla.json */; };
+		98D6B74E29788DA700F63EE6 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B74D29788DA700F63EE6 /* Weather.swift */; };
+		98D6B754297891BE00F63EE6 /* seattle.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B74F297891BE00F63EE6 /* seattle.json */; };
+		98D6B755297891BE00F63EE6 /* portland.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B750297891BE00F63EE6 /* portland.json */; };
+		98D6B756297891BE00F63EE6 /* houston.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B751297891BE00F63EE6 /* houston.json */; };
+		98D6B757297891BE00F63EE6 /* dallas.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B752297891BE00F63EE6 /* dallas.json */; };
+		98D6B758297891BE00F63EE6 /* phoenix.json in Resources */ = {isa = PBXBuildFile; fileRef = 98D6B753297891BE00F63EE6 /* phoenix.json */; };
 		98F8A24F28E6D9F30010E8AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A24E28E6D9F30010E8AC /* AppDelegate.swift */; };
 		98F8A25128E6D9F30010E8AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A25028E6D9F30010E8AC /* SceneDelegate.swift */; };
 		98F8A25928E6D9F30010E8AC /* NewsPapier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 98F8A25728E6D9F30010E8AC /* NewsPapier.xcdatamodeld */; };
@@ -206,6 +212,12 @@
 		98D6B74229787B5000F63EE6 /* nvda.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nvda.json; sourceTree = "<group>"; };
 		98D6B74329787B5000F63EE6 /* amzn.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = amzn.json; sourceTree = "<group>"; };
 		98D6B74429787B5000F63EE6 /* tsla.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tsla.json; sourceTree = "<group>"; };
+		98D6B74D29788DA700F63EE6 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		98D6B74F297891BE00F63EE6 /* seattle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = seattle.json; sourceTree = "<group>"; };
+		98D6B750297891BE00F63EE6 /* portland.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = portland.json; sourceTree = "<group>"; };
+		98D6B751297891BE00F63EE6 /* houston.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = houston.json; sourceTree = "<group>"; };
+		98D6B752297891BE00F63EE6 /* dallas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dallas.json; sourceTree = "<group>"; };
+		98D6B753297891BE00F63EE6 /* phoenix.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = phoenix.json; sourceTree = "<group>"; };
 		98F8A24B28E6D9F30010E8AC /* NewsPapier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsPapier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98F8A24E28E6D9F30010E8AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98F8A25028E6D9F30010E8AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -421,20 +433,10 @@
 		98C63C1D2964C77600D7F32E /* LocalJSON */ = {
 			isa = PBXGroup;
 			children = (
+				98D6B74B29788CF100F63EE6 /* Weather */,
+				98D6B74A29788CEC00F63EE6 /* Finance */,
+				98D6B74929788CE500F63EE6 /* News */,
 				98C63C1E2964C79400D7F32E /* DecodeLocal.swift */,
-				98C63C2729676EF400D7F32E /* business.json */,
-				98C63C2429676EF300D7F32E /* entertainment.json */,
-				98C63C2629676EF300D7F32E /* general.json */,
-				98C63C2229676EF300D7F32E /* health.json */,
-				98C63C2529676EF300D7F32E /* science.json */,
-				98C63C2829676EF400D7F32E /* sports.json */,
-				98C63C2329676EF300D7F32E /* technology.json */,
-				98C63C3029699BD300D7F32E /* query.json */,
-				98C63C3129699BD300D7F32E /* sources.json */,
-				98D6B74129787B5000F63EE6 /* aapl.json */,
-				98D6B74329787B5000F63EE6 /* amzn.json */,
-				98D6B74229787B5000F63EE6 /* nvda.json */,
-				98D6B74429787B5000F63EE6 /* tsla.json */,
 			);
 			path = LocalJSON;
 			sourceTree = "<group>";
@@ -470,6 +472,53 @@
 				98D6B73F297876DC00F63EE6 /* FinanceRequest.swift */,
 			);
 			path = Finance;
+			sourceTree = "<group>";
+		};
+		98D6B74929788CE500F63EE6 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				98C63C2729676EF400D7F32E /* business.json */,
+				98C63C2429676EF300D7F32E /* entertainment.json */,
+				98C63C2629676EF300D7F32E /* general.json */,
+				98C63C2229676EF300D7F32E /* health.json */,
+				98C63C2529676EF300D7F32E /* science.json */,
+				98C63C2829676EF400D7F32E /* sports.json */,
+				98C63C2329676EF300D7F32E /* technology.json */,
+				98C63C3029699BD300D7F32E /* query.json */,
+				98C63C3129699BD300D7F32E /* sources.json */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		98D6B74A29788CEC00F63EE6 /* Finance */ = {
+			isa = PBXGroup;
+			children = (
+				98D6B74129787B5000F63EE6 /* aapl.json */,
+				98D6B74329787B5000F63EE6 /* amzn.json */,
+				98D6B74229787B5000F63EE6 /* nvda.json */,
+				98D6B74429787B5000F63EE6 /* tsla.json */,
+			);
+			path = Finance;
+			sourceTree = "<group>";
+		};
+		98D6B74B29788CF100F63EE6 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				98D6B752297891BE00F63EE6 /* dallas.json */,
+				98D6B751297891BE00F63EE6 /* houston.json */,
+				98D6B753297891BE00F63EE6 /* phoenix.json */,
+				98D6B750297891BE00F63EE6 /* portland.json */,
+				98D6B74F297891BE00F63EE6 /* seattle.json */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		98D6B74C29788D9E00F63EE6 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				98D6B74D29788DA700F63EE6 /* Weather.swift */,
+			);
+			path = Weather;
 			sourceTree = "<group>";
 		};
 		98F8A24228E6D9F30010E8AC = {
@@ -523,6 +572,7 @@
 		98F8A28228E6DD2C0010E8AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				98D6B74C29788D9E00F63EE6 /* Weather */,
 				98D6B73A29786FD000F63EE6 /* Finance */,
 				98C63C0729604ECF00D7F32E /* Query */,
 				98C63C0629604ECA00D7F32E /* Source */,
@@ -676,13 +726,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98D6B755297891BE00F63EE6 /* portland.json in Resources */,
 				98F8A25E28E6D9F30010E8AC /* LaunchScreen.storyboard in Resources */,
+				98D6B756297891BE00F63EE6 /* houston.json in Resources */,
 				98C63C2E29676EF400D7F32E /* business.json in Resources */,
 				98D6B74829787B5000F63EE6 /* tsla.json in Resources */,
 				98D6B74629787B5000F63EE6 /* nvda.json in Resources */,
 				98C63C2F29676EF400D7F32E /* sports.json in Resources */,
 				98C63C2929676EF400D7F32E /* health.json in Resources */,
+				98D6B754297891BE00F63EE6 /* seattle.json in Resources */,
 				98D6B74729787B5000F63EE6 /* amzn.json in Resources */,
+				98D6B757297891BE00F63EE6 /* dallas.json in Resources */,
+				98D6B758297891BE00F63EE6 /* phoenix.json in Resources */,
 				98C63C3329699BD300D7F32E /* sources.json in Resources */,
 				98C63C2C29676EF400D7F32E /* science.json in Resources */,
 				98C63C2B29676EF400D7F32E /* entertainment.json in Resources */,
@@ -784,6 +839,7 @@
 				98C63C3E2969BC4300D7F32E /* UIViewController+.swift in Sources */,
 				98C63B99295B7BE800D7F32E /* SearchController.swift in Sources */,
 				98C63C0029604EAD00D7F32E /* Source.swift in Sources */,
+				98D6B74E29788DA700F63EE6 /* Weather.swift in Sources */,
 				98C63BA4295CC70D00D7F32E /* UIFont+.swift in Sources */,
 				98F8A28428E6DD420010E8AC /* News.swift in Sources */,
 				98C63C0929604EE400D7F32E /* QueryRequest.swift in Sources */,
