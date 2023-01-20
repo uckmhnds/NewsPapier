@@ -8,6 +8,7 @@
 import Foundation
 
 public struct Finance: Codable, Hashable{
+    
     let country: String
     let currency: String
     let currentPrice: Double
@@ -54,6 +55,21 @@ public struct Finance: Codable, Hashable{
         
         return "$\(String(price))"
     }
+    
+    var low: String {
+        let price = Double(round(10 * dayLow) / 10)
+        
+        return "$\(String(price))"
+    }
+    
+    var high: String {
+        let price = Double(round(10 * dayHigh) / 10)
+        
+        return "$\(String(price))"
+    }
 }
 
-
+public struct FinanceHistory: Codable, Hashable {
+    let Close: Double
+    let Date: Int
+}

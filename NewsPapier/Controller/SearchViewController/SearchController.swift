@@ -30,7 +30,7 @@ class SearchController: UISearchController, UISearchControllerDelegate {
 //        self.searchBar.searchTextField.attributedText = NSAttributedString(string: "Search", attributes: placeholderAttributes)
 
         self.searchBar.sizeToFit()
-
+        
         self.hidesNavigationBarDuringPresentation = false
         
     }
@@ -42,8 +42,6 @@ class SearchController: UISearchController, UISearchControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        view.backgroundColor = .red
     }
-
 
 }

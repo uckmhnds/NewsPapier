@@ -12,3 +12,9 @@ public struct FinanceResponse: Codable, Hashable{
     let message: String
     let status: Int
 }
+
+public struct FinanceHistoryResponse: Codable, Hashable{
+    let data: [FinanceHistory]
+    let message: String
+    let status: Int
+}
