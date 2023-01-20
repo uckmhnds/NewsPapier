@@ -192,16 +192,18 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         
             let sectionIndex: Int = indexPath.section
             
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
+            
             if let _ = self.collectionViewSections[sectionIndex] as? HomeCollectionFinanceSection
             {
-                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
                 header.delegate = self
+                header.categoryCase = nil
                 header.setHeaderLabel(with: HomeCollectionSectionType.finance.name)
                 return header
             }
             else if let _ = self.collectionViewSections[sectionIndex] as? HomeCollectionWeatherSection
             {
-                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
+//                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
                 header.delegate = self
                 header.setHeaderLabel(with: HomeCollectionSectionType.weather.name)
                 return header
@@ -209,7 +211,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             else if let section = self.collectionViewSections[sectionIndex] as? HomeCollectionCategorySection
             {
                 
-                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
+//                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
                 
                 header.delegate = self
                 

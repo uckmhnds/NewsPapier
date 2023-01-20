@@ -84,39 +84,10 @@ class HomeWeatherCell: UICollectionViewCell {
         applyConstraints()
         backgroundColor = Theme.tertiaryBackground
         layer.cornerRadius = Radius.r2
-//        setColors()
-//
-//        let test = BezierView(frame: categoryImageView.bounds)
-//        test.dataSource = self
-//
-//        categoryImageView.addSubview(test)
-//        test.drawBezierCurve()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-    }
-    
-    func pts(_ x: Double) -> CGPoint {
-        return CGPoint(x: x, y: -2.5 * x + 80)
-    }
-    
-}
-
-extension HomeWeatherCell: BezierViewDataSource{
-    
-    var bezierViewDataPoints: [CGPoint] {
-        
-        var _pts: [CGPoint] = [CGPoint]()
-        
-        for x in 1...20{
-            
-            _pts.append(self.pts(Double(x)))
-            
-        }
-        
-        return _pts
-        
     }
     
 }

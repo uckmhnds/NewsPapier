@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
     
     private let searchResultsViewController = SearchResultsViewController()
     private let newsViewController = NewsViewController()
+    private let financeViewController = FinanceViewController()
     private let newsDetailViewController = NewsDetailViewController()
     
     // MARK: - Views

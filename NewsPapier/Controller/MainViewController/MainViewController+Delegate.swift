@@ -10,10 +10,9 @@ import UIKit
 
 extension MainViewController: HeaderDelegate{
     
-    func headerDidTap(_ categoryCase: CategoryCase) {
+    func headerDidTapNews(_ categoryCase: CategoryCase) {
         
         let viewController = NewsViewController()
-        print("headerDidTap at MainViewController")
         if let navController = self.navigationController{
             
             viewController.setViewController(with: categoryCase)
@@ -22,7 +21,15 @@ extension MainViewController: HeaderDelegate{
         }
     }
     
-    
+    func headerDidTapFinance() {
+        
+        let viewController = FinanceViewController()
+        if let navController = self.navigationController{
+            
+            navController.pushViewController(viewController, animated: true)
+            
+        }
+    }
 }
 
 extension MainViewController: SearchResultsViewControllerDelegate{
