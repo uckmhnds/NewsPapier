@@ -11,8 +11,16 @@ class FinanceDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
+//        setColors()
+//
+//        let test = BezierView(frame: categoryImageView.bounds)
+//        test.dataSource = self
+//
+//        categoryImageView.addSubview(test)
+//        test.drawBezierCurve()
+        
     }
     
 
@@ -25,5 +33,21 @@ class FinanceDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func pts(_ x: Double) -> CGPoint {
+        return CGPoint(x: x, y: -2.5 * x + 80)
+    }
 
+}
+
+extension FinanceDetailViewController: BezierViewDataSource{
+    
+    var bezierViewDataPoints: [CGPoint] {
+        
+        var _pts: [CGPoint] = [CGPoint]()
+        
+        return _pts
+        
+    }
+    
 }
