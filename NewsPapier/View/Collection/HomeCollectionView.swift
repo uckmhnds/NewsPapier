@@ -35,7 +35,7 @@ final class HomeCollectionView: UICollectionView {
         
         let item = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(Preferences.headerItemFractionalWidth),
                                                                                  heightDimension: .estimated(Preferences.headerItemHeight)),
-                                                               elementKind: Header.identifier,
+                                                               elementKind: MainCollectionViewHeader.identifier,
                                                                alignment: .top,
                                                                absoluteOffset: CGPoint(x: Preferences.headerItemOffsetX, y: Preferences.headerItemOffsetY))
         return item
@@ -56,7 +56,7 @@ final class HomeCollectionView: UICollectionView {
     
     private lazy var collectionLayoutBackgroundDecoration: NSCollectionLayoutDecorationItem = {
         
-        let item = NSCollectionLayoutDecorationItem.background(elementKind: RoundedBackgroundView.reuseIdentifier)
+        let item = NSCollectionLayoutDecorationItem.background(elementKind: MainCollectionBackgroundView.reuseIdentifier)
         return item
         
     }()
@@ -176,8 +176,8 @@ final class HomeCollectionView: UICollectionView {
         let categoriesLayout    = compositionalLayout
         
         // Background decoration
-        categoriesLayout.register(RoundedBackgroundView.self,
-                                  forDecorationViewOfKind: RoundedBackgroundView.reuseIdentifier)
+        categoriesLayout.register(MainCollectionBackgroundView.self,
+                                  forDecorationViewOfKind: MainCollectionBackgroundView.reuseIdentifier)
         
         self.collectionViewLayout = compositionalLayout
         
@@ -188,9 +188,9 @@ final class HomeCollectionView: UICollectionView {
         self.register(HomeWeatherCell.self,
                       forCellWithReuseIdentifier: HomeWeatherCell.identifier)
         
-        self.register(Header.self,
-                      forSupplementaryViewOfKind: Header.identifier,
-                      withReuseIdentifier: Header.identifier)
+        self.register(MainCollectionViewHeader.self,
+                      forSupplementaryViewOfKind: MainCollectionViewHeader.identifier,
+                      withReuseIdentifier: MainCollectionViewHeader.identifier)
         self.register(PagingSectionFooterView.self,
                       forSupplementaryViewOfKind: PagingSectionFooterView.identifier,
                       withReuseIdentifier: PagingSectionFooterView.identifier)

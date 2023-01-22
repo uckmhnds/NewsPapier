@@ -120,10 +120,10 @@ public struct Preferences{
     
     
     
-    static let financeTableCellFraction1: CGFloat = 1 / 8
-    static let financeTableCellFraction2: CGFloat = 1 / 2
-    static let financeTableCellFraction3: CGFloat = 1 / 4
-    static let financeTableCellFraction4: CGFloat = 1 / 5
+    static let financeTableCellFraction1: CGFloat = 0.125
+    static let financeTableCellFraction2: CGFloat = 0.4
+    static let financeTableCellFraction3: CGFloat = 0.2
+    static let financeTableCellFraction4: CGFloat = 0.2
 }
 
 public enum SearchIn: String, CaseIterable{

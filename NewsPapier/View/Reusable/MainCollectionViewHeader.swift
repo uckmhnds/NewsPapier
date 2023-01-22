@@ -14,7 +14,7 @@ protocol HeaderDelegate: AnyObject{
     
 }
 
-class Header: UICollectionReusableView {
+class MainCollectionViewHeader: UICollectionReusableView {
 
     static let identifier = "Header"
     var categoryCase: CategoryCase?

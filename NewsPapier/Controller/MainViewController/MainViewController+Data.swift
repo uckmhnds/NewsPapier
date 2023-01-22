@@ -188,11 +188,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         switch kind
         {
-        case Header.identifier:
+        case MainCollectionViewHeader.identifier:
         
             let sectionIndex: Int = indexPath.section
             
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MainCollectionViewHeader.identifier, for: indexPath) as? MainCollectionViewHeader else {return UICollectionReusableView()}
             
             if let _ = self.collectionViewSections[sectionIndex] as? HomeCollectionFinanceSection
             {

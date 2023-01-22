@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RoundedBackgroundView: UICollectionReusableView {
+class MainCollectionBackgroundView: UICollectionReusableView {
     
     static let reuseIdentifier = "RoundedBackgroundView"
     

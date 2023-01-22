@@ -36,6 +36,7 @@ class FinanceTableViewCell: UITableViewCell{
     private lazy var stackView = HStackView([self.indexLabel, self.symbolName, self.changeLabel, self.priceLabel],
                                             autoLayout: false,
                                             alignment: .center,
+                                            distribution: .equalCentering,
                                             spacing: Spacing.zero)
     
     private func applyConstraints(){
