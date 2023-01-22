@@ -11,42 +11,31 @@ class FinanceTableViewCell: UITableViewCell{
     
     static let identifier = "FinanceTableViewCell"
     
+    private let indexLabel = UILabel(autoLayout: false,
+                                     font: Theme.h3Title,
+                                     color: Theme.primaryText,
+                                     text: "",
+                                     textAlignment: .center)
+    
     private let symbolName = UILabel(autoLayout: false,
                                      font: Theme.h3Title,
                                      color: Theme.secondaryText,
                                      text: "",
-                                     textAlignment: .center)
+                                     textAlignment: .left)
     
     private let changeLabel = UILabel(autoLayout: false,
                                       font: Theme.body3,
                                       text: "",
-                                      textAlignment: .center)
+                                      textAlignment: .right)
     
     private let priceLabel = UILabel(autoLayout: false,
                                      font: Theme.body3,
                                      text: "",
                                      textAlignment: .center)
     
-    private let lowLabel = UILabel(autoLayout: false,
-                                     font: Theme.body4,
-                                     text: "",
-                                     textAlignment: .center)
-    
-    private let highLabel = UILabel(autoLayout: false,
-                                     font: Theme.body4,
-                                     text: "",
-                                     textAlignment: .center)
-    
-    private lazy var subStackView = VStackView([self.lowLabel, self.highLabel],
+    private lazy var stackView = HStackView([self.indexLabel, self.symbolName, self.changeLabel, self.priceLabel],
                                             autoLayout: false,
                                             alignment: .center,
-                                            distribution: .equalCentering,
-                                            spacing: Spacing.s1)
-    
-    private lazy var stackView = HStackView([self.symbolName, self.subStackView, self.priceLabel, changeLabel],
-                                            autoLayout: false,
-                                            alignment: .center,
-                                            distribution: .fillEqually,
                                             spacing: Spacing.zero)
     
     private func applyConstraints(){
@@ -60,17 +49,24 @@ class FinanceTableViewCell: UITableViewCell{
                                                bottom: Padding.p1,
                                                right: Padding.p1))
         
+        indexLabel.anchor(width: bounds.width * Preferences.financeTableCellFraction1)
+        symbolName.anchor(width: bounds.width * Preferences.financeTableCellFraction2)
+        changeLabel.anchor(width: bounds.width * Preferences.financeTableCellFraction3)
+        priceLabel.anchor(width: bounds.width * Preferences.financeTableCellFraction4)
+        
     }
     
     func setFinance(_ finance: Finance){
         
         symbolName.text = finance.symbol
         priceLabel.text = finance.price
-        lowLabel.text = finance.low
-        highLabel.text = finance.high
         changeLabel.text = finance.change
         changeLabel.textColor = finance.increased ? .systemGreen : .systemRed
         
+    }
+    
+    func setIndex(_ index: Int){
+        indexLabel.text = String(index)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
@@ -79,6 +75,8 @@ class FinanceTableViewCell: UITableViewCell{
         addSubview(stackView)
         
         applyConstraints()
+        
+        backgroundColor = Theme.secondaryBackground
     }
     
     required init?(coder: NSCoder) {

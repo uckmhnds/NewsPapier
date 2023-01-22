@@ -117,7 +117,7 @@ class SideMenuCategoryCellAA: UITableViewCell {
                          leading: leadingAnchor,
                          bottom: bottomAnchor,
                          trailing: trailingAnchor,
-                         padding: UIEdgeInsets(top: Inset.i1, left: Inset.i1, bottom: Inset.i1, right: Inset.i1))
+                         padding: UIEdgeInsets(top: Padding.p1, left: Padding.p1, bottom: Padding.p1, right: Padding.p1))
         
         title.widthAnchor.constraint(equalTo: image.widthAnchor, multiplier: 4).isActive = true
         

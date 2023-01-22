@@ -118,6 +118,12 @@ public struct Preferences{
     static let discoverCategoryCornerRadius: CGFloat = 8
     static let discoverCategoryPadding: CGFloat = 10
     
+    
+    
+    static let financeTableCellFraction1: CGFloat = 1 / 8
+    static let financeTableCellFraction2: CGFloat = 1 / 2
+    static let financeTableCellFraction3: CGFloat = 1 / 4
+    static let financeTableCellFraction4: CGFloat = 1 / 5
 }
 
 public enum SearchIn: String, CaseIterable{

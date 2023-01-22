@@ -100,10 +100,14 @@ extension FinanceViewController: UITableViewDelegate, UITableViewDataSource{
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FinanceTableViewCell.identifier, for: indexPath) as? FinanceTableViewCell else { return UITableViewCell()}
         
-        let _case = FinanceCase.allCases[indexPath.row]
+        let index = indexPath.row
+        let visibleIndex = index + 1
+        
+        let _case = FinanceCase.allCases[index]
         
         if let finance = self.getFinanceDict(with: _case){
             cell.setFinance(finance)
+            cell.setIndex(visibleIndex)
         }
         return cell
         
