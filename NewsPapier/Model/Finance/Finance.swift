@@ -62,6 +62,11 @@ public struct Finance: Codable, Hashable{
         return "$\(String(price))"
     }
     
+    mutating func setRank(_ rank: Int){
+        self.rank = String(rank)
+    }
+    
+    var rank: String?
 }
 
 public struct FinanceHistory: Codable, Hashable {

@@ -27,6 +27,8 @@ class FinanceViewController: UIViewController {
     
     private func loadLocalNews(){
         
+        var rank = 1
+        
         for finance in FinanceCase.allCases{
             
             self.dispatchGroup.enter()
@@ -35,8 +37,12 @@ class FinanceViewController: UIViewController {
                 
                 if let response = DecodeLocal.shared.fetch(fileName: finance.code) as FinanceResponse?
                 {
-                    let fetchedData: Dictionary<FinanceCase, Finance>.Element = (key: finance, value: response.data)
+                    var fetchedData: Dictionary<FinanceCase, Finance>.Element = (key: finance, value: response.data)
+                    
+                    fetchedData.value.setRank(rank)
                     self.financeResponseDict.append(fetchedData)
+                    
+                    rank+=1
                 }
                 
                 self.dispatchGroup.leave()
