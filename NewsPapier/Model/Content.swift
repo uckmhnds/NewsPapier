@@ -224,8 +224,6 @@ public enum CountryCase: String, CaseIterable{
 }
 
 extension CountryCase: BaseCase{
-    #warning("add subscript method")
-    //    subscript
     
     var code: String { return self.rawValue}
     
@@ -292,4 +290,59 @@ extension WeatherCase: BaseCase{
     
     static var size: Int { return WeatherCase.allCases.count }
     
+}
+
+
+
+
+
+
+
+
+public enum FinanceRealCase: String, CaseIterable{
+    case tsla
+    case amd
+    case aapl
+    case amzn
+    case nvda
+    case nio
+    case nok
+    case sofi
+    case ccl
+    case vz
+    case cs
+    case lcid
+    case f
+    case rivn
+    case t
+    case googl
+    case itub
+    case pltr
+    case afrm
+    case bac
+    case xpev
+    case msft
+    case amc
+    case meta
+    case bbd
+    case ape
+    case lyft
+    case aal
+    case lu
+    case intc
+    case goog
+    case rig
+    case lumn
+    case shop
+    case pfe
+    case uber
+    case gold
+    case sji
+    case ge
+    case plug
+    case pbr
+    case eric
+    case kgc
+    case ymm
+    case sq
 }
