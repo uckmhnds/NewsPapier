@@ -71,18 +71,7 @@ class MainCollectionViewHeader: UICollectionReusableView {
                 delegate.headerDidTapFinance()
             }
         }
-
         
-//        if let delegate = self.delegate{
-//            if delegate.isFinance {
-//             if let categoryCase = self.categoryCase
-//             {
-//                 delegate.headerDidTapNews(categoryCase)
-//             }
-//            }else{
-//                delegate.headerDidTapFinance()
-//            }
-//        }
         
     }
     

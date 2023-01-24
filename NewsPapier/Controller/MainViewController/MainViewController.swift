@@ -234,7 +234,6 @@ class MainViewController: UIViewController {
         
         /// GO TO PREFERENCES
         ///
-        #warning("Add blurry view to sidemenuVC because it is tricky to removeFromSuperview this view when selecting tableView item from sideMenu")
         view.addSubview(blurryView)
         
         if let delegate = self.delegate{
