@@ -7,8 +7,6 @@
 
 import UIKit
 
-#warning("Parametrize")
-
 class SideMenuCategoryCellA: UITableViewCell {
     
     static let identifier: String = "SideMenuCategoryCellA"

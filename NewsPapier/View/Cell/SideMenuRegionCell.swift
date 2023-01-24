@@ -6,7 +6,7 @@
 //
 
 import UIKit
-#warning("SideMenuBasCellA then inherit it here")
+
 class SideMenuRegionCellA: UITableViewCell {
     
     static let identifier: String = "SideMenuRegionCellA"

@@ -34,7 +34,6 @@ class SearchResultsViewController: UIViewController {
         newsTable.reloadData()
     }
     
-    #warning("put getter and setter in every class")
     
     func setNews(_ news: [News]){
         self.news = news

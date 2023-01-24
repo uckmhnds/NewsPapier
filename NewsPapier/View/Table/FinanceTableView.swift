@@ -11,12 +11,13 @@ final class FinanceTableView: UITableView{
     
     public init() {
         
-        super.init(frame: .zero, style: .grouped)
+        super.init(frame: .zero, style: .plain)
         
         self.register(FinanceTableViewCell.self, forCellReuseIdentifier: FinanceTableViewCell.identifier)
-        self.register(FinanceTableViewHeader.self, forHeaderFooterViewReuseIdentifier: FinanceTableViewHeader.identifier)
         
         backgroundColor = Theme.primaryBackground
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
         
     }
 
