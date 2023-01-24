@@ -10,10 +10,11 @@ import UIKit
 class FinanceViewController: UIViewController {
     
     private let tableView = FinanceTableView()
+    private let test = FinanceNavTitleView(frame: .zero)
     
     // MARK: - Network
     
-    private var financeResponseDict: [FinanceCase: Finance] = [:]
+    var financeResponseDict = [Dictionary<FinanceCase, Finance>.Element]()
     private var isLoading: Bool = true
     private let dispatchGroup = DispatchGroup()
     
@@ -34,7 +35,8 @@ class FinanceViewController: UIViewController {
                 
                 if let response = DecodeLocal.shared.fetch(fileName: finance.code) as FinanceResponse?
                 {
-                    self.financeResponseDict[finance] = response.data
+                    let fetchedData: Dictionary<FinanceCase, Finance>.Element = (key: finance, value: response.data)
+                    self.financeResponseDict.append(fetchedData)
                 }
                 
                 self.dispatchGroup.leave()
@@ -50,40 +52,140 @@ class FinanceViewController: UIViewController {
         }
         
     }
+    
+    @objc private func sortBarButtonAction(){
+        
+    }
+    
+    private func configureNavigationBar(){
+        
+        if let navController = navigationController{
+            navController.navigationBar.tintColor = .white
+            navController.navigationBar.barTintColor = Theme.primaryBackground
+            navController.navigationBar.isTranslucent = false
+            navController.hidesBarsOnSwipe = true
+        }
+        
+        let sortBarImage          = UIImage(systemName: "gearshape")
+        
+        let sortBar               = UIBarButtonItem(image: sortBarImage,
+                                                      style: .done,
+                                                      target: self,
+                                                      action: #selector(sortBarButtonAction))
+        
+        navigationItem.rightBarButtonItem                   = sortBar
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        configureNavigationBar()
+        
         view.addSubview(tableView)
-        // Do any additional setup after loading the view.
+        
+        view.addSubview(test)
+        
+        test.delegate = self
+        
+        title = "Finance"
+        
+//        stack.backgroundColor = .red
+//        view.addSubview(stack)
+        
         delegateMethods()
         
         loadLocalNews()
     }
     
+//    lazy var stack = VStackView([test, tableView], autoLayout: false, alignment: .center, distribution: .fill, spacing: 10)
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        tableView.frame = view.bounds
+//        tableView.frame = view.bounds
+        test.anchor(top: view.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, height: 30)
+        
+        test.frameChildren()
+        
+        tableView.anchor(top: test.bottomAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
     }
     
-    func getFinanceDict() -> [FinanceCase: Finance] {
-        return self.financeResponseDict
+    internal func sortByChangeHighToLow(){
+        
+        DispatchQueue.main.async {
+            
+            self.financeResponseDict = self.financeResponseDict.sorted(by: {$0.1.changeNumeric > $1.1.changeNumeric})
+            
+            self.tableView.reloadData()
+            
+        }
+        
     }
     
-    func getFinanceDict(with financeCase: FinanceCase) -> Finance? {
-        return self.financeResponseDict[financeCase]
+    internal func sortByChangeLowToHigh(){
+        
+        DispatchQueue.main.async {
+            
+            self.financeResponseDict = self.financeResponseDict.sorted(by: {$0.1.changeNumeric < $1.1.changeNumeric})
+            
+            self.tableView.reloadData()
+            
+        }
+        
     }
     
+    internal func sortByPriceHighToLow(){
+        
+        DispatchQueue.main.async {
+            
+            self.financeResponseDict = self.financeResponseDict.sorted(by: {$0.1.currentPrice > $1.1.currentPrice})
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
+    internal func sortByPriceLowToHigh(){
+        
+        DispatchQueue.main.async {
+            
+            self.financeResponseDict = self.financeResponseDict.sorted(by: {$0.1.currentPrice < $1.1.currentPrice})
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
+    internal func sortBySizeHighToLow(){
+        
+        DispatchQueue.main.async {
+            
+            self.financeResponseDict = self.financeResponseDict.sorted(by: {$0.1.marketCap > $1.1.marketCap})
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
+    internal func sortBySizeLowToHigh(){
+        
+        DispatchQueue.main.async {
+            
+            self.financeResponseDict = self.financeResponseDict.sorted(by: {$0.1.marketCap < $1.1.marketCap})
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
+}
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+extension FinanceViewController: TestDel{
     
 }
