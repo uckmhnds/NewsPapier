@@ -27,8 +27,6 @@ class FinanceViewController: UIViewController {
     
     private func loadLocalNews(){
         
-        var rank = 1
-        
         for finance in FinanceCase.allCases{
             
             self.dispatchGroup.enter()
@@ -37,21 +35,40 @@ class FinanceViewController: UIViewController {
                 
                 if let response = DecodeLocal.shared.fetch(fileName: finance.code) as FinanceResponse?
                 {
-                    var fetchedData: Dictionary<FinanceCase, Finance>.Element = (key: finance, value: response.data)
-                    
-                    fetchedData.value.setRank(rank)
+                    let fetchedData: Dictionary<FinanceCase, Finance>.Element = (key: finance, value: response.data)
+                    print(fetchedData.key)
                     self.financeResponseDict.append(fetchedData)
-                    
-                    rank+=1
                 }
                 
                 self.dispatchGroup.leave()
             }
             
         }
+        print( "b4 sort")
+        self.dispatchGroup.enter()
+        
+        DispatchQueue.main.async {
+            print( "start sort")
+            var rank = 1
+            
+            self.financeResponseDict = self.financeResponseDict.sorted(by: {$0.1.marketCap > $1.1.marketCap})
+            
+            for var finance in self.financeResponseDict{
+                
+                finance.value.setRank(rank)
+                print(finance.key)
+                print(finance.value.marketCap)
+                self.financeResponseDict.remove(at: rank - 1)
+                self.financeResponseDict.insert(finance, at: rank - 1)
+                rank+=1
+                
+            }
+            print( "sorted")
+            self.dispatchGroup.leave()
+        }
         
         self.dispatchGroup.notify(queue: .main){
-            
+            print( "ready")
             self.isLoading = false
             self.tableView.reloadData()
             

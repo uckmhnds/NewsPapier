@@ -9,14 +9,14 @@ import UIKit
 
 protocol TestDel: AnyObject{
     
+    func sortBySizeHighToLow()
+    func sortBySizeLowToHigh()
+    
     func sortByPriceHighToLow()
     func sortByPriceLowToHigh()
     
     func sortByChangeHighToLow()
     func sortByChangeLowToHigh()
-    
-    func sortBySizeHighToLow()
-    func sortBySizeLowToHigh()
     
 }
 
@@ -34,7 +34,7 @@ final class FinanceNavTitleView: UIView{
     
     var delegate: TestDel?
     
-    private lazy var sortByPriceButton: UIButton = {
+    private lazy var sortBySizeButton: UIButton = {
         
         let action = UIAction { _ in
             
@@ -42,10 +42,10 @@ final class FinanceNavTitleView: UIView{
                 
                 if self.sortByChangeHighToLow
                 {
-                    delegate.sortByPriceHighToLow()
+                    delegate.sortBySizeHighToLow()
                 }else
                 {
-                    delegate.sortByPriceLowToHigh()
+                    delegate.sortBySizeLowToHigh()
                 }
                 
             }
@@ -112,7 +112,7 @@ final class FinanceNavTitleView: UIView{
         return button
     }()
     
-    private lazy var sortBySizeButton: UIButton = {
+    private lazy var sortByPriceButton: UIButton = {
         
         let action = UIAction { _ in
             
@@ -151,7 +151,7 @@ final class FinanceNavTitleView: UIView{
         return button
     }()
     
-    lazy var stack = HStackView([sortByPriceButton, sortByChangeButton, sortBySizeButton], autoLayout: false, alignment: .center, distribution: .fillEqually)
+    lazy var stack = HStackView([sortBySizeButton, sortByPriceButton, sortByChangeButton], autoLayout: false, alignment: .center, distribution: .fillEqually)
 
     func frameChildren(){
         stack.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)

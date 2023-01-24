@@ -63,7 +63,7 @@ class FinanceTableViewCell: UITableViewCell{
         priceLabel.text = finance.price
         changeLabel.text = finance.change
         changeLabel.textColor = finance.increased ? .systemGreen : .systemRed
-        indexLabel.text = finance.rank
+        indexLabel.text = finance.rank ?? ""
         
     }
     
