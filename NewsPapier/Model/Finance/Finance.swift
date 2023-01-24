@@ -46,6 +46,12 @@ public struct Finance: Codable, Hashable{
         return "\(Double(round(10 * numericChange) / 10))%"
     }
     
+    var changeNumeric: Double {
+        
+        return (self.currentPrice - self.previousClose) / (self.currentPrice)
+        
+    }
+    
     var increased: Bool {
         return self.currentPrice > self.previousClose ? true : false
     }
@@ -56,17 +62,6 @@ public struct Finance: Codable, Hashable{
         return "$\(String(price))"
     }
     
-    var low: String {
-        let price = Double(round(10 * dayLow) / 10)
-        
-        return "$\(String(price))"
-    }
-    
-    var high: String {
-        let price = Double(round(10 * dayHigh) / 10)
-        
-        return "$\(String(price))"
-    }
 }
 
 public struct FinanceHistory: Codable, Hashable {
