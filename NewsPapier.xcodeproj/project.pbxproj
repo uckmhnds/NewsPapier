@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9804787029804B8D00AA6C9D /* FinanceNavTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9804786F29804B8D00AA6C9D /* FinanceNavTitleView.swift */; };
 		9814FB1B28EAC4EF00BAC07C /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9814FB1A28EAC4EF00BAC07C /* NewsDetailViewController.swift */; };
 		981D3D5028FC482000FB0C90 /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981D3D4F28FC481F00FB0C90 /* DataPersistence.swift */; };
+		982EB4B8297DAAE60015728F /* FinanceViewController+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982EB4B7297DAAE60015728F /* FinanceViewController+Data.swift */; };
 		985E624D29450F8A00CB09A0 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E624C29450F8A00CB09A0 /* NewsViewController.swift */; };
 		985E624F294510AB00CB09A0 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E624E294510AB00CB09A0 /* NewsTableViewCell.swift */; };
 		985E625329452F7E00CB09A0 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E625229452F7E00CB09A0 /* RootNavigationController.swift */; };
@@ -20,9 +22,9 @@
 		985E62622947BB9800CB09A0 /* MainViewController+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E62612947BB9800CB09A0 /* MainViewController+Data.swift */; };
 		985E62642947BBB200CB09A0 /* MainViewController+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E62632947BBB200CB09A0 /* MainViewController+Search.swift */; };
 		985E62662947BBC000CB09A0 /* MainViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E62652947BBC000CB09A0 /* MainViewController+Delegate.swift */; };
-		985E62682947BC6600CB09A0 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E62672947BC6600CB09A0 /* Header.swift */; };
-		985E626A2947BC9B00CB09A0 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E62692947BC9B00CB09A0 /* Footer.swift */; };
-		985E626C2947BCB500CB09A0 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E626B2947BCB500CB09A0 /* Background.swift */; };
+		985E62682947BC6600CB09A0 /* MainCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E62672947BC6600CB09A0 /* MainCollectionViewHeader.swift */; };
+		985E626A2947BC9B00CB09A0 /* PagingSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E62692947BC9B00CB09A0 /* PagingSectionFooterView.swift */; };
+		985E626C2947BCB500CB09A0 /* MainCollectionBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E626B2947BCB500CB09A0 /* MainCollectionBackgroundView.swift */; };
 		985E626F2947BD0F00CB09A0 /* NewsViewController+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E626E2947BD0F00CB09A0 /* NewsViewController+Data.swift */; };
 		985E62712947BD3600CB09A0 /* NewsViewController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E62702947BD3600CB09A0 /* NewsViewController+Protocol.swift */; };
 		985E627A294A47C900CB09A0 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E6279294A47C900CB09A0 /* SideMenuViewController.swift */; };
@@ -136,8 +138,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9804786F29804B8D00AA6C9D /* FinanceNavTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceNavTitleView.swift; sourceTree = "<group>"; };
 		9814FB1A28EAC4EF00BAC07C /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		981D3D4F28FC481F00FB0C90 /* DataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistence.swift; sourceTree = "<group>"; };
+		982EB4B7297DAAE60015728F /* FinanceViewController+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FinanceViewController+Data.swift"; sourceTree = "<group>"; };
 		985E624C29450F8A00CB09A0 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		985E624E294510AB00CB09A0 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		985E625229452F7E00CB09A0 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
@@ -149,9 +153,9 @@
 		985E62612947BB9800CB09A0 /* MainViewController+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Data.swift"; sourceTree = "<group>"; };
 		985E62632947BBB200CB09A0 /* MainViewController+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Search.swift"; sourceTree = "<group>"; };
 		985E62652947BBC000CB09A0 /* MainViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Delegate.swift"; sourceTree = "<group>"; };
-		985E62672947BC6600CB09A0 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
-		985E62692947BC9B00CB09A0 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
-		985E626B2947BCB500CB09A0 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		985E62672947BC6600CB09A0 /* MainCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewHeader.swift; sourceTree = "<group>"; };
+		985E62692947BC9B00CB09A0 /* PagingSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingSectionFooterView.swift; sourceTree = "<group>"; };
+		985E626B2947BCB500CB09A0 /* MainCollectionBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionBackgroundView.swift; sourceTree = "<group>"; };
 		985E626E2947BD0F00CB09A0 /* NewsViewController+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsViewController+Data.swift"; sourceTree = "<group>"; };
 		985E62702947BD3600CB09A0 /* NewsViewController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsViewController+Protocol.swift"; sourceTree = "<group>"; };
 		985E6279294A47C900CB09A0 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
@@ -347,9 +351,9 @@
 		985E62752947BDC900CB09A0 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
-				985E62672947BC6600CB09A0 /* Header.swift */,
-				985E62692947BC9B00CB09A0 /* Footer.swift */,
-				985E626B2947BCB500CB09A0 /* Background.swift */,
+				985E62672947BC6600CB09A0 /* MainCollectionViewHeader.swift */,
+				985E62692947BC9B00CB09A0 /* PagingSectionFooterView.swift */,
+				985E626B2947BCB500CB09A0 /* MainCollectionBackgroundView.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -547,6 +551,7 @@
 			isa = PBXGroup;
 			children = (
 				98D6B75F2979370200F63EE6 /* FinanceViewController.swift */,
+				982EB4B7297DAAE60015728F /* FinanceViewController+Data.swift */,
 				98D6B7612979378700F63EE6 /* FinanceViewController+Protocol.swift */,
 			);
 			path = FinanceViewController;
@@ -663,6 +668,7 @@
 			children = (
 				98C63B95295B761F00D7F32E /* BlurryView.swift */,
 				98C63C3B2969A9C800D7F32E /* NewsDetailView.swift */,
+				9804786F29804B8D00AA6C9D /* FinanceNavTitleView.swift */,
 				98C63B912958DFFF00D7F32E /* Table */,
 				98C63B8C2958CE2F00D7F32E /* Collection */,
 				985E62752947BDC900CB09A0 /* Reusable */,
@@ -831,6 +837,7 @@
 			files = (
 				98C63C14296055B400D7F32E /* Async.swift in Sources */,
 				98D6B76629793B7900F63EE6 /* WeatherViewController.swift in Sources */,
+				9804787029804B8D00AA6C9D /* FinanceNavTitleView.swift in Sources */,
 				98C63B96295B761F00D7F32E /* BlurryView.swift in Sources */,
 				985E625F2946012D00CB09A0 /* HomeFinanceCell.swift in Sources */,
 				985E62712947BD3600CB09A0 /* NewsViewController+Protocol.swift in Sources */,
@@ -843,6 +850,7 @@
 				985E62642947BBB200CB09A0 /* MainViewController+Search.swift in Sources */,
 				98C63C0E2960543400D7F32E /* Request.swift in Sources */,
 				98C63C0429604EC100D7F32E /* SourceRequest.swift in Sources */,
+				982EB4B8297DAAE60015728F /* FinanceViewController+Data.swift in Sources */,
 				985E626F2947BD0F00CB09A0 /* NewsViewController+Data.swift in Sources */,
 				981D3D5028FC482000FB0C90 /* DataPersistence.swift in Sources */,
 				98D6B73E297876D300F63EE6 /* FinanceResponse.swift in Sources */,
@@ -873,7 +881,7 @@
 				98C63C1F2964C79400D7F32E /* DecodeLocal.swift in Sources */,
 				98D6B77029793C4700F63EE6 /* WeatherTableViewCell.swift in Sources */,
 				98F8A24F28E6D9F30010E8AC /* AppDelegate.swift in Sources */,
-				985E626C2947BCB500CB09A0 /* Background.swift in Sources */,
+				985E626C2947BCB500CB09A0 /* MainCollectionBackgroundView.swift in Sources */,
 				98D6B70E2972B2D500F63EE6 /* SideMenu.swift in Sources */,
 				98D6B740297876DC00F63EE6 /* FinanceRequest.swift in Sources */,
 				98C63C362969A0D200D7F32E /* SearchResultsViewController.swift in Sources */,
@@ -892,7 +900,7 @@
 				98C63BB0296045A000D7F32E /* UIView+.swift in Sources */,
 				98D6B7102972B30B00F63EE6 /* HomeCollection.swift in Sources */,
 				9814FB1B28EAC4EF00BAC07C /* NewsDetailViewController.swift in Sources */,
-				985E62682947BC6600CB09A0 /* Header.swift in Sources */,
+				985E62682947BC6600CB09A0 /* MainCollectionViewHeader.swift in Sources */,
 				98D6B7162975C7E000F63EE6 /* OnboardingViewController.swift in Sources */,
 				98D6B7122973074D00F63EE6 /* MainViewController+Protocol.swift in Sources */,
 				98C63C18296056F400D7F32E /* AppPreferences.swift in Sources */,
@@ -901,7 +909,7 @@
 				98C63C0229604EB800D7F32E /* SourceResponse.swift in Sources */,
 				98D6B76C29793BCF00F63EE6 /* WeatherTableView.swift in Sources */,
 				985E62572945318500CB09A0 /* CompositionalLayout.swift in Sources */,
-				985E626A2947BC9B00CB09A0 /* Footer.swift in Sources */,
+				985E626A2947BC9B00CB09A0 /* PagingSectionFooterView.swift in Sources */,
 				985E625C2945F65900CB09A0 /* HomeWeatherCell.swift in Sources */,
 				98C63C3E2969BC4300D7F32E /* UIViewController+.swift in Sources */,
 				98C63B99295B7BE800D7F32E /* SearchController.swift in Sources */,

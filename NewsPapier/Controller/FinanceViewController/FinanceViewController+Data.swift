@@ -10,7 +10,7 @@ import UIKit
 extension FinanceViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FinanceCase.size
+        return self.financeResponseDict.count
     }
     
     
@@ -21,12 +21,11 @@ extension FinanceViewController: UITableViewDelegate, UITableViewDataSource{
         let index = indexPath.row
         let visibleIndex = index + 1
         
-        let _case = FinanceCase.allCases[index]
+        let dict = self.financeResponseDict[index]
         
-        if let finance = self.getFinanceDict(with: _case){
-            cell.setFinance(finance)
-            cell.setIndex(visibleIndex)
-        }
+        cell.setFinance(dict.value)
+        cell.setIndex(visibleIndex)
+        
         return cell
         
     }
@@ -34,12 +33,5 @@ extension FinanceViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: FinanceTableViewHeader.identifier) as? FinanceTableViewHeader else {return UITableViewHeaderFooterView()}
-        header.delegate = self
-        return header
-    }
-    
 }
 
