@@ -13,7 +13,7 @@ class FinanceTableViewCell: UITableViewCell{
     
     private let indexLabel = UILabel(autoLayout: false,
                                      font: Theme.h3Title,
-                                     color: Theme.primaryText,
+                                     color: Theme.secondaryText,
                                      text: "",
                                      textAlignment: .center)
     
@@ -23,15 +23,16 @@ class FinanceTableViewCell: UITableViewCell{
                                      text: "",
                                      textAlignment: .left)
     
+    private let priceLabel = UILabel(autoLayout: false,
+                                     font: Theme.body3,
+                                     color: Theme.secondaryText,
+                                     text: "",
+                                     textAlignment: .center)
+    
     private let changeLabel = UILabel(autoLayout: false,
                                       font: Theme.body3,
                                       text: "",
                                       textAlignment: .right)
-    
-    private let priceLabel = UILabel(autoLayout: false,
-                                     font: Theme.body3,
-                                     text: "",
-                                     textAlignment: .center)
     
     private lazy var stackView = HStackView([self.indexLabel, self.symbolName, self.priceLabel, self.changeLabel],
                                             autoLayout: false,

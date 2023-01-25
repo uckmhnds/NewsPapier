@@ -62,19 +62,19 @@ final class FinanceNavTitleView: UIView{
             case .size:
                 
                 sortBySizeButton.tintColor = .systemOrange
-                sortByPriceButton.tintColor = Theme.secondaryText
-                sortByChangeButton.tintColor = Theme.secondaryText
+                sortByPriceButton.tintColor = Theme.tertiaryText
+                sortByChangeButton.tintColor = Theme.tertiaryText
                 
             case .price:
                 
-                sortBySizeButton.tintColor = Theme.secondaryText
+                sortBySizeButton.tintColor = Theme.tertiaryText
                 sortByPriceButton.tintColor = .systemOrange
-                sortByChangeButton.tintColor = Theme.secondaryText
+                sortByChangeButton.tintColor = Theme.tertiaryText
                 
             case .change:
                 
-                sortBySizeButton.tintColor = Theme.secondaryText
-                sortByPriceButton.tintColor = Theme.secondaryText
+                sortBySizeButton.tintColor = Theme.tertiaryText
+                sortByPriceButton.tintColor = Theme.tertiaryText
                 sortByChangeButton.tintColor = .systemOrange
                 
             }
@@ -112,6 +112,7 @@ final class FinanceNavTitleView: UIView{
         let button = UIButton(type: .custom, primaryAction: action)
         
         button.setTitle(ButtonTitle.size, for: .normal)
+        button.setTitleColor(Theme.tertiaryText, for: .normal)
         button.setImage(ButtonImage.high, for: .normal)
         button.tintColor = .systemOrange
         button.semanticContentAttribute = .forceRightToLeft
@@ -153,8 +154,9 @@ final class FinanceNavTitleView: UIView{
         let button = UIButton(type: .custom, primaryAction: action)
         
         button.setTitle(ButtonTitle.price, for: .normal)
+        button.setTitleColor(Theme.tertiaryText, for: .normal)
         button.setImage(ButtonImage.high, for: .normal)
-        button.tintColor = Theme.secondaryText
+        button.tintColor = Theme.tertiaryText
         button.semanticContentAttribute = .forceRightToLeft
         button.adjustsImageWhenHighlighted = false
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -194,8 +196,9 @@ final class FinanceNavTitleView: UIView{
         let button = UIButton(type: .custom, primaryAction: action)
         
         button.setTitle(ButtonTitle.change, for: .normal)
+        button.setTitleColor(Theme.tertiaryText, for: .normal)
         button.setImage(ButtonImage.high, for: .normal)
-        button.tintColor = Theme.secondaryText
+        button.tintColor = Theme.tertiaryText
         button.semanticContentAttribute = .forceRightToLeft
         button.adjustsImageWhenHighlighted = false
         button.translatesAutoresizingMaskIntoConstraints = false
