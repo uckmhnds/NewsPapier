@@ -26,8 +26,15 @@ class BezierView: UIView {
     
     var didFinishAnimation: (() -> Void)?
     
-    private var dataPoints: [CGPoint]? {
-		return self.dataSource?.bezierViewDataPoints
+//    private var dataPoints: [CGPoint]? {
+//        return self.dataSource?.bezierViewDataPoints
+//    }
+    
+    private var dataPoints: [CGPoint]?
+    
+    func setData(_ pts: [CGPoint]){
+        self.dataPoints = pts
+        print(pts)
     }
     
     private let cubicCurveAlgorithm = CubicCurveAlgorithm()
