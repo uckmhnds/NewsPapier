@@ -71,5 +71,5 @@ public struct Finance: Codable, Hashable{
 
 public struct FinanceHistory: Codable, Hashable {
     let Close: Double
-    let Date: Int
+    let Date: TimeInterval
 }
