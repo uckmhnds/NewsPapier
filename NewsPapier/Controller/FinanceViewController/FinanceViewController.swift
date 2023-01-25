@@ -10,11 +10,12 @@ import UIKit
 class FinanceViewController: UIViewController {
     
     private let tableView = FinanceTableView()
-    private let test = FinanceNavTitleView(frame: .zero)
+    private let tableControllers = FinanceNavTitleView(frame: .zero)
     
     // MARK: - Network
     
     var financeResponseDict = [Dictionary<FinanceCase, Finance>.Element]()
+    
     private var isLoading: Bool = true
     private let dispatchGroup = DispatchGroup()
     
@@ -36,7 +37,6 @@ class FinanceViewController: UIViewController {
                 if let response = DecodeLocal.shared.fetch(fileName: finance.code) as FinanceResponse?
                 {
                     let fetchedData: Dictionary<FinanceCase, Finance>.Element = (key: finance, value: response.data)
-                    print(fetchedData.key)
                     self.financeResponseDict.append(fetchedData)
                 }
                 
@@ -44,31 +44,30 @@ class FinanceViewController: UIViewController {
             }
             
         }
-        print( "b4 sort")
+        
         self.dispatchGroup.enter()
         
         DispatchQueue.main.async {
-            print( "start sort")
-            var rank = 1
             
+            var rank = 1
+            #warning("for loop copy pastes")
             self.financeResponseDict = self.financeResponseDict.sorted(by: {$0.1.marketCap > $1.1.marketCap})
             
             for var finance in self.financeResponseDict{
                 
                 finance.value.setRank(rank)
-                print(finance.key)
-                print(finance.value.marketCap)
+                
                 self.financeResponseDict.remove(at: rank - 1)
                 self.financeResponseDict.insert(finance, at: rank - 1)
+                
                 rank+=1
                 
             }
-            print( "sorted")
             self.dispatchGroup.leave()
         }
         
         self.dispatchGroup.notify(queue: .main){
-            print( "ready")
+            
             self.isLoading = false
             self.tableView.reloadData()
             
@@ -83,10 +82,12 @@ class FinanceViewController: UIViewController {
     private func configureNavigationBar(){
         
         if let navController = navigationController{
+            
             navController.navigationBar.tintColor = .white
             navController.navigationBar.barTintColor = Theme.primaryBackground
             navController.navigationBar.isTranslucent = false
             navController.hidesBarsOnSwipe = true
+            
         }
         
         let sortBarImage          = UIImage(systemName: "gearshape")
@@ -107,31 +108,32 @@ class FinanceViewController: UIViewController {
         
         view.addSubview(tableView)
         
-        view.addSubview(test)
+        view.addSubview(tableControllers)
         
-        test.delegate = self
+        tableControllers.delegate = self
         
-        title = "Finance"
-        
-//        stack.backgroundColor = .red
-//        view.addSubview(stack)
+        title = Preferences.financeViewControllerTitle
         
         delegateMethods()
         
         loadLocalNews()
     }
     
-//    lazy var stack = VStackView([test, tableView], autoLayout: false, alignment: .center, distribution: .fill, spacing: 10)
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-//        tableView.frame = view.bounds
-        test.anchor(top: view.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, height: 30)
+        tableControllers.anchor(top: view.topAnchor,
+                                leading: view.leadingAnchor,
+                                trailing: view.trailingAnchor,
+                                height: Preferences.financeTableControllerHeight)
         
-        test.frameChildren()
+        tableControllers.frameChildren()
         
-        tableView.anchor(top: test.bottomAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        tableView.anchor(top: tableControllers.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         bottom: view.bottomAnchor,
+                         trailing: view.trailingAnchor)
+        
     }
     
     internal func sortByChangeHighToLow(){

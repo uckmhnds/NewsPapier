@@ -33,7 +33,7 @@ class FinanceTableViewCell: UITableViewCell{
                                      text: "",
                                      textAlignment: .center)
     
-    private lazy var stackView = HStackView([self.indexLabel, self.symbolName, self.changeLabel, self.priceLabel],
+    private lazy var stackView = HStackView([self.indexLabel, self.symbolName, self.priceLabel, self.changeLabel],
                                             autoLayout: false,
                                             alignment: .center,
                                             distribution: .equalCentering,
