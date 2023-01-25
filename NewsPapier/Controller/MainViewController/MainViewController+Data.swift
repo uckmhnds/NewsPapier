@@ -17,7 +17,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         if let section = self.collectionViewSections[sectionIndex] as? HomeCollectionFinanceSection
         {
-            print("didSelectItemAt " + String(indexPath.row) + " for: " + section.name)
+            let viewController = FinanceDetailViewController()
+            
+            if let navController = self.navigationController{
+                navController.pushViewController(viewController, animated: true)
+            }
         }
         else if let section = self.collectionViewSections[sectionIndex] as? HomeCollectionWeatherSection
         {

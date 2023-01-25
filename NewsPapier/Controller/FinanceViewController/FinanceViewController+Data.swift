@@ -13,7 +13,6 @@ extension FinanceViewController: UITableViewDelegate, UITableViewDataSource{
         return self.financeResponseDict.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FinanceTableViewCell.identifier, for: indexPath) as? FinanceTableViewCell else { return UITableViewCell()}
@@ -30,6 +29,15 @@ extension FinanceViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        
+        let viewController = FinanceDetailViewController()
+        
+        #warning("Navigation a lil bit freezez animation")
+        if let navController = self.navigationController{
+            navController.pushViewController(viewController, animated: true)
+        }
     }
+    
 }
 
