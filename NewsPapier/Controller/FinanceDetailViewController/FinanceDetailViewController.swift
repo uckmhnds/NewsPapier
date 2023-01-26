@@ -7,6 +7,19 @@
 
 import UIKit
 
+public enum HistoryPeriod: String, CaseIterable{
+    
+    case _1d
+    case _5d
+    case _1mo
+    case _3mo
+    case _6mo
+    case _1y
+    case _5y
+    case _max
+    
+}
+
 class FinanceDetailViewController: UIViewController {
     
     private var increasing: Bool?
@@ -75,15 +88,27 @@ class FinanceDetailViewController: UIViewController {
     
     @objc private func handleSegmentChange(){
         
-        print("sdas")
-//        switch periodSegments.selectedSegmentIndex{
-//        case 0:
-//            print("0")
-//        case 1:
-//            masterArray   = secondSegment
-//        default:
-//            masterArray   = thirdSegment
-//        }
+        let period = HistoryPeriod.allCases[self.periodSegments.selectedSegmentIndex]
+        
+        switch period{
+            
+        case ._1d:
+            print("_1d")
+        case ._5d:
+            print("_5d")
+        case ._1mo:
+            print("_1mo")
+        case ._3mo:
+            print("_3mo")
+        case ._6mo:
+            print("_6mo")
+        case ._1y:
+            print("_1y")
+        case ._5y:
+            print("_5y")
+        case ._max:
+            print("_max")
+        }
         
     }
     
