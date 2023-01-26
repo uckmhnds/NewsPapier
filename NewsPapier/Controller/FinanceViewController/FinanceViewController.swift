@@ -100,10 +100,15 @@ class FinanceViewController: UIViewController {
         navigationItem.rightBarButtonItem                   = sortBar
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(self.navigationController?.viewControllers.count)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("financeDidLoad")
         configureNavigationBar()
         
         view.addSubview(tableView)

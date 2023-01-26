@@ -19,22 +19,21 @@ class BezierView: UIView {
     private let kFadeAnimationKey = "FadeAnimationKey"
     
     weak var dataSource: BezierViewDataSource?
-    private let lineColor = UIColor.red
+    private var lineColor = Theme.primaryBackground
     private var animates = true
     private var lineLayer = CAShapeLayer()
     private var graphPath: UIBezierPath?
     
     var didFinishAnimation: (() -> Void)?
     
-//    private var dataPoints: [CGPoint]? {
-//        return self.dataSource?.bezierViewDataPoints
-//    }
-    
     private var dataPoints: [CGPoint]?
+    
+    func setLineColor(_ color: UIColor){
+        self.lineColor = color
+    }
     
     func setData(_ pts: [CGPoint]){
         self.dataPoints = pts
-        print(pts)
     }
     
     private let cubicCurveAlgorithm = CubicCurveAlgorithm()

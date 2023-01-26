@@ -9,14 +9,145 @@ import UIKit
 
 class FinanceDetailViewController: UIViewController {
     
-    lazy var test = BezierView(frame: .zero)
+    private var increasing: Bool?
     
-    var data: [FinanceHistory] = [FinanceHistory]()
+    private var data: [FinanceHistory] = [FinanceHistory]()
+    
+    private var tintColor: UIColor? {
+        if let increasing = self.increasing{
+            return increasing ? .systemGreen : .systemRed
+        }
+        return nil
+    }
+    
+    private var chevronImage: UIImage? {
+        if let increasing = self.increasing{
+            return increasing ? UIImage(systemName: "chevron.up")! : UIImage(systemName: "chevron.down")!
+        }
+        return nil
+    }
+    
+    private lazy var priceTitle = UILabel(autoLayout: false,
+                                          font: Theme.h1Title,
+                                          color: Theme.primaryText,
+                                          text: "$39,132.89",
+                                          textAlignment: .center)
+    
+    private lazy var chevronView = UIImageView(contentMode: .scaleAspectFill,
+                                               autoLayout: false,
+                                               clipsToBounds: false)
+    
+    private lazy var changeTitle = UILabel(autoLayout: false,
+                                           font: Theme.h3Accent,
+                                           color: Theme.secondaryText,
+                                           text: "3.5%",
+                                           textAlignment: .center)
+    
+    private lazy var changeStackView = HStackView([chevronView, changeTitle],
+                                                  autoLayout: false,
+                                                  alignment: .center,
+                                                  distribution: .fillProportionally,
+                                                  spacing: Spacing.s1)
+
+    private lazy var bezierView: BezierView = {
+        
+        let view = BezierView(frame: .zero)
+        
+        view.backgroundColor = Theme.primaryBackground
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+        
+    }()
+    
+    var segmentIndex: Int = 0
+    
+    private lazy var periodSegments: UISegmentedControl = {
+        
+        let segmentControl  = UISegmentedControl(items: ["1d", "5d", "1mo", "3mo", "6mo", "1y", "5y", "max"])
+        
+        segmentControl.selectedSegmentIndex = segmentIndex
+        segmentControl.addTarget(self, action: #selector(handleSegmentChange), for: .valueChanged)
+        
+        return segmentControl
+        
+    }()
+    
+    @objc private func handleSegmentChange(){
+        
+        print("sdas")
+//        switch periodSegments.selectedSegmentIndex{
+//        case 0:
+//            print("0")
+//        case 1:
+//            masterArray   = secondSegment
+//        default:
+//            masterArray   = thirdSegment
+//        }
+        
+    }
+    
+    lazy var stack = VStackView([priceTitle, changeStackView, bezierView, periodSegments], autoLayout: false, alignment: .center, distribution: .fillProportionally, spacing: Spacing.s1)
     
     var isLoading: Bool = true {
+        
         didSet{
-            self.test.setData(testFunc())
-            self.test.drawBezierCurve()
+            
+            if !self.isLoading{
+                
+                let pts = self.setBezierPoints()
+                self.bezierView.setData(pts)
+                self.bezierView.drawBezierCurve()
+                
+            }
+            
+        }
+        
+    }
+    
+    private func applyConstraints(){
+        
+//        priceTitle.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+//                          padding: UIEdgeInsets(top: Inset.i1,
+//                                                left: Inset.zero,
+//                                                bottom: Inset.zero,
+//                                                right: Inset.zero),
+//
+//                          centerX: view.centerXAnchor)
+//
+//        changeStackView.anchor(top: priceTitle.bottomAnchor,
+//                               padding: UIEdgeInsets(top: Inset.i1,
+//                                                     left: Inset.zero,
+//                                                     bottom: Inset.zero,
+//                                                     right: Inset.zero),
+//
+//                               centerX: view.centerXAnchor)
+//
+//        bezierView.anchor(top: changeTitle.bottomAnchor,
+//                          leading: view.leadingAnchor,
+//                          bottom: view.bottomAnchor,
+//                          trailing: view.trailingAnchor,
+//
+//                          padding: UIEdgeInsets(top: Inset.i1,
+//                                                left: Inset.i1,
+//                                                bottom: Inset.i9,
+//                                                right: Inset.i1))
+//
+        
+        bezierView.anchor(padding: UIEdgeInsets(top: Inset.zero, left: Inset.i1, bottom: Inset.zero, right: Inset.i1), width: view.frame.width)
+        
+        stack.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: Inset.zero, left: Inset.zero, bottom: Inset.i8, right: Inset.zero))
+        
+    }
+    
+    private func test(){
+        if let chevronImage = self.chevronImage{
+            self.chevronView.image = chevronImage
+        }
+        
+        if let tintColor = self.tintColor{
+            self.chevronView.tintColor = tintColor
+            self.bezierView.setLineColor(tintColor)
         }
     }
     
@@ -28,10 +159,8 @@ class FinanceDetailViewController: UIViewController {
             {
                 self.data = response.data
             }
-//            self.testFunc()
             
             self.isLoading = false
-            print("dsafsa")
         }
         
     }
@@ -46,20 +175,34 @@ class FinanceDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        test.dataSource = self
-
-        view.addSubview(test)
+        title = "AAPL"
         
+        increasing = true
         
+//        view.addSubview(priceTitle)
+//        view.addSubview(changeStackView)
+//        view.addSubview(bezierView)
+//        view.addSubview(periodSegments)
+        
+        view.addSubview(stack)
+        
+        applyConstraints()
+        
+        test()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        test.frame = view.bounds
+    
     }
     
-    internal func testFunc() -> [CGPoint]{
+    internal func setBezierPoints() -> [CGPoint]{
+        
+        let minX: CGFloat = self.bezierView.frame.minX
+        let maxX: CGFloat = self.bezierView.frame.maxX
+        
+        let minY: CGFloat = self.bezierView.frame.minY + Padding.p5
+        let maxY: CGFloat = self.bezierView.frame.maxY - Padding.p5
         
         let minDate = Date(timeIntervalSince1970: self.data[0].Date / 1000)
         let maxDate = Date(timeIntervalSince1970: self.data[self.data.count - 1].Date / 1000)
@@ -68,14 +211,8 @@ class FinanceDetailViewController: UIViewController {
         
         let daySpan = cal.numberOfDaysBetween(minDate, and: maxDate)
         
-        let minX: CGFloat = 0
-        let maxX: CGFloat = self.view.bounds.width
-        
         let minClose = self.data.min {$0.Close < $1.Close}?.Close
         let maxClose = self.data.max {$0.Close < $1.Close}?.Close
-        
-        let minY: CGFloat = 200
-        let maxY: CGFloat = 400
         
         var pts: [CGPoint] = [CGPoint]()
         
@@ -85,43 +222,16 @@ class FinanceDetailViewController: UIViewController {
             
             let x: CGFloat = (maxX - minX) * cal.numberOfDaysBetween(minDate, and: currentDate) / daySpan
             
-            let y: CGFloat = (datum.Close - minClose!) / (maxClose! - minClose!) * (maxY - minY) + minY
+            let y: CGFloat = (maxY - minY) - (datum.Close - minClose!) / (maxClose! - minClose!) * (maxY - minY) + Padding.p5
             
             let _pt = CGPoint(x: x, y: y)
             
             pts.append(_pt)
         }
+        
         return pts
     }
     
-
-}
-
-extension FinanceDetailViewController: BezierViewDataSource{
-
-    var bezierViewDataPoints: [CGPoint] {
-
-        var _pts: [CGPoint] = [CGPoint]()
-        
-        if !self.isLoading{
-            _pts = testFunc()
-        }
-        
-        return _pts
-
-    }
-    
-    func setBezPts() -> [CGPoint] {
-        
-        var _pts: [CGPoint] = [CGPoint]()
-        
-        if !self.isLoading{
-            _pts = testFunc()
-        }
-        
-        return _pts
-    }
-
 }
 
 extension Calendar{

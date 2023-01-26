@@ -99,6 +99,10 @@ struct Inset{
     static let i3: CGFloat = 20
     static let i4: CGFloat = 25
     static let i5: CGFloat = 40
+    static let i6: CGFloat = 90
+    static let i7: CGFloat = 180
+    static let i8: CGFloat = 300
+    static let i9: CGFloat = 400
     
 }
 

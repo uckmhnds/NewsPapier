@@ -51,6 +51,11 @@ class SideMenuViewController: UIViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(self.navigationController?.viewControllers.count)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
