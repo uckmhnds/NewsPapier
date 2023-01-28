@@ -19,7 +19,7 @@ class HomeWeatherCell: UICollectionViewCell {
     
     private let weatherIcon = UIImageView(contentMode: .scaleAspectFill,
                                           autoLayout: false,
-                                          clipsToBounds: true)
+                                          clipsToBounds: false)
     
     private let weatherLabel = UILabel(autoLayout: false,
                                        font: Theme.h0Title,
@@ -50,16 +50,18 @@ class HomeWeatherCell: UICollectionViewCell {
         
         weatherIcon.sd_setImage(with: imageUrl)
         
-        temp.text = "\(weather.minTemp)\u{00B0} - \(weather.maxTemp)\u{00B0}"
+        temp.text = "\(weather.minTemp)\u{00B0}C - \(weather.maxTemp)\u{00B0}C"
     }
     
-    private lazy var stack = VStackView([cityName, weatherIcon, temp],
+    private lazy var stack = VStackView([cityName, weatherIcon, temp, weatherLabel],
                                         autoLayout: false,
                                         alignment: .center,
                                         distribution: .fillProportionally,
                                         spacing: Spacing.s1)
     
     private func applyConstraints(){
+        #warning("parametric width here")
+        weatherIcon.anchor(width: frame.width * 0.75)
         
         stack.anchor(top: topAnchor, leading: leadingAnchor,
                      bottom: bottomAnchor,
@@ -78,7 +80,6 @@ class HomeWeatherCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        contentView.addSubview(categoryImageView)
         contentView.addSubview(stack)
 //
         applyConstraints()
