@@ -27,15 +27,19 @@ class FinanceDetailViewController: UIViewController {
     private var data: [FinanceHistory] = [FinanceHistory]()
     
     private var tintColor: UIColor? {
-        if let increasing = self.increasing{
+        if let increasing = self.increasing
+        {
             return increasing ? .systemGreen : .systemRed
         }
         return nil
     }
     
     private var chevronImage: UIImage? {
-        if let increasing = self.increasing{
-            return increasing ? UIImage(systemName: "chevron.up")! : UIImage(systemName: "chevron.down")!
+        if let increasing = self.increasing,
+            let imageUp = UIImage(systemName: "chevron.up"),
+            let imageDown = UIImage(systemName: "chevron.down")
+        {
+            return increasing ? imageUp : imageDown
         }
         return nil
     }
@@ -120,9 +124,11 @@ class FinanceDetailViewController: UIViewController {
             
             if !self.isLoading{
                 
-                let pts = self.setBezierPoints()
-                self.bezierView.setData(pts)
-                self.bezierView.drawBezierCurve()
+                let points = self.setBezierPoints()
+                if let points = points{
+                    self.bezierView.setData(points)
+                    self.bezierView.drawBezierCurve()
+                }
                 
             }
             
@@ -132,48 +138,38 @@ class FinanceDetailViewController: UIViewController {
     
     private func applyConstraints(){
         
-//        priceTitle.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-//                          padding: UIEdgeInsets(top: Inset.i1,
-//                                                left: Inset.zero,
-//                                                bottom: Inset.zero,
-//                                                right: Inset.zero),
-//
-//                          centerX: view.centerXAnchor)
-//
-//        changeStackView.anchor(top: priceTitle.bottomAnchor,
-//                               padding: UIEdgeInsets(top: Inset.i1,
-//                                                     left: Inset.zero,
-//                                                     bottom: Inset.zero,
-//                                                     right: Inset.zero),
-//
-//                               centerX: view.centerXAnchor)
-//
-//        bezierView.anchor(top: changeTitle.bottomAnchor,
-//                          leading: view.leadingAnchor,
-//                          bottom: view.bottomAnchor,
-//                          trailing: view.trailingAnchor,
-//
-//                          padding: UIEdgeInsets(top: Inset.i1,
-//                                                left: Inset.i1,
-//                                                bottom: Inset.i9,
-//                                                right: Inset.i1))
-//
+        bezierView.anchor(padding: UIEdgeInsets(top: Inset.zero,
+                                                left: Inset.i1,
+                                                bottom: Inset.zero,
+                                                right: Inset.i1),
+                          width: view.frame.width)
         
-        bezierView.anchor(padding: UIEdgeInsets(top: Inset.zero, left: Inset.i1, bottom: Inset.zero, right: Inset.i1), width: view.frame.width)
-        
-        stack.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: Inset.zero, left: Inset.zero, bottom: Inset.i8, right: Inset.zero))
+        stack.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                     leading: view.leadingAnchor,
+                     bottom: view.bottomAnchor,
+                     trailing: view.trailingAnchor,
+                     padding: UIEdgeInsets(top: Inset.zero,
+                                           left: Inset.zero,
+                                           bottom: Inset.i8,
+                                           right: Inset.zero))
         
     }
     
-    private func test(){
+    private func setCurveApparence(){
+        
         if let chevronImage = self.chevronImage{
+            
             self.chevronView.image = chevronImage
+            
         }
         
         if let tintColor = self.tintColor{
+            
             self.chevronView.tintColor = tintColor
             self.bezierView.setLineColor(tintColor)
+            
         }
+        
     }
     
     private func localJSON(){
@@ -204,16 +200,11 @@ class FinanceDetailViewController: UIViewController {
         
         increasing = true
         
-//        view.addSubview(priceTitle)
-//        view.addSubview(changeStackView)
-//        view.addSubview(bezierView)
-//        view.addSubview(periodSegments)
-        
         view.addSubview(stack)
         
         applyConstraints()
         
-        test()
+        setCurveApparence()
     }
     
     override func viewDidLayoutSubviews() {
@@ -221,7 +212,7 @@ class FinanceDetailViewController: UIViewController {
     
     }
     
-    internal func setBezierPoints() -> [CGPoint]{
+    internal func setBezierPoints() -> [CGPoint]? {
         
         let minX: CGFloat = self.bezierView.frame.minX
         let maxX: CGFloat = self.bezierView.frame.maxX
@@ -229,45 +220,43 @@ class FinanceDetailViewController: UIViewController {
         let minY: CGFloat = self.bezierView.frame.minY + Padding.p5
         let maxY: CGFloat = self.bezierView.frame.maxY - Padding.p5
         
-        let minDate = Date(timeIntervalSince1970: self.data[0].Date / 1000)
-        let maxDate = Date(timeIntervalSince1970: self.data[self.data.count - 1].Date / 1000)
-        
         let cal = Calendar(identifier: .iso8601)
         
-        let daySpan = cal.numberOfDaysBetween(minDate, and: maxDate)
-        
-        let minClose = self.data.min {$0.Close < $1.Close}?.Close
-        let maxClose = self.data.max {$0.Close < $1.Close}?.Close
-        
-        var pts: [CGPoint] = [CGPoint]()
-        
-        for datum in data{
+        if let firstData = self.data.first,
+            let lastData = self.data.last,
+            let minClose = self.data.min(by: {$0.Close < $1.Close}),
+            let maxClose = self.data.max(by: {$0.Close < $1.Close})
+        {
+            let minDate = Date(timeIntervalSince1970: firstData.Date / 1000)
+            let maxDate = Date(timeIntervalSince1970: lastData.Date / 1000)
             
-            let currentDate = Date(timeIntervalSince1970: datum.Date / 1000)
+            let daySpan = cal.numberOfDaysBetween(minDate, and: maxDate)
             
-            let x: CGFloat = (maxX - minX) * cal.numberOfDaysBetween(minDate, and: currentDate) / daySpan
+            let minClose = minClose.Close
+            let maxClose = maxClose.Close
             
-            let y: CGFloat = (maxY - minY) - (datum.Close - minClose!) / (maxClose! - minClose!) * (maxY - minY) + Padding.p5
+            var pts: [CGPoint] = [CGPoint]()
             
-            let _pt = CGPoint(x: x, y: y)
+            for datum in data{
+                
+                let currentDate = Date(timeIntervalSince1970: datum.Date / 1000)
+                
+                let x: CGFloat = (maxX - minX) * cal.numberOfDaysBetween(minDate, and: currentDate) / daySpan
+                
+                let y: CGFloat = (maxY - minY) - (datum.Close - minClose) / (maxClose - minClose) * (maxY - minY) + Padding.p5
+                
+                let _pt = CGPoint(x: x, y: y)
+                
+                pts.append(_pt)
+            }
             
-            pts.append(_pt)
+            return pts
+            
         }
         
-        return pts
+        return nil
+        
     }
     
 }
 
-extension Calendar{
-    
-    func numberOfDaysBetween(_ from: Date, and to: Date) -> Double {
-        
-        let fromDate = startOfDay(for: from) // <1>
-        let toDate = startOfDay(for: to) // <2>
-        let numberOfDays = dateComponents([.day], from: fromDate, to: toDate) // <3>
-        
-        return Double(numberOfDays.day!)
-    }
-    
-}

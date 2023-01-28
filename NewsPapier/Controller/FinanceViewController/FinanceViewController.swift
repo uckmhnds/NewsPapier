@@ -51,7 +51,7 @@ class FinanceViewController: UIViewController {
             
             var rank = 1
             #warning("for loop copy pastes")
-            self.financeResponseDict = self.financeResponseDict.sorted(by: {$0.1.marketCap > $1.1.marketCap})
+            self.financeResponseDict.sort(by: {$0.1.marketCap > $1.1.marketCap})
             
             for var finance in self.financeResponseDict{
                 
@@ -103,12 +103,12 @@ class FinanceViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(self.navigationController?.viewControllers.count)
+        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("financeDidLoad")
+        
         configureNavigationBar()
         
         view.addSubview(tableView)
