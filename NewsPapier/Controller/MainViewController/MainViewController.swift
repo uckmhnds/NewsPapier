@@ -293,7 +293,6 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(self.navigationController?.viewControllers.count)
         
         switch Preferences.appState{
             
@@ -309,7 +308,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("mainDidLoad")
+        
         configureNavigationBar()
         configureSearchBar()
         

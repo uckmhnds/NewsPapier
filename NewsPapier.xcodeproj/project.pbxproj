@@ -11,6 +11,7 @@
 		980478742981C17400AA6C9D /* aapl_history.json in Resources */ = {isa = PBXBuildFile; fileRef = 980478732981C17400AA6C9D /* aapl_history.json */; };
 		9814FB1B28EAC4EF00BAC07C /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9814FB1A28EAC4EF00BAC07C /* NewsDetailViewController.swift */; };
 		981D3D5028FC482000FB0C90 /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981D3D4F28FC481F00FB0C90 /* DataPersistence.swift */; };
+		982C1A4B2985A830006296C4 /* Calendar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C1A4A2985A830006296C4 /* Calendar+.swift */; };
 		982EB4B8297DAAE60015728F /* FinanceViewController+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982EB4B7297DAAE60015728F /* FinanceViewController+Data.swift */; };
 		985E624D29450F8A00CB09A0 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E624C29450F8A00CB09A0 /* NewsViewController.swift */; };
 		985E624F294510AB00CB09A0 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E624E294510AB00CB09A0 /* NewsTableViewCell.swift */; };
@@ -80,10 +81,7 @@
 		98C63CAC296EF66100D7F32E /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C63CAB296EF66100D7F32E /* UIStackView+.swift */; };
 		98D6B6F9296F3FE000F63EE6 /* SideMenuCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B6F8296F3FE000F63EE6 /* SideMenuCategoryCell.swift */; };
 		98D6B6FB296F3FED00F63EE6 /* SideMenuRegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B6FA296F3FED00F63EE6 /* SideMenuRegionCell.swift */; };
-		98D6B70629709F2700F63EE6 /* HistoryPeriodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B70129709F2700F63EE6 /* HistoryPeriodButton.swift */; };
 		98D6B70729709F2700F63EE6 /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B70229709F2700F63EE6 /* BezierView.swift */; };
-		98D6B70829709F2700F63EE6 /* LineLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B70329709F2700F63EE6 /* LineLoadingView.swift */; };
-		98D6B70929709F2700F63EE6 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B70429709F2700F63EE6 /* ChartView.swift */; };
 		98D6B70A29709F2700F63EE6 /* CubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B70529709F2700F63EE6 /* CubicCurveAlgorithm.swift */; };
 		98D6B70C29709F9400F63EE6 /* HistoryPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B70B29709F9400F63EE6 /* HistoryPeriod.swift */; };
 		98D6B70E2972B2D500F63EE6 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D6B70D2972B2D500F63EE6 /* SideMenu.swift */; };
@@ -143,6 +141,7 @@
 		980478732981C17400AA6C9D /* aapl_history.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = aapl_history.json; sourceTree = "<group>"; };
 		9814FB1A28EAC4EF00BAC07C /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		981D3D4F28FC481F00FB0C90 /* DataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistence.swift; sourceTree = "<group>"; };
+		982C1A4A2985A830006296C4 /* Calendar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+.swift"; sourceTree = "<group>"; };
 		982EB4B7297DAAE60015728F /* FinanceViewController+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FinanceViewController+Data.swift"; sourceTree = "<group>"; };
 		985E624C29450F8A00CB09A0 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		985E624E294510AB00CB09A0 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -209,10 +208,7 @@
 		98C63CAB296EF66100D7F32E /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		98D6B6F8296F3FE000F63EE6 /* SideMenuCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCategoryCell.swift; sourceTree = "<group>"; };
 		98D6B6FA296F3FED00F63EE6 /* SideMenuRegionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRegionCell.swift; sourceTree = "<group>"; };
-		98D6B70129709F2700F63EE6 /* HistoryPeriodButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPeriodButton.swift; sourceTree = "<group>"; };
 		98D6B70229709F2700F63EE6 /* BezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
-		98D6B70329709F2700F63EE6 /* LineLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineLoadingView.swift; sourceTree = "<group>"; };
-		98D6B70429709F2700F63EE6 /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		98D6B70529709F2700F63EE6 /* CubicCurveAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicCurveAlgorithm.swift; sourceTree = "<group>"; };
 		98D6B70B29709F9400F63EE6 /* HistoryPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPeriod.swift; sourceTree = "<group>"; };
 		98D6B70D2972B2D500F63EE6 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
@@ -290,6 +286,7 @@
 				985E62562945318500CB09A0 /* CompositionalLayout.swift */,
 				98C63B8F2958DEC500D7F32E /* String+.swift */,
 				98C63BAD296042AB00D7F32E /* Date+.swift */,
+				982C1A4A2985A830006296C4 /* Calendar+.swift */,
 				98C63BA3295CC70D00D7F32E /* UIFont+.swift */,
 				98C63BA5295CC73F00D7F32E /* UIColor+.swift */,
 				98C63BA9295E1EE000D7F32E /* UILabel+.swift */,
@@ -484,10 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				98D6B70229709F2700F63EE6 /* BezierView.swift */,
-				98D6B70429709F2700F63EE6 /* ChartView.swift */,
 				98D6B70529709F2700F63EE6 /* CubicCurveAlgorithm.swift */,
-				98D6B70129709F2700F63EE6 /* HistoryPeriodButton.swift */,
-				98D6B70329709F2700F63EE6 /* LineLoadingView.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -858,6 +852,7 @@
 				985E626F2947BD0F00CB09A0 /* NewsViewController+Data.swift in Sources */,
 				981D3D5028FC482000FB0C90 /* DataPersistence.swift in Sources */,
 				98D6B73E297876D300F63EE6 /* FinanceResponse.swift in Sources */,
+				982C1A4B2985A830006296C4 /* Calendar+.swift in Sources */,
 				985E627A294A47C900CB09A0 /* SideMenuViewController.swift in Sources */,
 				98D6B7622979378700F63EE6 /* FinanceViewController+Protocol.swift in Sources */,
 				98C63BA6295CC73F00D7F32E /* UIColor+.swift in Sources */,
@@ -880,7 +875,6 @@
 				985E625A294531F400CB09A0 /* HomeCategoryCell.swift in Sources */,
 				98D6B70A29709F2700F63EE6 /* CubicCurveAlgorithm.swift in Sources */,
 				985E625529452F9100CB09A0 /* MainViewController.swift in Sources */,
-				98D6B70929709F2700F63EE6 /* ChartView.swift in Sources */,
 				98C63C1A2964B22D00D7F32E /* NewsViewController+Delegate.swift in Sources */,
 				98C63C1F2964C79400D7F32E /* DecodeLocal.swift in Sources */,
 				98D6B77029793C4700F63EE6 /* WeatherTableViewCell.swift in Sources */,
@@ -900,7 +894,6 @@
 				985E62622947BB9800CB09A0 /* MainViewController+Data.swift in Sources */,
 				98D6B6FB296F3FED00F63EE6 /* SideMenuRegionCell.swift in Sources */,
 				985E624D29450F8A00CB09A0 /* NewsViewController.swift in Sources */,
-				98D6B70629709F2700F63EE6 /* HistoryPeriodButton.swift in Sources */,
 				98C63BB0296045A000D7F32E /* UIView+.swift in Sources */,
 				98D6B7102972B30B00F63EE6 /* HomeCollection.swift in Sources */,
 				9814FB1B28EAC4EF00BAC07C /* NewsDetailViewController.swift in Sources */,
@@ -909,7 +902,6 @@
 				98D6B7122973074D00F63EE6 /* MainViewController+Protocol.swift in Sources */,
 				98C63C18296056F400D7F32E /* AppPreferences.swift in Sources */,
 				98695659294E050900927139 /* Content.swift in Sources */,
-				98D6B70829709F2700F63EE6 /* LineLoadingView.swift in Sources */,
 				98C63C0229604EB800D7F32E /* SourceResponse.swift in Sources */,
 				98D6B76C29793BCF00F63EE6 /* WeatherTableView.swift in Sources */,
 				985E62572945318500CB09A0 /* CompositionalLayout.swift in Sources */,

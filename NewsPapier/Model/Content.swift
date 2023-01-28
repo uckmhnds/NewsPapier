@@ -78,8 +78,8 @@ public struct Preferences{
     static let secondaryItemPadding: CGFloat = 5
     static let secondaryItemWidthFraction: CGFloat = 1
     static let secondaryItemHeightFraction: CGFloat = 1
-    static let secondaryGroupWidthFraction: CGFloat = 0.4
-    static let secondaryGroupHeightFraction: CGFloat = 0.08
+    static let secondaryGroupWidthFraction: CGFloat = 0.35
+    static let secondaryGroupHeightFraction: CGFloat = 0.075
     
     static let tertiaryContentInset: NSDirectionalEdgeInsets = .init(top: 0, leading: 0, bottom: 10, trailing: 0)
     static let tertiaryItemPadding: CGFloat = 5

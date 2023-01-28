@@ -33,7 +33,7 @@ class HomeFinanceCell: UICollectionViewCell {
                                             distribution: .equalCentering,
                                             spacing: Spacing.s1)
     
-    private lazy var stackView = HStackView([self.symbolName, subStackView],
+    private lazy var stackView = HStackView([self.symbolName, self.changeLabel],
                                             autoLayout: false,
                                             alignment: .center,
                                             distribution: .equalCentering,
