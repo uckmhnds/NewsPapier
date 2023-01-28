@@ -11,6 +11,7 @@ protocol HeaderDelegate: AnyObject{
     
     func headerDidTapNews(_ categoryCase: CategoryCase)
     func headerDidTapFinance()
+    func headerDidTapWeather()
     
 }
 
@@ -18,7 +19,7 @@ class MainCollectionViewHeader: UICollectionReusableView {
 
     static let identifier = "Header"
     var categoryCase: CategoryCase?
-    var baseCase: BaseCase?
+    var whichHeader: MainCollectionHeader?
     weak var delegate: HeaderDelegate?
 
     private lazy var label: UILabel  = {
@@ -64,11 +65,19 @@ class MainCollectionViewHeader: UICollectionReusableView {
     @objc private func headerDidTap(_ sender: UITapGestureRecognizer){
         
         if let delegate = self.delegate{
-            if let categoryCase = self.categoryCase
+            if let whichHeader = self.whichHeader
             {
-                delegate.headerDidTapNews(categoryCase)
-            }else {
-                delegate.headerDidTapFinance()
+                switch whichHeader
+                {
+                case .finance:
+                    delegate.headerDidTapFinance()
+                case .weather:
+                    delegate.headerDidTapWeather()
+                case .news:
+                    if let categoryCase = self.categoryCase{
+                        delegate.headerDidTapNews(categoryCase)
+                    }
+                }
             }
         }
         

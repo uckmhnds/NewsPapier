@@ -67,14 +67,14 @@ public struct Preferences{
     // Compositional Layout
     //
     
-    static let primaryContentInset: NSDirectionalEdgeInsets = .init(top: 0, leading: 0, bottom: 24, trailing: 0)
+    static let primaryContentInset: NSDirectionalEdgeInsets = .init(top: 10, leading: 0, bottom: 24, trailing: 0)
     static let primaryItemPadding: CGFloat = 5
     static let primaryItemWidthFraction: CGFloat = 1
     static let primaryItemHeightFraction: CGFloat = 1
-    static let primaryGroupWidthFraction: CGFloat = 0.25
-    static let primaryGroupHeightFraction: CGFloat = 0.14
+    static let primaryGroupWidthFraction: CGFloat = 0.3
+    static let primaryGroupHeightFraction: CGFloat = 0.18
     
-    static let secondaryContentInset: NSDirectionalEdgeInsets = .init(top: 0, leading: 0, bottom: 20, trailing: 0)
+    static let secondaryContentInset: NSDirectionalEdgeInsets = .init(top: 10, leading: 0, bottom: 20, trailing: 0)
     static let secondaryItemPadding: CGFloat = 5
     static let secondaryItemWidthFraction: CGFloat = 1
     static let secondaryItemHeightFraction: CGFloat = 1
@@ -150,8 +150,18 @@ enum SideMenuState {
     case closed
 }
 
+enum MainCollectionHeader{
+    // When headerDidTapped, this will help to direct user to FinanceVC, WeatherVC or specific NewsVC
+    case finance
+    case weather
+    case news
+}
+
+protocol MainCollectionCase{
+    var whichHeader: MainCollectionHeader { get }
+}
+
 protocol BaseCase{
-    
 }
 
 public struct Category{
@@ -174,9 +184,11 @@ public enum CategoryCase: String, CaseIterable{
     
 }
 
-extension CategoryCase: BaseCase{
+extension CategoryCase: BaseCase, MainCollectionCase{
     
-    //    subscript
+    var whichHeader: MainCollectionHeader {
+        return .news
+    }
     
     var code: String { return self.rawValue}
     static var size: Int { return CategoryCase.allCases.count }
@@ -261,7 +273,11 @@ public enum FinanceCase: String, CaseIterable{
     
 }
 
-extension FinanceCase: BaseCase{
+extension FinanceCase: BaseCase, MainCollectionCase{
+    
+    var whichHeader: MainCollectionHeader {
+        return .finance
+    }
     
     var code: String { return self.rawValue}
     
@@ -285,19 +301,17 @@ public enum WeatherCase: String, CaseIterable{
     
 }
 
-extension WeatherCase: BaseCase{
+extension WeatherCase: BaseCase, MainCollectionCase{
+    
+    var whichHeader: MainCollectionHeader {
+        return .weather
+    }
     
     var code: String { return self.rawValue.replacingOccurrences(of: "_", with: " ")}
     
     static var size: Int { return WeatherCase.allCases.count }
     
 }
-
-
-
-
-
-
 
 
 public enum FinanceRealCase: String, CaseIterable{
