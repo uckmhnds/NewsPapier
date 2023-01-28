@@ -201,7 +201,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             if let _ = self.collectionViewSections[sectionIndex] as? HomeCollectionFinanceSection
             {
                 header.delegate = self
-                header.categoryCase = nil
+                header.whichHeader = .finance
                 header.setHeaderLabel(with: HomeCollectionSectionType.finance.name)
                 return header
             }
@@ -209,6 +209,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             {
 //                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
                 header.delegate = self
+                header.whichHeader = .weather
                 header.setHeaderLabel(with: HomeCollectionSectionType.weather.name)
                 return header
             }
@@ -218,6 +219,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 //                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Header.identifier, for: indexPath) as? Header else {return UICollectionReusableView()}
                 
                 header.delegate = self
+                header.whichHeader = .news
                 
                 switch section._case{
                     

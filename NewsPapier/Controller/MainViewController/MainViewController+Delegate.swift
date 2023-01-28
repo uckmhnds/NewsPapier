@@ -30,6 +30,16 @@ extension MainViewController: HeaderDelegate{
             
         }
     }
+    
+    func headerDidTapWeather() {
+        
+        let viewController = WeatherViewController()
+        if let navController = self.navigationController{
+            
+            navController.pushViewController(viewController, animated: true)
+            
+        }
+    }
 }
 
 extension MainViewController: SearchResultsViewControllerDelegate{
