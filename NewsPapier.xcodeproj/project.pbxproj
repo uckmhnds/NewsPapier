@@ -12,6 +12,7 @@
 		9814FB1B28EAC4EF00BAC07C /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9814FB1A28EAC4EF00BAC07C /* NewsDetailViewController.swift */; };
 		981D3D5028FC482000FB0C90 /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981D3D4F28FC481F00FB0C90 /* DataPersistence.swift */; };
 		982C1A4B2985A830006296C4 /* Calendar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C1A4A2985A830006296C4 /* Calendar+.swift */; };
+		982C1A4D2986F9D3006296C4 /* WeatherViewController+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C1A4C2986F9D3006296C4 /* WeatherViewController+Data.swift */; };
 		982EB4B8297DAAE60015728F /* FinanceViewController+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982EB4B7297DAAE60015728F /* FinanceViewController+Data.swift */; };
 		985E624D29450F8A00CB09A0 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E624C29450F8A00CB09A0 /* NewsViewController.swift */; };
 		985E624F294510AB00CB09A0 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E624E294510AB00CB09A0 /* NewsTableViewCell.swift */; };
@@ -142,6 +143,7 @@
 		9814FB1A28EAC4EF00BAC07C /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		981D3D4F28FC481F00FB0C90 /* DataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistence.swift; sourceTree = "<group>"; };
 		982C1A4A2985A830006296C4 /* Calendar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+.swift"; sourceTree = "<group>"; };
+		982C1A4C2986F9D3006296C4 /* WeatherViewController+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherViewController+Data.swift"; sourceTree = "<group>"; };
 		982EB4B7297DAAE60015728F /* FinanceViewController+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FinanceViewController+Data.swift"; sourceTree = "<group>"; };
 		985E624C29450F8A00CB09A0 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		985E624E294510AB00CB09A0 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 			isa = PBXGroup;
 			children = (
 				98D6B76529793B7900F63EE6 /* WeatherViewController.swift */,
+				982C1A4C2986F9D3006296C4 /* WeatherViewController+Data.swift */,
 			);
 			path = WeatherViewController;
 			sourceTree = "<group>";
@@ -897,6 +900,7 @@
 				98C63BB0296045A000D7F32E /* UIView+.swift in Sources */,
 				98D6B7102972B30B00F63EE6 /* HomeCollection.swift in Sources */,
 				9814FB1B28EAC4EF00BAC07C /* NewsDetailViewController.swift in Sources */,
+				982C1A4D2986F9D3006296C4 /* WeatherViewController+Data.swift in Sources */,
 				985E62682947BC6600CB09A0 /* MainCollectionViewHeader.swift in Sources */,
 				98D6B7162975C7E000F63EE6 /* OnboardingViewController.swift in Sources */,
 				98D6B7122973074D00F63EE6 /* MainViewController+Protocol.swift in Sources */,
