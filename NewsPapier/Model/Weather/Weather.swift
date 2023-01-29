@@ -12,6 +12,8 @@ public struct WeatherResponse: Codable, Hashable{
     let name: String
     let weather: [Weather]
     let main: Temp
+    let wind: Wind
+    let sys: Sys
     
     var minTemp: String {
         
@@ -53,4 +55,15 @@ public struct Temp: Codable, Hashable{
     let temp: Double
     let temp_min: Double
     let temp_max: Double
+    let humidity: Int
+}
+
+public struct Wind: Codable, Hashable{
+    let speed: Double
+    let deg: Int
+}
+
+public struct Sys: Codable, Hashable{
+    let sunrise: TimeInterval
+    let sunset: TimeInterval
 }
