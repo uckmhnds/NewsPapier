@@ -109,6 +109,8 @@ class FinanceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadLocalNews()
+        
         configureNavigationBar()
         
         view.addSubview(tableView)
@@ -120,8 +122,6 @@ class FinanceViewController: UIViewController {
         title = Preferences.financeViewControllerTitle
         
         delegateMethods()
-        
-        loadLocalNews()
     }
     
     override func viewDidLayoutSubviews() {

@@ -125,6 +125,9 @@ public struct Preferences{
     
     static let financeTableControllerHeight: CGFloat = 60
     static let financeViewControllerTitle: String = "Finance"
+    
+    static let weatherTableControllerHeight: CGFloat = 80
+    static let weatherViewControllerTitle: String = "Weather"
 }
 
 public enum SearchIn: String, CaseIterable{
