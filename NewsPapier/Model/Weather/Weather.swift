@@ -40,6 +40,19 @@ public struct WeatherResponse: Codable, Hashable{
         
         return formatter.string(from: celcius as NSNumber) ?? "n/a"
     }
+    
+    var currentTemp: String{
+        
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 0
+        
+        formatter.numberStyle = .decimal
+
+        let celcius = main.temp - 277.15
+        
+        return formatter.string(from: celcius as NSNumber) ?? "n/a"
+    }
 }
 
 
