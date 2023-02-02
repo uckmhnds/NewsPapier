@@ -26,8 +26,20 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let index = indexPath.row
+        
+        let dict = self.weatherResponseDict[index]
+        
+        let viewController = WeatherDetailViewController()
+        
+        if let navController = self.navigationController{
+            navController.pushViewController(viewController, animated: true)
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
