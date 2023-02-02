@@ -22,7 +22,7 @@ public struct WeatherResponse: Codable, Hashable{
         formatter.maximumFractionDigits = 0
         
         formatter.numberStyle = .decimal
-
+        
         let celcius = main.temp_min - 277.15
         
         return formatter.string(from: celcius as NSNumber) ?? "n/a"
@@ -72,11 +72,15 @@ public struct Temp: Codable, Hashable{
 }
 
 public struct Wind: Codable, Hashable{
+    
     let speed: Double
     let deg: Int
+    
 }
 
 public struct Sys: Codable, Hashable{
+    
     let sunrise: TimeInterval
     let sunset: TimeInterval
+    
 }

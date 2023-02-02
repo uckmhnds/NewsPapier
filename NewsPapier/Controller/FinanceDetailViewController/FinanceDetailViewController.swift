@@ -116,7 +116,7 @@ class FinanceDetailViewController: UIViewController {
         
     }
     
-    lazy var stack = VStackView([priceTitle, changeStackView, bezierView, periodSegments], autoLayout: false, alignment: .center, distribution: .fillProportionally, spacing: Spacing.s1)
+    private lazy var stack = VStackView([priceTitle, changeStackView, bezierView, periodSegments], autoLayout: false, alignment: .center, distribution: .fillProportionally, spacing: Spacing.s1)
     
     var isLoading: Bool = true {
         
