@@ -11,14 +11,21 @@ class RootNavigationController: UINavigationController {
     
     var menuState: SideMenuState = .closed
     
-    let sideMenuViewController = SideMenuViewController()
     lazy var sideMenuWidth: CGFloat = view.frame.width * Preferences.sideMenuWidthRatio
     var sideMenuTrailingConstraint: NSLayoutConstraint!
-    var navigationViewController: UINavigationController?
     
     let rootViewController = MainViewController()
     
-    private func applyConstraints(){
+    private func sideMenuViewController(){
+        
+        let sideMenuViewController = SideMenuViewController()
+        #warning("delegate via navVC. main.delegate -> navVC navVC -> side.delegate")
+        sideMenuViewController.delegate = rootViewController.self
+        
+        addChild(sideMenuViewController)
+        view.addSubview(sideMenuViewController.view)
+        
+        sideMenuViewController.didMove(toParent: self)
         
         sideMenuViewController.view.translatesAutoresizingMaskIntoConstraints = false
         sideMenuViewController.view.widthAnchor.constraint(equalToConstant: sideMenuWidth).isActive = true
@@ -46,14 +53,16 @@ class RootNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sideMenuViewController.delegate = rootViewController.self
+//        sideMenuViewController.delegate = rootViewController.self
+//
+//        addChild(sideMenuViewController)
+//        view.addSubview(sideMenuViewController.view)
+//
+//        sideMenuViewController.didMove(toParent: self)
         
-        addChild(sideMenuViewController)
-        view.addSubview(sideMenuViewController.view)
+        self.hidesBarsOnSwipe = false
         
-        sideMenuViewController.didMove(toParent: self)
-        
-        applyConstraints()
+        sideMenuViewController()
         
         // Do any additional setup after loading the view.
         pushViewController(rootViewController, animated: true)
