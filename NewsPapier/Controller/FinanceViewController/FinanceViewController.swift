@@ -86,6 +86,7 @@ class FinanceViewController: UIViewController {
             navController.navigationBar.tintColor = .white
             navController.navigationBar.barTintColor = Theme.primaryBackground
             navController.navigationBar.isTranslucent = false
+            #warning("not working")
             navController.hidesBarsOnSwipe = true
             
         }
@@ -122,6 +123,8 @@ class FinanceViewController: UIViewController {
         title = Preferences.financeViewControllerTitle
         
         delegateMethods()
+        
+        self.view.backgroundColor = Theme.primaryBackground
     }
     
     override func viewDidLayoutSubviews() {

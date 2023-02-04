@@ -205,6 +205,12 @@ class FinanceDetailViewController: UIViewController {
         applyConstraints()
         
         setCurveApparence()
+        
+        self.view.backgroundColor = Theme.primaryBackground
+        
+        if let navController = self.navigationController{
+            navController.hidesBarsOnSwipe = false
+        }
     }
     
     override func viewDidLayoutSubviews() {

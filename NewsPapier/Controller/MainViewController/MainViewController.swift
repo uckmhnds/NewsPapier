@@ -319,6 +319,10 @@ class MainViewController: UIViewController {
         setCollectionViewDelegates()
         setSearchDelegates()
         
+        if let navController = self.navigationController{
+            navController.hidesBarsOnSwipe = false
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
