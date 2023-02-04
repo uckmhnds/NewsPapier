@@ -65,7 +65,16 @@ class WeatherViewController: UIViewController {
         self.delegateMethods()
         
         
-        title = Preferences.weatherViewControllerTitle
+        if let navController = self.navigationController{
+            if navController.hidesBarsOnSwipe{
+                print("true")
+            }else{
+                print("false")
+            }
+        }
+        
+        self.title = Preferences.weatherViewControllerTitle
+        self.view.backgroundColor = Theme.primaryBackground
         
     }
     

@@ -34,6 +34,7 @@ extension FinanceViewController: UITableViewDelegate, UITableViewDataSource{
         let viewController = FinanceDetailViewController()
         
         #warning("Navigation a lil bit freezez animation")
+        #warning("Later: figured out due to empty background color")
         if let navController = self.navigationController{
             navController.pushViewController(viewController, animated: true)
         }

@@ -44,6 +44,8 @@ class WeatherDetailViewController: UIViewController {
         view.addSubview(stack)
         
         applyConstraints()
+        
+        self.view.backgroundColor = Theme.primaryBackground
     }
     
 }
